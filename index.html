@@ -1,14 +1,160 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
-  <title>Beranda Website Modular</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanya Nira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .avatar video {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px auto;
+    }
+
+    .greeting {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      min-height: 2em;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #e0e0e0;
+      padding: 20px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .card:hover {
+      background-color: #98fb98;
+      transform: translateY(-5px);
+    }
+
+    /* Styling untuk tombol */
+    .play-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      margin-top: 20px;
+      /* Memberi jarak antara sambutan dan tombol */
+    }
+
+    .play-button:hover {
+      background-color: #45a049;
+      transform: scale(1.1);
+    }
+
+    .play-button:active {
+      transform: scale(1);
+    }
+
+    /* Menyembunyikan tombol setelah ditekan */
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .cards {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Selamat Datang di Website Modular</h1>
-  <ul>
-    <li><a href="modul1.html">Modul 1</a></li>
-    <!-- Tambah link modul berikutnya di sini -->
-  </ul>
+  <div class="container">
+    <div class="avatar">
+      <video id="videoNira" playsinline>
+        <source src="https://res.cloudinary.com/djexglfns/video/upload/v1744863529/Nira_1_zx1nz9.mp4" type="video/mp4">
+        Browser Anda tidak mendukung video.
+      </video>
+    </div>
+    <div class="greeting" id="greeting"></div>
+
+    <!-- Tombol Putar Video akan muncul setelah teks diselesaikan -->
+    <button class="play-button hidden" id="playButton" onclick="playVideo()">Dengarkan Nira</button>
+
+    <div class="cards">
+      <div class="card" onclick="navigateTo('https://sites.google.com/unud.ac.id/skrining-kesehatan-perempuan/filter')">
+        Skrining Kesehatan</div>
+      <div class="card" onclick="navigateTo('https://sites.google.com/view/riwayat-skrining')">Riwayat Skrining</div>
+      <div class="card" onclick="navigateTo('https://sites.google.com/view/tanya-nira')">Tanya Nira</div>
+    </div>
+  </div>
+
+  <audio id="typingSound" src="https://assets.mixkit.co/sfx/preview/mixkit-typewriter-soft-clicks-1126.mp3"></audio>
+
+  <script>
+    const text = "Halo, saya Nira. Apa yang bisa saya bantu?";
+    const greetingElement = document.getElementById('greeting');
+    const typingSound = document.getElementById('typingSound');
+    const playButton = document.getElementById('playButton');
+
+    let index = 0;
+    function typeText() {
+      if (index < text.length) {
+        greetingElement.innerHTML += text.charAt(index);
+        typingSound.currentTime = 0;
+        typingSound.play();
+        index++;
+        setTimeout(typeText, 90);
+      } else {
+        // Teks sudah selesai ditampilkan, tampilkan tombol
+        playButton.classList.remove('hidden');
+      }
+    }
+
+    function navigateTo(page) {
+      window.open(page, '_blank');
+    }
+
+    function playVideo() {
+      const video = document.getElementById('videoNira');
+      
+      // Memulai video dan menghilangkan tombol setelah ditekan
+      video.play();
+      playButton.classList.add('hidden');
+    }
+
+    window.onload = () => {
+      typeText();
+    };
+  </script>
 </body>
+
 </html>
