@@ -110,10 +110,11 @@
     <button class="play-button hidden" id="playButton" onclick="playVideo()">Dengarkan Nira</button>
 
     <div class="cards">
-      <div class="card" onclick="navigateTo('https://sites.google.com/unud.ac.id/skrining-kesehatan-perempuan/filter')">
+      <!-- Ganti link ke filter.html -->
+      <div class="card" onclick="navigateTo('filter.html')">
         Skrining Kesehatan</div>
-      <div class="card" onclick="navigateTo('https://sites.google.com/view/riwayat-skrining')">Riwayat Skrining</div>
-      <div class="card" onclick="navigateTo('https://sites.google.com/view/tanya-nira')">Tanya Nira</div>
+      <div class="card" onclick="navigateTo('filter.html')">Riwayat Skrining</div>
+      <div class="card" onclick="navigateTo('filter.html')">Tanya Nira</div>
     </div>
   </div>
 
@@ -140,7 +141,7 @@
     }
 
     function navigateTo(page) {
-      window.open(page, '_blank');
+      window.location.href = page;  // Menggunakan window.location.href untuk mengarah ke halaman yang sesuai
     }
 
     function playVideo() {
