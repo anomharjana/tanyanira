@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tanya Nira</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -59,7 +58,6 @@
       transform: translateY(-5px);
     }
 
-    /* Styling untuk tombol */
     .play-button {
       background-color: #4CAF50;
       color: white;
@@ -70,7 +68,6 @@
       cursor: pointer;
       transition: transform 0.3s ease, background-color 0.3s ease;
       margin-top: 20px;
-      /* Memberi jarak antara sambutan dan tombol */
     }
 
     .play-button:hover {
@@ -82,7 +79,6 @@
       transform: scale(1);
     }
 
-    /* Menyembunyikan tombol setelah ditekan */
     .hidden {
       display: none;
     }
@@ -95,7 +91,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <div class="avatar">
@@ -106,15 +101,12 @@
     </div>
     <div class="greeting" id="greeting"></div>
 
-    <!-- Tombol Putar Video akan muncul setelah teks diselesaikan -->
     <button class="play-button hidden" id="playButton" onclick="playVideo()">Dengarkan Nira</button>
 
     <div class="cards">
-      <!-- Ganti link ke filter.html -->
-      <div class="card" onclick="navigateTo('filter')">
-        Skrining Kesehatan</div>
-      <div class="card" onclick="navigateTo('filter.html')">Riwayat Skrining</div>
-      <div class="card" onclick="navigateTo('filter.html')">Tanya Nira</div>
+      <div class="card" onclick="navigateTo('filter.html')">Skrining Kesehatan</div>
+      <div class="card" onclick="navigateTo('riwayat.html')">Riwayat Skrining</div>
+      <div class="card" onclick="navigateTo('tanya.html')">Tanya Nira</div>
     </div>
   </div>
 
@@ -125,8 +117,8 @@
     const greetingElement = document.getElementById('greeting');
     const typingSound = document.getElementById('typingSound');
     const playButton = document.getElementById('playButton');
-
     let index = 0;
+
     function typeText() {
       if (index < text.length) {
         greetingElement.innerHTML += text.charAt(index);
@@ -135,19 +127,16 @@
         index++;
         setTimeout(typeText, 90);
       } else {
-        // Teks sudah selesai ditampilkan, tampilkan tombol
         playButton.classList.remove('hidden');
       }
     }
 
     function navigateTo(page) {
-      window.location.href = page;  // Menggunakan window.location.href untuk mengarah ke halaman yang sesuai
+      window.location.href = page;
     }
 
     function playVideo() {
       const video = document.getElementById('videoNira');
-      
-      // Memulai video dan menghilangkan tombol setelah ditekan
       video.play();
       playButton.classList.add('hidden');
     }
@@ -157,5 +146,4 @@
     };
   </script>
 </body>
-
 </html>
