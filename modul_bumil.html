@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skrining Kehamilan</title>
+  <link rel="stylesheet" href="modul_bumil.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🩺 Skrining Kehamilan</h1>
+
+    <div class="step-indicator">
+      <span id="step1-indicator" class="active">1. Usia</span>
+      <span id="step2-indicator">2. Pertanyaan</span>
+      <span id="step3-indicator">3. Hasil</span>
+    </div>
+
+    <!-- STEP 1 -->
+    <div id="step1" class="step active">
+      <h2>Berapa usia kehamilan Anda saat ini?</h2>
+      <div class="form-group">
+        <label for="gestationalAge">Usia kehamilan (minggu):</label>
+        <input type="number" id="gestationalAge" min="1" max="42" required />
+      </div>
+      <div class="btn-group">
+        <button class="btn" onclick="goToStep2()">Lanjut ➔</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="step">
+      <h2>Pertanyaan Skrining Trimester</h2>
+      <div id="questions-container"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="backToStep1()">← Kembali</button>
+        <button class="btn" onclick="goToStep3()">Lihat Hasil</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="step">
+      <h2>Hasil Skrining & Rekomendasi</h2>
+      <div id="results-container"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="backToStep2()">← Kembali</button>
+        <button class="btn btn-outline" onclick="downloadPDF()">Download PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="modul_bumil.js"></script>
+</body>
+</html>
