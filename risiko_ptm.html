@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prediksi Risiko PTM</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      padding: 20px;
+    }
+
+    h1,
+    h2 {
+      color: #2c3e50;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      padding: 0 4px;
+      margin-top: 2px;
+      color: #555;
+    }
+
+    .button {
+      background-color: #27ae60;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .result {
+      background: #e8f6f3;
+      border: 1px solid #1abc9c;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    canvas {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Prediksi Risiko Penyakit Tidak Menular (PTM)</h1>
+  <form id="ptmForm">
+    <h2>Status Kesehatan Saat Ini</h2>
+
+    <label>Usia (tahun)</label>
+    <input type="number" name="usia" required />
+
+    <label>Berat Badan (kg)</label>
+    <input type="number" name="bb" required />
+
+    <label>Tinggi Badan (cm)</label>
+    <input type="number" name="tb" required />
+
+    <label>Riwayat Keluarga PTM</label>
+    <select name="riwayat">
+      <option value="1">Ya</option>
+      <option value="0">Tidak</option>
+    </select>
+
+    <label>Merokok</label>
+    <select name="rokok">
+      <option value="1">Ya</option>
+      <option value="0">Tidak</option>
+    </select>
+
+    <p><em>Berapa Hari dalam Seminggu (7 hari terakhir) Anda melakukan hal-hal berikut ini?</em></p>
+
+    <label>Konsumsi Makanan Tinggi Gula (lebih dari 50 gram atau setara dengan 4 sendok makan per hari)</label>
+    <input type="range" name="gula" min="1" max="7" class="range-labeled" />
+
+    <label>Konsumsi Makanan Tinggi Garam (lebih dari 5 gram atau setara dengan 1 sendok teh per hari)</label>
+    <input type="range" name="garam" min="1" max="7" class="range-labeled" />
+
+    <label>Konsumsi Sayur & Buah (sekitar 400 gram buah dan sayur per orang per hari)</label>
+    <input type="range" name="sayur" min="1" max="7" class="range-labeled" />
+
+    <label>Aktivitas Fisik (sekitar 30-60 menit per hari)</label>
+    <input type="range" name="aktivitas" min="1" max="7" class="range-labeled" />
+
+    <label>Tidur Cukup (sekitar 7-8 jam per hari)</label>
+    <input type="range" name="tidur" min="1" max="7" class="range-labeled" />
+
+    <h2>Rencana Perubahan Perilaku</h2>
+    <p><em>Untuk masa yang akan datang, berapa Hari dalam Seminggu (7 hari ke depan) Anda akan melakukan hal-hal berikut?</em></p>
+
+    <label>Komitmen Olahraga (minimal 30 menit per hari)</label>
+    <input type="range" name="olahraga" min="1" max="7" class="range-labeled" />
+
+    <label>Komitmen Makan Sehat (rendah Gula, Garam, Lemak)</label>
+    <input type="range" name="makan_sehat" min="1" max="7" class="range-labeled" />
+
+    <label>Komitmen Hindari Merokok</label>
+    <input type="range" name="hindari_rokok" min="1" max="7" class="range-labeled" />
+
+    <label>Komitmen Tidur Cukup dan Teratur (minimal 7-8 jam per hari)</label>
+    <input type="range" name="tidur_teratur" min="1" max="7" class="range-labeled" />
+
+    <button type="submit" class="button">Hitung Risiko</button>
+  </form>
+
+  <div id="output" class="result" style="display:none;"></div>
+  <canvas id="survivalChart" width="400" height="200" style="display:none;"></canvas>
+
+  <script>
+    function generateRangeLabels() {
+      document.querySelectorAll('input[type="range"].range-labeled').forEach(input => {
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
+        const labels = document.createElement('div');
+        labels.className = 'range-labels';
+        for (let i = min; i <= max; i++) {
+          const span = document.createElement('span');
+          span.textContent = i;
+          labels.appendChild(span);
+        }
+        input.insertAdjacentElement('afterend', labels);
+      });
+    }
+    window.addEventListener('DOMContentLoaded', generateRangeLabels);
+
+    document.getElementById("ptmForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const usia = parseInt(form.usia.value);
+      const bb = parseFloat(form.bb.value);
+      const tb = parseFloat(form.tb.value) / 100;
+
+      if (tb <= 0) {
+        alert("Tinggi badan tidak valid.");
+        return;
+      }
+
+      const bmi = bb / (tb * tb);
+      const ropt = val => parseInt(form[val].value);
+
+      let risiko = 0;
+      if (bmi > 30) risiko += 2;
+      if (ropt("riwayat")) risiko += 2;
+      if (ropt("gula") > 5) risiko += 1.5;
+      if (ropt("garam") > 5) risiko += 1.2;
+      if (ropt("sayur") < 3) risiko += 1;
+      if (ropt("aktivitas") < 3) risiko += 1.5;
+      if (ropt("rokok")) risiko += 2;
+      if (ropt("tidur") < 3) risiko += 1;
+
+      if (ropt("olahraga") >= 6) risiko -= 1;
+      if (ropt("makan_sehat") >= 6) risiko -= 1;
+      if (ropt("hindari_rokok") >= 6) risiko -= 1;
+      if (ropt("tidur_teratur") >= 6) risiko -= 1;
+
+      let kategori = "Rendah";
+      if (risiko >= 6) kategori = "Tinggi";
+      else if (risiko >= 3) kategori = "Sedang";
+
+      let prediksi = [];
+      if (risiko >= 6) {
+        prediksi = [
+          { nama: "Diabetes Mellitus Tipe 2", tahun: usia + 3 },
+          { nama: "Hipertensi", tahun: usia + 5 },
+          { nama: "Jantung Koroner", tahun: usia + 7 }
+        ];
+      } else if (risiko >= 3) {
+        prediksi = [
+          { nama: "Hipertensi", tahun: usia + 6 },
+          { nama: "Stroke Ringan", tahun: usia + 10 }
+        ];
+      } else {
+        prediksi = [{ nama: "Risiko minimal dalam 10 tahun ke depan", tahun: "-" }];
+      }
+
+      const prediksiText = prediksi.map(p =>
+        `<li>${p.nama} ${p.tahun !== "-" ? `<strong>(sekitar usia ke-${p.tahun})</strong>` : ""}</li>`
+      ).join("");
+
+      document.getElementById("output").style.display = "block";
+      document.getElementById("output").innerHTML = `
+        <h3>Hasil Prediksi Risiko PTM</h3>
+        <p><strong>BMI Anda:</strong> ${bmi.toFixed(2)}</p>
+        <p><strong>Kategori Risiko:</strong> ${kategori}</p>
+        <p><strong>Catatan:</strong> Risiko ini hanya prediksi berdasarkan data yang Anda masukkan.</p>
+        <h4>Prediksi Penyakit Potensial:</h4>
+        <ul>${prediksiText}</ul>
+      `;
+
+      if (window.survivalChartInstance) {
+        window.survivalChartInstance.destroy();
+      }
+
+      const maxAge = 100;
+      const lifeExpectancy = 74;
+      const endAge = Math.min(maxAge, usia + lifeExpectancy);
+      const years = Array.from({ length: endAge - usia + 1 }, (_, i) => usia + i);
+
+      const ptmProbabilityRate = years.map((_, i) => {
+        let decay = risiko * 0.02;
+        let survival = 100 * Math.exp(-decay * i);
+        return parseFloat((100 - survival).toFixed(2));
+      });
+
+      document.getElementById("survivalChart").style.display = "block";
+      const ctx = document.getElementById("survivalChart").getContext("2d");
+
+      const symbols = ['circle', 'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'star', 'line'];
+      const colorPalette = ['#e74c3c', '#3498db', '#f1c40f', '#9b59b6', '#1abc9c', '#e67e22', '#2ecc71'];
+
+      const diseaseMarkers = prediksi.filter(p => p.tahun !== "-").map((p, idx) => {
+        const tahunIndex = years.indexOf(p.tahun);
+        return {
+          label: p.nama,
+          data: [{ x: p.tahun, y: ptmProbabilityRate[tahunIndex] }],
+          pointStyle: symbols[idx % symbols.length],
+          backgroundColor: colorPalette[idx % colorPalette.length],
+          borderColor: colorPalette[idx % colorPalette.length],
+          pointRadius: 8,
+          pointHoverRadius: 10,
+          showLine: false
+        };
+      });
+
+      window.survivalChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: years,
+          datasets: [
+            {
+              label: 'Probabilitas Terkena PTM (%)',
+              data: ptmProbabilityRate,
+              fill: false,
+              borderColor: 'rgb(231, 76, 60)',
+              tension: 0.1,
+              pointRadius: 0
+            },
+            ...diseaseMarkers
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' },
+            title: {
+              display: true,
+              text: 'Grafik Probabilitas Terkena PTM di masa depan'
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  if (context.dataset.label && context.dataset.data.length === 1) {
+                    return `${context.dataset.label}: ${context.parsed.y.toFixed(2)}% di usia ini`;
+                  }
+                  return `Risiko: ${context.parsed.y.toFixed(2)}%`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: { title: { display: true, text: "Usia (tahun)" } },
+            y: { title: { display: true, text: "Probabilitas (%)" }, min: 0, max: 100 }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
