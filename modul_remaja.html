@@ -1,290 +1,357 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skrining Kesehatan Remaja (10-19 tahun)</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skrining Kesehatan Remaja</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
       margin: 0;
       padding: 0;
-      background-color: #f7f7f7;
     }
+
     header {
       background-color: #4CAF50;
       color: white;
-      padding: 10px 0;
       text-align: center;
+      padding: 20px;
     }
+
     section {
       margin: 20px;
-      padding: 20px;
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      border-radius: 8px;
     }
+
+    form,
+    .results {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
     h2 {
       color: #333;
     }
-    label {
-      font-weight: bold;
-    }
-    input, select {
-      padding: 8px;
-      margin: 10px 0;
-      width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    .result {
-      background-color: #e0ffe0;
-      padding: 10px;
-      border-radius: 4px;
+
+    h3 {
       margin-top: 20px;
     }
-    .alert {
-      color: red;
-      font-weight: bold;
+
+    label {
+      display: block;
+      margin-top: 10px;
     }
-    .question-group {
+
+    select {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0 12px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .result-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 16px;
       margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     }
+
+    .risk {
+      font-weight: bold;
+      padding: 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .low {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .medium {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .high {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .icon {
+      font-size: 28px;
+      margin-right: 8px;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      background-color: #0066cc;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .footer-link:hover {
+      background-color: #005bb5;
+    }
+
   </style>
 </head>
+
 <body>
 
-<header>
-  <h1>Skrining Kesehatan Remaja (10-19 tahun)</h1>
-  <p>Memantau kesehatan remaja berdasarkan parameter kesehatan umum</p>
-</header>
+  <header>
+    <h1>Skrining Kesehatan Remaja (10–19 Tahun)</h1>
+  </header>
 
-<section id="input-section">
-  <h2>Input Data Skrining</h2>
-  <form id="screening-form">
-    
-    <!-- Skrining Anemia -->
-    <div class="question-group">
-      <h3>Anemia Defisiensi Zat Besi</h3>
-      <label for="fatigue">Apakah Anda sering merasa lelah tanpa alasan yang jelas?</label>
-      <select id="fatigue" name="fatigue" required>
-        <option value="">Pilih Ya/Tidak</option>
+  <section>
+    <h2>Form Skrining</h2>
+    <form id="screening-form">
+      <h3>Anemia</h3>
+      <label>Lelah tanpa sebab?</label>
+      <select id="anemia1">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Kulit pucat?</label>
+      <select id="anemia2">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Pusing?</label>
+      <select id="anemia3">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Sesak napas?</label>
+      <select id="anemia4">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="pale">Apakah Anda merasa kulit Anda lebih pucat dari biasanya?</label>
-      <select id="pale" name="pale" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="dizziness">Apakah Anda sering merasa pusing atau kepala ringan?</label>
-      <select id="dizziness" name="dizziness" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="breathlessness">Apakah Anda merasa sesak napas atau kesulitan bernapas setelah aktivitas ringan?</label>
-      <select id="breathlessness" name="breathlessness" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
-
-    <!-- Skrining Gangguan Menstruasi -->
-    <div class="question-group">
       <h3>Gangguan Menstruasi</h3>
-      <label for="irregular-periods">Apakah siklus menstruasi Anda tidak teratur?</label>
-      <select id="irregular-periods" name="irregular-periods" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label>Siklus tidak teratur?</label>
+      <select id="mens1">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Sakit saat haid?</label>
+      <select id="mens2">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Tidak haid 3 bulan?</label>
+      <select id="mens3">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="painful-periods">Apakah Anda sering merasa sakit atau kram parah saat menstruasi?</label>
-      <select id="painful-periods" name="painful-periods" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="absent-periods">Apakah Anda pernah melewatkan menstruasi selama lebih dari 3 bulan tanpa alasan medis?</label>
-      <select id="absent-periods" name="absent-periods" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
-
-    <!-- Skrining Kehamilan Tidak Diinginkan -->
-    <div class="question-group">
       <h3>Kehamilan Tidak Diinginkan</h3>
-      <label for="unwanted-pregnancy">Apakah Anda pernah hamil di luar rencana atau tidak diinginkan?</label>
-      <select id="unwanted-pregnancy" name="unwanted-pregnancy" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label>Hamil di luar rencana?</label>
+      <select id="preg1">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Gunakan kontrasepsi?</label>
+      <select id="preg2">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Pengetahuan seksual cukup?</label>
+      <select id="preg3">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="contraception">Apakah Anda menggunakan kontrasepsi untuk mencegah kehamilan?</label>
-      <select id="contraception" name="contraception" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <h3>Kesehatan Mental</h3>
+      <label>Sering cemas/tertekan?</label>
+      <select id="mental1">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Merasa putus asa?</label>
+      <select id="mental2">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Kesulitan tidur?</label>
+      <select id="mental3">
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      <label>Kehilangan minat?</label>
+      <select id="mental4">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="sexual-health">Apakah Anda memiliki pengetahuan yang cukup mengenai kesehatan seksual dan kontrasepsi?</label>
-      <select id="sexual-health" name="sexual-health" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <h3>IMS</h3>
+      <label>Cairan abnormal?</label>
+      <select id="ims1">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-    </div>
-
-    <!-- Skrining Kesehatan Mental -->
-    <div class="question-group">
-      <h3>Kesehatan Mental (Depresi & Kecemasan)</h3>
-      <label for="mood">Apakah Anda merasa cemas atau tertekan hampir setiap hari?</label>
-      <select id="mood" name="mood" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label>Nyeri saat BAK?</label>
+      <select id="ims2">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-
-      <label for="hopeless">Apakah Anda merasa bahwa masa depan tidak ada harapan?</label>
-      <select id="hopeless" name="hopeless" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label>Gatal/sakit genital?</label>
+      <select id="ims3">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-
-      <label for="sleep">Apakah Anda mengalami kesulitan tidur atau tidur berlebihan?</label>
-      <select id="sleep" name="sleep" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label>Seks tanpa kondom?</label>
+      <select id="ims4">
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="interest">Apakah Anda kehilangan minat dalam hal-hal yang biasanya Anda nikmati?</label>
-      <select id="interest" name="interest" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
+      <br><button type="submit">Lihat Hasil Skrining</button>
+    </form>
+  </section>
 
-    <!-- Skrining Infeksi Menular Seksual (IMS) -->
-    <div class="question-group">
-      <h3>Infeksi Menular Seksual (IMS)</h3>
-      <label for="symptoms">Apakah Anda mengalami gejala seperti keluarnya cairan tidak normal dari organ intim?</label>
-      <select id="symptoms" name="symptoms" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
+  <section>
+    <h2>📝 Hasil Skrining</h2>
+    <div id="screening-result" class="space-y-3 text-sm leading-relaxed"></div>
+  </section>
 
-      <label for="pain-urination">Apakah Anda merasa nyeri saat buang air kecil?</label>
-      <select id="pain-urination" name="pain-urination" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
+  <script>
+    const rekomendasi = {
+      anemia: {
+        low: ["Konsumsi makanan bergizi seimbang", "Lakukan olahraga ringan", "Periksa Hb secara rutin"],
+        medium: ["Perbanyak asupan zat besi", "Konsultasi dengan puskesmas", "Minum suplemen zat besi"],
+        high: ["Segera periksa darah", "Pertimbangkan transfusi", "Konsultasi dokter spesialis"]
+      },
+      menstruasi: {
+        low: ["Pantau siklus haid", "Jaga pola makan & tidur", "Kurangi stres"],
+        medium: ["Catat pola menstruasi", "Konsultasi bidan/dokter", "Hindari stres berat"],
+        high: ["Kunjungi dokter kandungan", "Lakukan USG", "Pertimbangkan terapi hormonal"]
+      },
+      kehamilan: {
+        low: ["Lanjutkan edukasi seksual", "Gunakan kontrasepsi", "Diskusikan dengan orang tua"],
+        medium: ["Konsultasi tenaga kesehatan", "Ikuti penyuluhan KB", "Cek kesehatan reproduksi"],
+        high: ["Segera cari konseling", "Konsultasi dengan dokter spesialis", "Pahami pilihan kontrasepsi"]
+      },
+      mental: {
+        low: ["Jaga kesehatan mental dengan hobi", "Lakukan aktivitas fisik", "Pertahankan rutinitas yang sehat"],
+        medium: ["Lakukan teknik relaksasi", "Cek kesehatan fisik dan mental", "Pertimbangkan terapi ringan"],
+        high: ["Segera konsultasi ke psikolog atau psikiater", "Ikuti terapi kognitif", "Dapatkan dukungan keluarga"]
+      },
+      ims: {
+        low: ["Periksa kesehatan secara rutin", "Gunakan kondom", "Minimalkan kontak seksual berisiko"],
+        medium: ["Lakukan tes IMS", "Gunakan pelindung diri", "Pahami gejala awal IMS"],
+        high: ["Segera periksa ke dokter", "Lakukan tes IMS menyeluruh", "Hindari hubungan seksual berisiko"]
+      }
+    };
 
-      <label for="discomfort">Apakah Anda merasa gatal atau sakit di area genital?</label>
-      <select id="discomfort" name="discomfort" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
+    const iconMap = {
+      anemia: "🩸",
+      menstruasi: "🌸",
+      kehamilan: "🤰",
+      mental: "🧠",
+      ims: "💉"
+    };
 
-      <label for="unprotected-sex">Apakah Anda pernah melakukan hubungan seks tanpa menggunakan pengaman (kondom)?</label>
-      <select id="unprotected-sex" name="unprotected-sex" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
+    document.getElementById('screening-form').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    <button type="submit">Proses Skrining</button>
-  </form>
-</section>
+      const result = document.getElementById("screening-result");
+      result.innerHTML = "";
 
-<section id="output-section">
-  <h2>Hasil Skrining</h2>
-  <div id="screening-result" class="result"></div>
-</section>
+      const data = [
+        { key: "anemia", values: ["anemia1", "anemia2", "anemia3", "anemia4"] },
+        { key: "menstruasi", values: ["mens1", "mens2", "mens3"] },
+        { key: "kehamilan", values: ["preg1", "preg2", "preg3"] },
+        { key: "mental", values: ["mental1", "mental2", "mental3", "mental4"] },
+        { key: "ims", values: ["ims1", "ims2", "ims3", "ims4"] },
+      ];
 
-<script>
-  document.getElementById('screening-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+      data.forEach(item => {
+        const values = item.values.map(id => document.getElementById(id).value);
+        const resultRisiko = hitungRisiko(values);
+        const rekom = rekomendasi[item.key][resultRisiko.level];
+        result.innerHTML += `
+          <div class="result-card">
+            <div class="card-title">
+              <span class="icon">${iconMap[item.key]}</span>
+              <h3>${item.key.charAt(0).toUpperCase() + item.key.slice(1)} - Risiko ${resultRisiko.label}</h3>
+            </div>
+            <div class="risk ${resultRisiko.level}">${resultRisiko.label}</div>
+            <p><strong>Rekomendasi:</strong></p>
+            <ul>
+              ${rekom.map(rec => `<li>${rec}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      });
+    });
 
-    const fatigue = document.getElementById('fatigue').value;
-    const pale = document.getElementById('pale').value;
-    const dizziness = document.getElementById('dizziness').value;
-    const breathlessness = document.getElementById('breathlessness').value;
-
-    const irregularPeriods = document.getElementById('irregular-periods').value;
-    const painfulPeriods = document.getElementById('painful-periods').value;
-    const absentPeriods = document.getElementById('absent-periods').value;
-
-    const unwantedPregnancy = document.getElementById('unwanted-pregnancy').value;
-    const contraception = document.getElementById('contraception').value;
-    const sexualHealth = document.getElementById('sexual-health').value;
-
-    const mood = document.getElementById('mood').value;
-    const hopeless = document.getElementById('hopeless').value;
-    const sleep = document.getElementById('sleep').value;
-    const interest = document.getElementById('interest').value;
-
-    const symptoms = document.getElementById('symptoms').value;
-    const painUrination = document.getElementById('pain-urination').value;
-    const discomfort = document.getElementById('discomfort').value;
-    const unprotectedSex = document.getElementById('unprotected-sex').value;
-
-    let resultText = '';
-
-    // Skrining Anemia Defisiensi Zat Besi
-    if (fatigue === 'yes' || dizziness === 'yes' || breathlessness === 'yes' || pale === 'yes') {
-      resultText += '<p class="alert">Gejala anemia defisiensi zat besi terdeteksi. Pertimbangkan untuk melakukan pemeriksaan darah.</p>';
-    } else {
-      resultText += '<p>Anemia defisiensi zat besi tidak terdeteksi.</p>';
+    function hitungRisiko(values) {
+      const score = values.filter(v => v === "yes").length;
+      if (score === 0) {
+        return { label: "Rendah", level: "low" };
+      } else if (score === 1 || score === 2) {
+        return { label: "Sedang", level: "medium" };
+      } else {
+        return { label: "Tinggi", level: "high" };
+      }
     }
+  </script>
 
-    // Skrining Gangguan Menstruasi
-    if (irregularPeriods === 'yes' || painfulPeriods === 'yes' || absentPeriods === 'yes') {
-      resultText += '<p class="alert">Gangguan menstruasi terdeteksi. Pertimbangkan untuk berkonsultasi dengan dokter kandungan.</p>';
-    } else {
-      resultText += '<p>Gangguan menstruasi tidak terdeteksi.</p>';
-    }
-
-    // Skrining Kehamilan Tidak Diinginkan
-    if (unwantedPregnancy === 'yes') {
-      resultText += '<p class="alert">Kehamilan tidak diinginkan terdeteksi. Pertimbangkan konseling dan tindakan pencegahan kehamilan di masa depan.</p>';
-    } else {
-      resultText += '<p>Kehamilan tidak diinginkan tidak terdeteksi.</p>';
-    }
-
-    // Skrining Kesehatan Mental (Depresi, Kecemasan)
-    if (mood === 'yes' || hopeless === 'yes' || sleep === 'yes' || interest === 'yes') {
-      resultText += '<p class="alert">Tanda-tanda depresi atau kecemasan terdeteksi. Pertimbangkan untuk melakukan evaluasi kesehatan mental lebih lanjut (seperti menggunakan PHQ-9 atau GAD-7).</p>';
-    } else {
-      resultText += '<p>Tidak ada tanda-tanda depresi atau kecemasan terdeteksi.</p>';
-    }
-
-    // Skrining Infeksi Menular Seksual (IMS)
-    if (symptoms === 'yes' || painUrination === 'yes' || discomfort === 'yes' || unprotectedSex === 'yes') {
-      resultText += '<p class="alert">Gejala Infeksi Menular Seksual (IMS) terdeteksi. Segera konsultasikan dengan tenaga medis untuk pemeriksaan lebih lanjut.</p>';
-    } else {
-      resultText += '<p>Gejala IMS tidak terdeteksi.</p>';
-    }
-
-    document.getElementById('screening-result').innerHTML = resultText;
-  });
-</script>
-
+  <!-- Footer Section -->
+  <footer>
+    <a href="index.html" class="footer-link">Menu Utama</a>
+  </footer>
 </body>
+
 </html>
