@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tanya Nira</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     html,
     body {
@@ -93,11 +96,20 @@
       font-size: 1rem;
       flex: 1 1 250px;
       max-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .card:hover {
       background-color: #98fb98;
       transform: translateY(-5px);
+    }
+
+    .card i {
+      font-size: 1.2rem;
+      color: #2269a3;
     }
 
     @media (max-width: 600px) {
@@ -122,18 +134,20 @@
     <div class="greeting" id="greeting"></div>
 
     <div class="button-container">
-      <button id="playButton" class="play-button hidden" onclick="playVideo()">Dengarkan Nira</button>
+      <button id="playButton" class="play-button hidden" onclick="playVideo()">
+        <i class="fas fa-volume-up"></i> Dengarkan Nira
+      </button>
     </div>
 
     <div class="cards">
       <div class="card" onclick="navigateTo('modul_bumil.html')">
-        Risiko Kehamilan
+        <i class="fas fa-baby"></i> Risiko Kehamilan
       </div>
       <div class="card" onclick="navigateTo('risiko_ptm.html')">
-        Risiko Penyakit Tidak Menular (PTM)
+        <i class="fas fa-heartbeat"></i> Risiko Penyakit Tidak Menular
       </div>
       <div class="card" onclick="navigateTo('filter_kelompok.html')">
-        Masalah Kesehatan Lainnya
+        <i class="fas fa-notes-medical"></i> Masalah Kesehatan Lainnya
       </div>
     </div>
   </div>
