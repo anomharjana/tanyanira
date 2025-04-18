@@ -39,6 +39,32 @@
       min-height: 2em;
     }
 
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .play-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .play-button:hover {
+      background-color: #45a049;
+      transform: scale(1.1);
+    }
+
+    .play-button:active {
+      transform: scale(1);
+    }
+
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -65,27 +91,6 @@
       transform: translateY(-5px);
     }
 
-    .play-button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      margin-top: 20px;
-    }
-
-    .play-button:hover {
-      background-color: #45a049;
-      transform: scale(1.1);
-    }
-
-    .play-button:active {
-      transform: scale(1);
-    }
-
     .hidden {
       display: none;
     }
@@ -109,7 +114,10 @@
     </div>
 
     <div class="greeting" id="greeting"></div>
-    <button id="playButton" class="play-button hidden" onclick="playVideo()">Dengarkan Nira</button>
+
+    <div class="button-container">
+      <button id="playButton" class="play-button hidden" onclick="playVideo()">Dengarkan Nira</button>
+    </div>
 
     <div class="cards">
       <div class="card" onclick="navigateTo('modul_bumil.html')">
@@ -134,12 +142,9 @@
     const video = document.getElementById("videoNira");
 
     let index = 0;
-
     function typeText() {
-      if (index === 0) greetingElement.textContent = ""; // reset sebelum mulai
       if (index < text.length) {
         greetingElement.textContent += text.charAt(index);
-        if (!typingSound.paused) typingSound.pause();
         typingSound.currentTime = 0;
         typingSound.play();
         index++;
@@ -161,6 +166,8 @@
     }
 
     window.onload = () => {
+      greetingElement.textContent = '';
+      index = 0;
       typeText();
     };
   </script>
