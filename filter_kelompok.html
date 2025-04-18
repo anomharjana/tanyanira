@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tanya Nira</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
   <style>
     html,
     body {
@@ -62,13 +63,8 @@
       font-size: 1.2rem;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
       margin-bottom: 30px;
-    }
-
-    .play-button:hover {
-      background-color: #45a049;
-      transform: scale(1.05);
+      opacity: 0;
     }
 
     .play-button.hidden {
@@ -93,6 +89,7 @@
       font-size: 1rem;
       flex: 1 1 250px;
       max-width: 300px;
+      opacity: 0;
     }
 
     .card:hover {
@@ -104,6 +101,28 @@
       .card {
         width: 100%;
         max-width: none;
+      }
+    }
+
+    /* ✨ Efek Fade dan Glow */
+    .fade-glow {
+      animation: fadeInGlow 1.2s ease-in-out forwards;
+    }
+
+    @keyframes fadeInGlow {
+      0% {
+        opacity: 0;
+        box-shadow: none;
+      }
+
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 0 rgba(76, 175, 80, 0);
+      }
+
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
       }
     }
   </style>
@@ -123,24 +142,12 @@
     <button id="playButton" class="play-button hidden" onclick="playVideo()">Dengarkan Nira</button>
 
     <div class="cards">
-      <div class="card" onclick="navigateTo('modul_anak.html')">
-        Anak (0-9 tahun)
-      </div>
-      <div class="card" onclick="navigateTo('modul_remaja.html')">
-        Remaja (10-19 tahun)
-      </div>
-      <div class="card" onclick="navigateTo('modul_dewasa_muda.html')">
-        Dewasa Muda (20-35 tahun)
-      </div>
-      <div class="card" onclick="navigateTo('modul_dewasa_menengah.html')">
-        Dewasa Menengah (36-49 tahun)
-      </div>
-      <div class="card" onclick="navigateTo('modul_lansia.html')">
-        Lanjut Usia (50+)
-      </div>
-      <div class="card" onclick="navigateTo('modul_kelompok_lainnya.html')">
-        Kelompok Rentan Lainnya
-      </div>
+      <div class="card" onclick="navigateTo('modul_anak.html')">Anak (0-9 tahun)</div>
+      <div class="card" onclick="navigateTo('modul_remaja.html')">Remaja (10-19 tahun)</div>
+      <div class="card" onclick="navigateTo('modul_dewasa_muda.html')">Dewasa Muda (20-35 tahun)</div>
+      <div class="card" onclick="navigateTo('modul_dewasa_menengah.html')">Dewasa Menengah (36-49 tahun)</div>
+      <div class="card" onclick="navigateTo('modul_lansia.html')">Lanjut Usia (50+)</div>
+      <div class="card" onclick="navigateTo('modul_kelompok_lainnya.html')">Kelompok Rentan Lainnya</div>
     </div>
   </div>
 
@@ -152,8 +159,10 @@
     const typingSound = document.getElementById("typingSound");
     const playButton = document.getElementById("playButton");
     const video = document.getElementById("videoNira");
+    const cards = document.querySelectorAll(".card");
 
     let index = 0;
+
     function typeText() {
       if (index < text.length) {
         greetingElement.innerHTML += text.charAt(index);
@@ -162,7 +171,16 @@
         index++;
         setTimeout(typeText, 90);
       } else {
+        // Tampilkan tombol dengan animasi
         playButton.classList.remove("hidden");
+        playButton.classList.add("fade-glow");
+
+        // Tampilkan kartu satu per satu
+        cards.forEach((card, i) => {
+          setTimeout(() => {
+            card.classList.add("fade-glow");
+          }, 300 * i);
+        });
       }
     }
 
