@@ -66,8 +66,17 @@
       font-size: 1.2rem;
       border-radius: 12px;
       cursor: pointer;
-      margin-bottom: 30px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       opacity: 0;
+    }
+
+    .play-button i {
+      font-size: 1.2rem;
+      color: white;
     }
 
     .play-button.hidden {
@@ -135,6 +144,14 @@
         width: 100%;
         max-width: none;
       }
+
+      .cards {
+        justify-content: center;
+      }
+
+      .play-button {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -149,20 +166,19 @@
     </div>
     <div class="greeting" id="greeting"></div>
 
-    <button class="play-button hidden" id="playButton" onclick="playVideo()">Dengarkan Nira</button>
+    <button class="play-button hidden" id="playButton" onclick="playVideo()">
+      <i class="fas fa-headphones"></i> Dengarkan Nira
+    </button>
 
     <div class="cards">
       <div class="card" onclick="navigateTo('filter.html')">
-        <i class="fas fa-heartbeat"></i>
-        Skrining Kesehatan
+        <i class="fas fa-heartbeat"></i> Skrining Kesehatan
       </div>
       <div class="card" onclick="navigateTo('riwayat.html')">
-        <i class="fas fa-history"></i>
-        Riwayat Skrining
+        <i class="fas fa-history"></i> Riwayat Skrining
       </div>
       <div class="card" onclick="navigateTo('tanya.html')">
-        <i class="fas fa-comment-dots"></i>
-        Tanya Nira
+        <i class="fas fa-comment-dots"></i> Tanya Nira
       </div>
     </div>
   </div>
@@ -185,11 +201,9 @@
         index++;
         setTimeout(typeText, 90);
       } else {
-        // Tampilkan tombol dengan animasi
         playButton.classList.remove('hidden');
         playButton.classList.add('fade-glow');
 
-        // Animasi muncul untuk tiap kartu
         cards.forEach((card, i) => {
           setTimeout(() => {
             card.classList.add('fade-glow');
