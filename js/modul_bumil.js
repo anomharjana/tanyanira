@@ -67,7 +67,9 @@ function goToStep2() {
     return;
   }
 
-  trimester = age <= 13 ? 1 : age <= 27 ? 2 : 3;
+  if (age <= 13) trimester = 1;
+  else if (age <= 27) trimester = 2;
+  else trimester = 3;
 
   generateQuestions(trimester);
 
@@ -181,6 +183,7 @@ function getRecommendation(title, riskLevel) {
 
 function downloadPDF() {
   const element = document.getElementById('step3');
+
   const opt = {
     margin: 0.5,
     filename: 'hasil-skrining-kehamilan.pdf',
@@ -198,5 +201,6 @@ function downloadPDF() {
       mode: ['avoid-all', 'css', 'legacy']
     }
   };
+
   html2pdf().set(opt).from(element).save();
 }
