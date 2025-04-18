@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skrining Kesehatan Menopause dan Lanjut Usia (50+ tahun)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+    section {
+      margin: 20px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 8px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .result {
+      background-color: #e0ffe0;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    .alert {
+      color: red;
+      font-weight: bold;
+    }
+    .question-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Skrining Kesehatan Menopause dan Lanjut Usia (50+ tahun)</h1>
+  <p>Memantau kesehatan pada usia menopause dan lanjut usia dengan skrining untuk berbagai kondisi kesehatan utama.</p>
+</header>
+
+<section id="input-section">
+  <h2>Input Data Skrining</h2>
+  <form id="screening-form">
+    
+    <!-- Skrining Osteoporosis -->
+    <div class="question-group">
+      <h3>Osteoporosis</h3>
+      <label for="fracture-risk">Apakah Anda pernah mengalami patah tulang, terutama pada tulang belakang, pinggul, atau pergelangan tangan?</label>
+      <select id="fracture-risk" name="fracture-risk" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="bone-density">Apakah Anda sudah menjalani pemeriksaan kepadatan tulang (DEXA scan) dalam 2 tahun terakhir?</label>
+      <select id="bone-density" name="bone-density" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="calcium">Apakah Anda mengonsumsi cukup kalsium setiap hari (lebih dari 1000mg untuk usia 50-70, lebih dari 1200mg untuk usia 71+)?</label>
+      <select id="calcium" name="calcium" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Penyakit Jantung -->
+    <div class="question-group">
+      <h3>Penyakit Jantung</h3>
+      <label for="high-blood-pressure">Apakah Anda memiliki riwayat tekanan darah tinggi atau hipertensi?</label>
+      <select id="high-blood-pressure" name="high-blood-pressure" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="cholesterol">Apakah Anda pernah memeriksa kadar kolesterol Anda dalam 12 bulan terakhir?</label>
+      <select id="cholesterol" name="cholesterol" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="smoking">Apakah Anda merokok atau memiliki riwayat merokok?</label>
+      <select id="smoking" name="smoking" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="family-history">Apakah Anda memiliki riwayat keluarga dengan penyakit jantung atau serangan jantung?</label>
+      <select id="family-history" name="family-history" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Kanker -->
+    <div class="question-group">
+      <h3>Kanker (Payudara, Kolorektal, Endometrium)</h3>
+      <label for="breast-cancer">Apakah Anda memiliki riwayat keluarga dengan kanker payudara?</label>
+      <select id="breast-cancer" name="breast-cancer" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="colorectal-cancer">Apakah Anda telah menjalani pemeriksaan kolonoskopi atau tes darah tersembunyi dalam tinja dalam 2 tahun terakhir?</label>
+      <select id="colorectal-cancer" name="colorectal-cancer" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="endometrial-cancer">Apakah Anda pernah mengalami perdarahan setelah menopause?</label>
+      <select id="endometrial-cancer" name="endometrial-cancer" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Kesehatan Mental (Depresi & Dementia) -->
+    <div class="question-group">
+      <h3>Kesehatan Mental (Depresi, Dementia)</h3>
+      <label for="memory">Apakah Anda mengalami kesulitan mengingat hal-hal yang biasa Anda ingat dengan mudah?</label>
+      <select id="memory" name="memory" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="mood-swings">Apakah Anda merasa suasana hati Anda berubah-ubah atau sangat sedih dalam beberapa minggu terakhir?</label>
+      <select id="mood-swings" name="mood-swings" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="confusion">Apakah Anda merasa bingung atau disorientasi dalam aktivitas sehari-hari?</label>
+      <select id="confusion" name="confusion" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Inkontinensia Urin & Gangguan Prostat -->
+    <div class="question-group">
+      <h3>Inkontinensia Urin & Gangguan Prostat</h3>
+      <label for="urine-leakage">Apakah Anda mengalami kebocoran urin saat batuk, tertawa, atau bersin?</label>
+      <select id="urine-leakage" name="urine-leakage" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="frequent-urination">Apakah Anda sering merasa ingin buang air kecil, terutama pada malam hari?</label>
+      <select id="frequent-urination" name="frequent-urination" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="prostate">Apakah Anda merasa ada rasa tidak nyaman atau nyeri pada area panggul atau prostat?</label>
+      <select id="prostate" name="prostate" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <button type="submit">Proses Skrining</button>
+  </form>
+</section>
+
+<section id="output-section">
+  <h2>Hasil Skrining</h2>
+  <div id="screening-result" class="result"></div>
+</section>
+
+<script>
+  document.getElementById('screening-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fractureRisk = document.getElementById('fracture-risk').value;
+    const boneDensity = document.getElementById('bone-density').value;
+    const calcium = document.getElementById('calcium').value;
+
+    const highBloodPressure = document.getElementById('high-blood-pressure').value;
+    const cholesterol = document.getElementById('cholesterol').value;
+    const smoking = document.getElementById('smoking').value;
+    const familyHistory = document.getElementById('family-history').value;
+
+    const breastCancer = document.getElementById('breast-cancer').value;
+    const colorectalCancer = document.getElementById('colorectal-cancer').value;
+    const endometrialCancer = document.getElementById('endometrial-cancer').value;
+
+    const memory = document.getElementById('memory').value;
+    const moodSwings = document.getElementById('mood-swings').value;
+    const confusion = document.getElementById('confusion').value;
+
+    const urineLeakage = document.getElementById('urine-leakage').value;
+    const frequentUrination = document.getElementById('frequent-urination').value;
+    const prostate = document.getElementById('prostate').value;
+
+    let resultText = '';
+
+    // Skrining Osteoporosis
+    if (fractureRisk === 'yes' || boneDensity === 'no' || calcium === 'no') {
+      resultText += '<p class="alert">Tingkat risiko osteoporosis terdeteksi. Pertimbangkan untuk melakukan pemeriksaan densitometri tulang (DEXA) dan meningkatkan asupan kalsium.</p>';
+    } else {
+      resultText += '<p>Risiko osteoporosis rendah. Pastikan untuk menjaga pola makan dan aktivitas fisik yang mendukung kesehatan tulang.</p>';
+    }
+
+    // Skrining Penyakit Jantung
+    if (highBloodPressure === 'yes' || cholesterol === 'no' || smoking === 'yes' || familyHistory === 'yes') {
+      resultText += '<p class="alert">Tingkat risiko penyakit jantung terdeteksi. Pertimbangkan untuk melakukan pemeriksaan jantung lebih lanjut dan konsultasi dengan dokter.</p>';
+    } else {
+      resultText += '<p>Risiko penyakit jantung rendah. Lanjutkan gaya hidup sehat dengan olahraga teratur dan diet sehat.</p>';
+    }
+
+    // Skrining Kanker
+    if (breastCancer === 'yes' || colorectalCancer === 'no' || endometrialCancer === 'yes') {
+      resultText += '<p class="alert">Tingkat risiko kanker terdeteksi. Pastikan untuk mengikuti prosedur skrining kanker sesuai rekomendasi.</p>';
+    } else {
+      resultText += '<p>Risiko kanker rendah. Jangan lupa untuk menjalani pemeriksaan rutin sesuai usia dan faktor risiko.</p>';
+    }
+
+    // Skrining Kesehatan Mental
+    if (memory === 'yes' || moodSwings === 'yes' || confusion === 'yes') {
+      resultText += '<p class="alert">Risiko gangguan kognitif atau depresi terdeteksi. Segera konsultasikan dengan tenaga medis untuk evaluasi lebih lanjut.</p>';
+    } else {
+      resultText += '<p>Fungsi kognitif Anda dalam kondisi baik. Lanjutkan dengan aktivitas yang menstimulasi otak untuk menjaga kesehatan mental.</p>';
+    }
+
+    // Skrining Inkontinensia Urin & Gangguan Prostat
+    if (urineLeakage === 'yes' || frequentUrination === 'yes' || prostate === 'yes') {
+      resultText += '<p class="alert">Tingkat risiko inkontinensia urin atau masalah prostat terdeteksi. Segera lakukan pemeriksaan lebih lanjut ke spesialis urologi.</p>';
+    } else {
+      resultText += '<p>Kondisi kandung kemih dan prostat Anda dalam kondisi baik. Jaga pola makan dan hidrasi yang sehat.</p>';
+    }
+
+    // Menampilkan hasil
+    document.getElementById('screening-result').innerHTML = resultText;
+  });
+</script>
+
+</body>
+</html>
