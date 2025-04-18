@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skrining Kesehatan Dewasa Menengah (36–49 tahun)</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -116,7 +120,7 @@
     <form id="screening-form">
       <!-- Group 1 -->
       <div class="form-group">
-        <h3>Penyakit Jantung & Stroke</h3>
+        <h3><i class="fas fa-heartbeat"></i> Penyakit Jantung & Stroke</h3>
         <label for="q1">Riwayat tekanan darah tinggi?</label>
         <select id="q1" required>
           <option value="">Pilih</option>
@@ -139,7 +143,7 @@
 
       <!-- Group 2 -->
       <div class="form-group">
-        <h3>Kanker Payudara & Ovarium</h3>
+        <h3><i class="fas fa-ribbon"></i> Kanker Payudara & Ovarium</h3>
         <label for="q4">Riwayat keluarga kanker payudara?</label>
         <select id="q4" required>
           <option value="">Pilih</option>
@@ -162,7 +166,7 @@
 
       <!-- Group 3 -->
       <div class="form-group">
-        <h3>Diabetes & Hipertensi</h3>
+        <h3><i class="fas fa-heart"></i> Diabetes & Hipertensi</h3>
         <label for="q7">Tekanan darah > 140/90 mmHg?</label>
         <select id="q7" required>
           <option value="">Pilih</option>
@@ -179,7 +183,7 @@
 
       <!-- Group 4 -->
       <div class="form-group">
-        <h3>Osteoporosis</h3>
+        <h3><i class="fas fa-bone"></i> Osteoporosis</h3>
         <label for="q9">Riwayat keluarga osteoporosis?</label>
         <select id="q9" required>
           <option value="">Pilih</option>
@@ -202,7 +206,7 @@
 
       <!-- Group 5 -->
       <div class="form-group">
-        <h3>Kesehatan Mental</h3>
+        <h3><i class="fas fa-brain"></i> Kesehatan Mental</h3>
         <label for="q12">Perasaan tertekan > 2 minggu?</label>
         <select id="q12" required>
           <option value="">Pilih</option>
@@ -249,11 +253,11 @@
 
     let resultText = "";
 
-    function createCard(title, riskLevel, recommendations) {
+    function createCard(title, riskLevel, recommendations, icon) {
       const isAlert = riskLevel === 'tinggi';
       return `
         <div class="recommendation-card ${isAlert ? 'alert' : ''}">
-          <h3>${title} - Risiko ${isAlert ? 'Tinggi' : 'Rendah'}</h3>
+          <h3><i class="fas ${icon}"></i> ${title} - Risiko ${isAlert ? 'Tinggi' : 'Rendah'}</h3>
           <ul>
             ${recommendations.map(rec => `<li>${rec}</li>`).join('')}
           </ul>
@@ -267,13 +271,13 @@
         'Segera lakukan pemeriksaan EKG atau treadmill test.',
         'Batasi konsumsi makanan tinggi lemak jenuh dan garam.',
         'Lakukan olahraga ringan minimal 30 menit per hari.'
-      ]);
+      ], 'fa-heartbeat');
     } else {
       resultText += createCard('Penyakit Jantung & Stroke', 'rendah', [
         'Tetap pantau tekanan darah dan kadar kolesterol setiap 6 bulan.',
         'Pertahankan pola makan sehat dan rendah lemak.',
         'Lanjutkan aktivitas fisik secara teratur.'
-      ]);
+      ], 'fa-heartbeat');
     }
 
     // Kanker Payudara & Ovarium
@@ -282,13 +286,13 @@
         'Lakukan mamografi atau USG payudara secara berkala.',
         'Konsultasi dengan dokter mengenai riwayat keluarga Anda.',
         'Lakukan SADARI (pemeriksaan payudara sendiri) setiap bulan.'
-      ]);
+      ], 'fa-ribbon');
     } else {
       resultText += createCard('Kanker Payudara & Ovarium', 'rendah', [
         'Lakukan pemeriksaan payudara klinis setahun sekali.',
         'Terus lakukan SADARI secara rutin.',
         'Hindari paparan hormon sintetik berlebihan.'
-      ]);
+      ], 'fa-ribbon');
     }
 
     // Diabetes & Hipertensi
@@ -297,13 +301,13 @@
         'Kendalikan berat badan dengan pola makan sehat.',
         'Kurangi asupan gula, garam, dan lemak trans.',
         'Pantau tekanan darah dan gula darah secara teratur.'
-      ]);
+      ], 'fa-heart');
     } else {
       resultText += createCard('Diabetes & Hipertensi', 'rendah', [
         'Pertahankan berat badan ideal dan pola makan seimbang.',
         'Terus lakukan aktivitas fisik minimal 5 hari/minggu.',
         'Lakukan cek gula darah dan tekanan darah secara berkala.'
-      ]);
+      ], 'fa-heart');
     }
 
     // Osteoporosis
@@ -312,13 +316,13 @@
         'Tingkatkan asupan kalsium dan vitamin D.',
         'Lakukan olahraga beban seperti jalan kaki atau yoga.',
         'Konsultasikan kepadatan tulang melalui tes BMD.'
-      ]);
+      ], 'fa-bone');
     } else {
       resultText += createCard('Osteoporosis', 'rendah', [
         'Pertahankan konsumsi makanan tinggi kalsium.',
         'Lanjutkan olahraga secara teratur.',
         'Lindungi tulang dengan gaya hidup aktif dan sehat.'
-      ]);
+      ], 'fa-bone');
     }
 
     // Kesehatan Mental
@@ -327,19 +331,20 @@
         'Bicarakan perasaan Anda dengan orang terpercaya atau profesional.',
         'Coba teknik relaksasi seperti meditasi atau journaling.',
         'Pertimbangkan untuk berkonsultasi dengan psikolog atau psikiater.'
-      ]);
+      ], 'fa-brain');
     } else {
       resultText += createCard('Kesehatan Mental', 'rendah', [
         'Terus jaga rutinitas yang mendukung kesehatan mental.',
         'Luangkan waktu untuk aktivitas menyenangkan dan istirahat cukup.',
         'Bangun hubungan sosial yang positif dan suportif.'
-      ]);
+      ], 'fa-brain');
     }
 
     document.getElementById('screening-result').innerHTML = resultText;
   });
 </script>
-  <!-- Tombol Kembali ke Home -->
+
+<!-- Tombol Kembali ke Home -->
 <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
 </body>
 </html>
