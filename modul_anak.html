@@ -1,176 +1,211 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skrining Kesehatan Anak (0-9 tahun)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skrining Kesehatan Anak</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f7f7f7;
+      background-color: #f4f6f8;
     }
     header {
-      background-color: #4CAF50;
+      background-color: #2269a3;
       color: white;
-      padding: 10px 0;
+      padding: 20px;
       text-align: center;
     }
     section {
-      margin: 20px;
+      margin: 20px auto;
       padding: 20px;
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      max-width: 800px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    h2 {
-      color: #333;
+    h2, h3 {
+      color: #2d2d2d;
     }
     label {
-      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
     }
     input, select {
-      padding: 8px;
-      margin: 10px 0;
       width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .question-group {
+      margin-top: 30px;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 20px;
+      background-color: #2269a3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #26764d;
     }
     .result {
-      background-color: #e0ffe0;
-      padding: 10px;
-      border-radius: 4px;
-      margin-top: 20px;
+      margin-top: 30px;
     }
-    .alert {
-      color: red;
-      font-weight: bold;
+    ul {
+      padding-left: 20px;
     }
     .good {
-      color: green;
+      color: #2e7d32;
       font-weight: bold;
     }
     .bad {
-      color: red;
+      color: #c62828;
       font-weight: bold;
     }
-    .question-group {
-      margin-bottom: 20px;
-    }
-    ul {
-      list-style-type: disc;
-      margin-left: 20px;
-    }
+
+  .card {
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card.good {
+    background-color: #e0fbe2;
+    border-left: 5px solid #32cd32;
+  }
+
+  .card.bad {
+    background-color: #ffe6e6;
+    border-left: 5px solid #ff4d4d;
+  }
+
+  .card h4 {
+    margin-top: 0;
+  }
+
+  .recommendation-list {
+    margin-left: 1rem;
+    padding-left: 1rem;
+  }
+
+  .recommendation-list li {
+    margin-bottom: 8px;
+  }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Skrining Kesehatan Anak (0-9 tahun)</h1>
-  <p>Memantau kesehatan anak berdasarkan parameter kesehatan umum</p>
+  <p>Form evaluasi gejala dan kondisi dasar kesehatan anak</p>
 </header>
 
-<section id="input-section">
-  <h2>Input Data Skrining</h2>
+<section>
+  <h2>Form Skrining</h2>
   <form id="screening-form">
-    
-    <!-- Skrining Malnutrisi -->
+    <!-- Basic Info -->
     <div class="question-group">
-      <h3>Malnutrisi (Stunting & Wasting)</h3>
-      <label for="age">Usia Anak (dalam tahun):</label>
-      <input type="number" id="age" name="age" min="0" max="9" required>
+      <label for="age">Usia Anak (tahun)</label>
+      <input type="number" id="age" min="0" max="9" required>
 
-      <label for="weight">Berat Badan (dalam kg):</label>
-      <input type="number" id="weight" name="weight" required>
+      <label for="weight">Berat Badan (kg)</label>
+      <input type="number" id="weight" required>
 
-      <label for="height">Tinggi Badan (dalam cm):</label>
-      <input type="number" id="height" name="height" required>
+      <label for="height">Tinggi Badan (cm)</label>
+      <input type="number" id="height" required>
 
-      <label for="gender">Jenis Kelamin:</label>
-      <select id="gender" name="gender" required>
-        <option value="">Pilih Jenis Kelamin</option>
+      <label for="gender">Jenis Kelamin</label>
+      <select id="gender" required>
+        <option value="">Pilih</option>
         <option value="male">Laki-laki</option>
         <option value="female">Perempuan</option>
       </select>
 
-      <label for="growth-rate">Apakah anak mengalami penurunan berat badan yang signifikan dalam beberapa bulan terakhir?</label>
-      <select id="growth-rate" name="growth-rate" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label for="growth-rate">Penurunan berat badan signifikan?</label>
+      <select id="growth-rate" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
     </div>
 
-    <!-- Skrining ISPA -->
+    <!-- ISPA -->
     <div class="question-group">
-      <h3>Infeksi Saluran Pernafasan Akut (ISPA)</h3>
-      <label for="cough">Apakah anak mengalami batuk berkepanjangan?</label>
-      <select id="cough" name="cough" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <h3>ISPA</h3>
+      <label for="cough">Batuk berkepanjangan?</label>
+      <select id="cough" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="shortness-breath">Apakah anak mengalami sesak napas?</label>
-      <select id="shortness-breath" name="shortness-breath" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label for="shortness-breath">Sesak napas?</label>
+      <select id="shortness-breath" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="fever">Apakah anak mengalami demam?</label>
-      <select id="fever" name="fever" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label for="fever">Demam?</label>
+      <select id="fever" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
     </div>
 
-    <!-- Skrining Diare -->
+    <!-- Diare -->
     <div class="question-group">
       <h3>Diare</h3>
-      <label for="diarrhea-frequency">Seberapa sering anak mengalami diare?</label>
-      <select id="diarrhea-frequency" name="diarrhea-frequency" required>
-        <option value="">Pilih Frekuensi</option>
+      <label for="diarrhea-frequency">Frekuensi diare?</label>
+      <select id="diarrhea-frequency" required>
+        <option value="">Pilih</option>
         <option value="frequent">Setiap hari</option>
         <option value="occasional">Kadang-kadang</option>
-        <option value="none">Tidak ada</option>
+        <option value="none">Tidak</option>
       </select>
 
-      <label for="dehydration-signs">Apakah anak menunjukkan tanda-tanda dehidrasi (mulut kering, tidak buang air kecil, dll)?</label>
-      <select id="dehydration-signs" name="dehydration-signs" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label for="dehydration-signs">Tanda dehidrasi?</label>
+      <select id="dehydration-signs" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
     </div>
 
-    <!-- Skrining Anemia -->
+    <!-- Anemia -->
     <div class="question-group">
       <h3>Anemia</h3>
-      <label for="fatigue">Apakah anak terlihat lebih lelah dari biasanya?</label>
-      <select id="fatigue" name="fatigue" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label for="fatigue">Mudah lelah?</label>
+      <select id="fatigue" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="pale-skin">Apakah anak memiliki kulit yang lebih pucat dari biasanya?</label>
-      <select id="pale-skin" name="pale-skin" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <label for="pale-skin">Kulit pucat?</label>
+      <select id="pale-skin" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
     </div>
 
-    <!-- Skrining Vaksinasi -->
+    <!-- Vaksinasi -->
     <div class="question-group">
-      <h3>Vaksinasi dan Imunisasi</h3>
-      <label for="vaccination-status">Apakah anak sudah mendapatkan semua vaksinasi sesuai dengan jadwal usia?</label>
-      <select id="vaccination-status" name="vaccination-status" required>
-        <option value="">Pilih Ya/Tidak</option>
+      <h3>Vaksinasi</h3>
+      <label for="vaccination-status">Vaksinasi lengkap sesuai usia?</label>
+      <select id="vaccination-status" required>
+        <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
@@ -178,139 +213,215 @@
 
     <button type="submit">Proses Skrining</button>
   </form>
-</section>
 
-<section id="output-section">
-  <h2>Hasil Skrining</h2>
-  <div id="screening-result" class="result"></div>
+  <div class="result" id="screening-result"></div>
 </section>
 
 <script>
-  // Data referensi WHO untuk Z-score TB/U berdasarkan usia dan jenis kelamin (Tinggi Badan Median dan SD)
   const referenceData = {
-    male: {
-      0: { median: 49.0, sd: 2.2 },
-      1: { median: 75.0, sd: 3.2 },
-      2: { median: 85.0, sd: 3.4 },
-      3: { median: 95.0, sd: 3.6 },
-      4: { median: 103.0, sd: 3.7 },
-      5: { median: 110.0, sd: 3.8 },
-      6: { median: 116.0, sd: 4.0 },
-      7: { median: 122.0, sd: 4.1 },
-      8: { median: 127.0, sd: 4.3 },
-      9: { median: 132.0, sd: 4.5 }
-    },
-    female: {
-      0: { median: 48.5, sd: 2.1 },
-      1: { median: 73.5, sd: 3.0 },
-      2: { median: 83.0, sd: 3.2 },
-      3: { median: 92.0, sd: 3.4 },
-      4: { median: 100.0, sd: 3.5 },
-      5: { median: 106.5, sd: 3.6 },
-      6: { median: 112.0, sd: 3.8 },
-      7: { median: 117.5, sd: 4.0 },
-      8: { median: 123.0, sd: 4.2 },
-      9: { median: 128.0, sd: 4.4 }
-    }
+    male: { 0:{median:49,sd:2.2},1:{median:75,sd:3.2},2:{median:85,sd:3.4},3:{median:95,sd:3.6},4:{median:103,sd:3.7},5:{median:110,sd:3.8},6:{median:116,sd:4},7:{median:122,sd:4.1},8:{median:127,sd:4.3},9:{median:132,sd:4.5} },
+    female: { 0:{median:48.5,sd:2.1},1:{median:73.5,sd:3.0},2:{median:83,sd:3.2},3:{median:92,sd:3.4},4:{median:100,sd:3.5},5:{median:106.5,sd:3.6},6:{median:112,sd:3.8},7:{median:117.5,sd:4.0},8:{median:123,sd:4.2},9:{median:128,sd:4.4} }
   };
 
-  // Fungsi untuk menghitung BMI
-  function calculateBMI(weight, height) {
-    let heightInMeters = height / 100;
-    return weight / (heightInMeters * heightInMeters);
-  }
+  const calculateBMI = (weight, height) => weight / Math.pow(height / 100, 2);
 
-  // Fungsi rekomendasi BMI
   function getBMIRecommendation(bmi) {
-    if (bmi < 18.5) {
-      return "<li class='bad'>BMI anak Anda tergolong Underweight. Disarankan untuk meningkatkan pola makan bergizi dan berkonsultasi dengan dokter atau ahli gizi.</li>";
-    } else if (bmi >= 18.5 && bmi < 24.9) {
-      return "<li class='good'>BMI anak Anda berada pada kategori Normal. Teruskan pola makan sehat dan aktivitas fisik yang teratur.</li>";
-    } else if (bmi >= 25.0 && bmi < 29.9) {
-      return "<li class='bad'>BMI anak Anda menunjukkan kategori Pre-obesitas. Disarankan untuk meningkatkan aktivitas fisik dan mengurangi konsumsi makanan tinggi lemak.</li>";
-    } else if (bmi >= 30.0) {
-      return "<li class='bad'>BMI anak Anda tergolong Obesitas. Segera konsultasikan dengan dokter atau ahli gizi untuk merencanakan diet dan program olahraga yang sesuai.</li>";
-    }
+    if (bmi < 18.5) return "<li class='bad'>BMI rendah (underweight)</li>";
+    if (bmi < 25) return "<li class='good'>BMI normal</li>";
+    if (bmi < 30) return "<li class='bad'>BMI pre-obesitas</li>";
+    return "<li class='bad'>BMI obesitas</li>";
   }
 
-  // Fungsi mendapatkan rekomendasi berdasarkan hasil skrining
-  function getRecommendation(age, weight, height, gender, growthRate, cough, shortnessBreath, fever, diarrheaFrequency, dehydrationSigns, fatigue, paleSkin, vaccinationStatus) {
-    let recommendations = [];
-
-    // Hitung BMI
-    let bmi = calculateBMI(weight, height);
-    recommendations.push(getBMIRecommendation(bmi));
-
-    // Stunting
-    let zScore = (height - referenceData[gender][age].median) / referenceData[gender][age].sd;
-    if (zScore <= -3) {
-      recommendations.push("<li class='bad'>Anak Anda mengalami Stunting (Sangat Pendek). Disarankan untuk segera berkonsultasi dengan dokter atau ahli gizi untuk meningkatkan status gizi anak.</li>");
-    } else if (zScore <= -2) {
-      recommendations.push("<li class='bad'>Anak Anda berisiko Stunting (Pendek). Disarankan untuk memperbaiki pola makan dan pastikan anak mendapatkan cukup nutrisi.</li>");
-    } else {
-      recommendations.push("<li class='good'>Anak Anda memiliki tinggi badan yang sesuai dengan umur. Pastikan anak terus memperoleh gizi yang baik dan seimbang.</li>");
-    }
-
-    // ISPA
-    if (cough === "yes" || shortnessBreath === "yes" || fever === "yes") {
-      recommendations.push("<li class='bad'>Anak Anda menunjukkan gejala ISPA. Disarankan untuk segera membawa anak ke dokter untuk pemeriksaan lebih lanjut.</li>");
-    } else {
-      recommendations.push("<li class='good'>Anak Anda tidak menunjukkan gejala ISPA. Pastikan anak tetap menjaga kebersihan dan pola makan yang sehat.</li>");
-    }
-
-    // Diare
-    if (diarrheaFrequency === "frequent" || dehydrationSigns === "yes") {
-      recommendations.push("<li class='bad'>Anak Anda mengalami diare atau tanda-tanda dehidrasi. Segera beri cairan tambahan dan bawa anak ke dokter jika kondisi tidak membaik.</li>");
-    } else if (diarrheaFrequency === "occasional") {
-      recommendations.push("<li class='good'>Anak Anda mengalami diare sesekali. Pastikan untuk menjaga hidrasi dengan memberi air putih dan oralit.</li>");
-    } else {
-      recommendations.push("<li class='good'>Anak Anda tidak mengalami diare. Pastikan pola makan anak sehat dan bersih.</li>");
-    }
-
-    // Anemia
-    if (fatigue === "yes" || paleSkin === "yes") {
-      recommendations.push("<li class='bad'>Anak Anda mungkin mengalami anemia. Disarankan untuk meningkatkan konsumsi makanan yang kaya zat besi, seperti daging merah, bayam, dan kacang-kacangan.</li>");
-    } else {
-      recommendations.push("<li class='good'>Anak Anda tidak menunjukkan gejala anemia. Pastikan anak mendapatkan cukup zat besi melalui makanan.</li>");
-    }
-
-    // Vaksinasi
-    if (vaccinationStatus === "no") {
-      recommendations.push("<li class='bad'>Anak Anda belum mendapatkan vaksinasi lengkap sesuai usia. Segera jadwalkan vaksinasi anak ke puskesmas atau dokter.</li>");
-    } else {
-      recommendations.push("<li class='good'>Anak Anda telah mendapatkan vaksinasi sesuai usia. Teruskan dengan pemeriksaan rutin dan vaksinasi lanjutan.</li>");
-    }
-
-    return recommendations;
+  function getStunting(height, age, gender) {
+    const { median, sd } = referenceData[gender][age];
+    const zScore = (height - median) / sd;
+    if (zScore <= -3) return "<li class='bad'>Tinggi badan menunjukkan stunting parah</li>";
+    if (zScore <= -2) return "<li class='bad'>Tinggi badan di bawah standar (berisiko stunting)</li>";
+    return "<li class='good'>Tinggi badan sesuai usia</li>";
   }
 
-  // Event listener untuk form submit
+  function getISPA(cough, breath, fever) {
+    return (cough === "yes" || breath === "yes" || fever === "yes") ?
+      "<li class='bad'>Kemungkinan gejala ISPA terdeteksi</li>" :
+      "<li class='good'>Tidak ditemukan gejala ISPA</li>";
+  }
+
+  function getDiare(frequency, dehydration) {
+    if (frequency === "frequent" || dehydration === "yes")
+      return "<li class='bad'>Gejala diare atau dehidrasi terdeteksi</li>";
+    if (frequency === "occasional")
+      return "<li class='good'>Diare ringan, tetap pantau dan jaga hidrasi</li>";
+    return "<li class='good'>Tidak ada gejala diare</li>";
+  }
+
+  function getAnemia(fatigue, pale) {
+    return (fatigue === "yes" || pale === "yes") ?
+      "<li class='bad'>Gejala anemia terdeteksi</li>" :
+      "<li class='good'>Tidak ada tanda anemia</li>";
+  }
+
+  function getVaksinasi(status) {
+    return (status === "no") ?
+      "<li class='bad'>Vaksinasi belum lengkap</li>" :
+      "<li class='good'>Vaksinasi lengkap</li>";
+  }
+
   document.getElementById('screening-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Ambil input data
-    const age = parseInt(document.getElementById('age').value);
-    const weight = parseFloat(document.getElementById('weight').value);
-    const height = parseFloat(document.getElementById('height').value);
-    const gender = document.getElementById('gender').value;
-    const growthRate = document.getElementById('growth-rate').value;
-    const cough = document.getElementById('cough').value;
-    const shortnessBreath = document.getElementById('shortness-breath').value;
-    const fever = document.getElementById('fever').value;
-    const diarrheaFrequency = document.getElementById('diarrhea-frequency').value;
-    const dehydrationSigns = document.getElementById('dehydration-signs').value;
-    const fatigue = document.getElementById('fatigue').value;
-    const paleSkin = document.getElementById('pale-skin').value;
-    const vaccinationStatus = document.getElementById('vaccination-status').value;
+  const age = parseInt(document.getElementById('age').value);
+  const weight = parseFloat(document.getElementById('weight').value);
+  const height = parseFloat(document.getElementById('height').value);
+  const gender = document.getElementById('gender').value;
+  const growthRate = document.getElementById('growth-rate').value;
+  const cough = document.getElementById('cough').value;
+  const shortnessBreath = document.getElementById('shortness-breath').value;
+  const fever = document.getElementById('fever').value;
+  const diarrheaFrequency = document.getElementById('diarrhea-frequency').value;
+  const dehydrationSigns = document.getElementById('dehydration-signs').value;
+  const fatigue = document.getElementById('fatigue').value;
+  const paleSkin = document.getElementById('pale-skin').value;
+  const vaccinationStatus = document.getElementById('vaccination-status').value;
 
-    // Mendapatkan rekomendasi
-    const recommendations = getRecommendation(age, weight, height, gender, growthRate, cough, shortnessBreath, fever, diarrheaFrequency, dehydrationSigns, fatigue, paleSkin, vaccinationStatus);
+  const recommendations = getRecommendation(age, weight, height, gender, growthRate, cough, shortnessBreath, fever, diarrheaFrequency, dehydrationSigns, fatigue, paleSkin, vaccinationStatus);
 
-    // Menampilkan hasil skrining dan rekomendasi
-    document.getElementById('screening-result').innerHTML = "<ul>" + recommendations.join('') + "</ul>";
-  });
-</script>
+  document.getElementById('screening-result').innerHTML = recommendations.join('');
+});
 
+
+  function renderCard(title, recommendations, type = 'bad') {
+  return `
+    <div class="card ${type}">
+      <h4>${title}</h4>
+      <ul class="recommendation-list">
+        ${recommendations.map(rec => `<li>${rec}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+}
+
+function getRecommendation(age, weight, height, gender, growthRate, cough, shortnessBreath, fever, diarrheaFrequency, dehydrationSigns, fatigue, paleSkin, vaccinationStatus) {
+  let results = [];
+
+  // BMI & Stunting
+  let bmi = calculateBMI(weight, height);
+  let bmiRecs = [];
+  if (bmi < 18.5) {
+    bmiRecs = [
+      "Tingkatkan konsumsi makanan bergizi tinggi kalori dan protein.",
+      "Periksakan anak ke ahli gizi untuk mendapatkan rencana makan yang tepat.",
+      "Pantau berat badan setiap minggu untuk melihat progres pertumbuhan."
+    ];
+    results.push(renderCard("Status Gizi: Underweight", bmiRecs, 'bad'));
+  } else if (bmi >= 18.5 && bmi < 24.9) {
+    bmiRecs = [
+      "Pertahankan pola makan bergizi dan seimbang.",
+      "Dorong anak untuk aktif bergerak setiap hari.",
+      "Lakukan pemeriksaan rutin ke dokter anak setiap 6 bulan."
+    ];
+    results.push(renderCard("Status Gizi: Normal", bmiRecs, 'good'));
+  } else if (bmi >= 25.0) {
+    bmiRecs = [
+      "Kurangi konsumsi makanan tinggi gula dan lemak jenuh.",
+      "Tingkatkan aktivitas fisik harian seperti bermain di luar atau olahraga ringan.",
+      "Konsultasi dengan ahli gizi untuk pengelolaan berat badan."
+    ];
+    results.push(renderCard("Status Gizi: Kelebihan Berat", bmiRecs, 'bad'));
+  }
+
+  // Stunting
+  let zScore = (height - referenceData[gender][age].median) / referenceData[gender][age].sd;
+  if (zScore <= -3) {
+    results.push(renderCard("Tinggi Badan: Sangat Pendek (Stunting Berat)", [
+      "Segera bawa anak ke fasilitas kesehatan untuk skrining lanjutan.",
+      "Berikan makanan tinggi zat besi dan vitamin A seperti hati ayam, wortel, dan ikan.",
+      "Pastikan anak tidur cukup dan teratur untuk mendukung pertumbuhan."
+    ], 'bad'));
+  } else if (zScore <= -2) {
+    results.push(renderCard("Tinggi Badan: Pendek (Risiko Stunting)", [
+      "Evaluasi asupan gizi anak dan tingkatkan dengan makanan bergizi tinggi.",
+      "Lakukan pemantauan pertumbuhan tiap bulan di posyandu.",
+      "Berikan suplemen zat besi jika direkomendasikan oleh tenaga medis."
+    ], 'bad'));
+  } else {
+    results.push(renderCard("Tinggi Badan: Sesuai Usia", [
+      "Terus jaga pola makan sehat dan konsumsi sayur serta buah setiap hari.",
+      "Berikan stimulasi tumbuh kembang seperti bermain interaktif.",
+      "Rutin mengikuti posyandu atau kontrol kesehatan anak."
+    ], 'good'));
+  }
+
+  // ISPA
+  if (cough === "yes" || shortnessBreath === "yes" || fever === "yes") {
+    results.push(renderCard("Gejala ISPA Terdeteksi", [
+      "Segera periksakan anak ke puskesmas/dokter untuk diagnosis lebih lanjut.",
+      "Pastikan anak minum cukup cairan dan istirahat cukup.",
+      "Jauhkan anak dari paparan asap rokok atau polusi udara."
+    ], 'bad'));
+  } else {
+    results.push(renderCard("Tidak Ada Gejala ISPA", [
+      "Terus jaga kebersihan lingkungan dan kebiasaan mencuci tangan.",
+      "Jaga imunitas dengan makanan bergizi dan tidur cukup.",
+      "Hindari anak dari orang yang sedang sakit flu/batuk."
+    ], 'good'));
+  }
+
+  // Diare
+  if (diarrheaFrequency === "frequent" || dehydrationSigns === "yes") {
+    results.push(renderCard("Risiko Diare dan Dehidrasi", [
+      "Segera berikan oralit dan cairan lain sebanyak mungkin.",
+      "Bawa anak ke dokter jika diare lebih dari 3 hari.",
+      "Perhatikan kebersihan makanan dan air minum anak."
+    ], 'bad'));
+  } else if (diarrheaFrequency === "occasional") {
+    results.push(renderCard("Diare Ringan", [
+      "Berikan cairan dan makanan yang mudah dicerna.",
+      "Pantau frekuensi buang air besar dan kondisi anak.",
+      "Hindari makanan mentah atau tidak higienis."
+    ], 'good'));
+  } else {
+    results.push(renderCard("Tidak Ada Gejala Diare", [
+      "Jaga pola makan sehat dan kebersihan makanan anak.",
+      "Ajarkan anak mencuci tangan sebelum makan dan setelah buang air.",
+      "Pastikan anak cukup minum air bersih setiap hari."
+    ], 'good'));
+  }
+
+  // Anemia
+  if (fatigue === "yes" || paleSkin === "yes") {
+    results.push(renderCard("Tanda-tanda Anemia", [
+      "Konsumsi makanan kaya zat besi seperti daging merah, bayam, dan kacang-kacangan.",
+      "Pertimbangkan suplemen zat besi sesuai anjuran tenaga medis.",
+      "Lakukan pemeriksaan darah jika kondisi tidak membaik dalam 1 minggu."
+    ], 'bad'));
+  } else {
+    results.push(renderCard("Tidak Ada Gejala Anemia", [
+      "Pertahankan pola makan seimbang dan mengandung zat besi.",
+      "Perbanyak konsumsi buah yang kaya vitamin C untuk penyerapan zat besi.",
+      "Periksakan kesehatan anak secara berkala."
+    ], 'good'));
+  }
+
+  // Vaksinasi
+  if (vaccinationStatus === "no") {
+    results.push(renderCard("Status Vaksinasi Tidak Lengkap", [
+      "Segera jadwalkan vaksinasi ke puskesmas atau dokter anak.",
+      "Periksa kembali buku KIA atau catatan imunisasi.",
+      "Konsultasikan jadwal catch-up imunisasi dengan tenaga medis."
+    ], 'bad'));
+  } else {
+    results.push(renderCard("Vaksinasi Lengkap", [
+      "Pertahankan jadwal imunisasi lanjutan (booster).",
+      "Simpan dengan baik catatan vaksinasi anak.",
+      "Lanjutkan pemeriksaan kesehatan rutin anak."
+    ], 'good'));
+  }
+
+  return results;
+}
+ </script>
+  
+  <!-- Tombol Kembali ke Home -->
+<button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
 </body>
 </html>
-
