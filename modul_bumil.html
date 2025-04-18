@@ -395,7 +395,9 @@
         card.innerHTML = `
           <h3>${item.title}</h3>
           <p><strong>Risiko: </strong> ${riskLevel === 'red' ? 'Tinggi' : riskLevel === 'yellow' ? 'Perlu Monitor' : 'Rendah'}</p>
-          <ul>${answers.map(a => `<li>${a}</li>`).join('')}</ul>
+          <p><strong>Penjelasan Kategori Risiko:</strong><br>
+            ${getRiskExplanation(item.title, riskLevel)}
+          </p>
           <p><strong>Rekomendasi:</strong><br>
             ${getRecommendation(item.title, riskLevel)}
           </p>
@@ -409,33 +411,117 @@
       stepElements[3].classList.add('active');
     }
 
+    function getRiskExplanation(title, riskLevel) {
+      const explanations = {
+        "Hyperemesis Gravidarum": {
+          red: "Hyperemesis Gravidarum adalah kondisi mual dan muntah yang sangat berat, menyebabkan dehidrasi dan penurunan berat badan yang signifikan.",
+          yellow: "Kondisi mual yang berlanjut, namun tidak menyebabkan penurunan berat badan yang signifikan.",
+          green: "Mual ringan yang tidak mengganggu aktivitas sehari-hari dan tidak menyebabkan penurunan berat badan."
+        },
+        "Kehamilan Ektopik": {
+          red: "Kehamilan ektopik adalah kondisi yang sangat berbahaya di mana embrio berkembang di luar rahim, biasanya di saluran tuba. Ini dapat menyebabkan perdarahan hebat dan risiko kematian.",
+          yellow: "Kehamilan ektopik dapat menunjukkan gejala ringan, seperti nyeri dan perdarahan ringan. Namun, tetap memerlukan perhatian medis segera.",
+          green: "Tidak ada tanda kehamilan ektopik. Perkembangan kehamilan normal."
+        },
+        "Preeklampsia": {
+          red: "Preeklampsia adalah komplikasi kehamilan yang ditandai dengan tekanan darah tinggi dan kerusakan organ. Jika tidak ditangani, bisa berlanjut menjadi eklampsia.",
+          yellow: "Preeklampsia ringan dapat dikelola dengan pengawasan ketat dan perubahan gaya hidup.",
+          green: "Tidak ada tanda-tanda preeklampsia. Kehamilan berjalan normal."
+        },
+        "Eklampsia / Preeklampsia Lanjut": {
+          red: "Eklampsia adalah komplikasi yang lebih serius dari preeklampsia yang menyebabkan kejang dan kerusakan organ. Ini membutuhkan penanganan medis segera.",
+          yellow: "Tanda-tanda preeklampsia lanjut, seperti pembengkakan parah dan gangguan penglihatan, memerlukan perhatian medis untuk mencegah komplikasi lebih lanjut.",
+          green: "Kehamilan tanpa komplikasi signifikan terkait preeklampsia atau eklampsia."
+        }
+      };
+      return explanations[title] ? explanations[title][riskLevel] : "Penjelasan tidak tersedia.";
+    }
+
     function getRecommendation(title, riskLevel) {
       const notes = {
         "Hyperemesis Gravidarum": {
-          red: "Segera konsultasikan ke dokter jika muntah hebat & berat badan turun signifikan.",
-          yellow: "Pantau kondisi, jaga hidrasi dan asupan nutrisi.",
-          green: "Tidak ada tanda hiperemesis berat, tetap jaga pola makan."
+          red: `
+            <ul>
+              <li>Segera konsultasikan ke dokter jika muntah hebat & berat badan turun signifikan.</li>
+              <li>Pertimbangkan perawatan medis untuk mengelola mual parah.</li>
+              <li>Jaga hidrasi dan pertimbangkan terapi anti-muntah.</li>
+            </ul>`,
+          yellow: `
+            <ul>
+              <li>Pantau kondisi, jaga hidrasi dan asupan nutrisi.</li>
+              <li>Cobalah makan sedikit tetapi sering.</li>
+              <li>Konsultasikan dengan dokter jika gejala memburuk.</li>
+            </ul>`,
+          green: `
+            <ul>
+              <li>Perbanyak konsumsi makanan ringan yang mudah dicerna.</li>
+              <li>Jika mual tetap berlangsung, pertimbangkan penggunaan jahe atau teh herbal.</li>
+              <li>Hindari makanan yang berbau tajam atau terlalu berat.</li>
+            </ul>`
         },
         "Kehamilan Ektopik": {
-          red: "Segera lakukan USG untuk memastikan lokasi kehamilan.",
-          yellow: "Jika ada nyeri atau bercak, evaluasi medis dianjurkan.",
-          green: "Tidak ditemukan tanda-tanda kehamilan ektopik."
+          red: `
+            <ul>
+              <li>Segera lakukan USG untuk memastikan lokasi kehamilan.</li>
+              <li>Hubungi dokter jika merasakan nyeri atau perdarahan yang tidak biasa.</li>
+              <li>Periksakan ke dokter untuk menangani kemungkinan komplikasi.</li>
+            </ul>`,
+          yellow: `
+            <ul>
+              <li>Jika ada nyeri atau bercak, evaluasi medis dianjurkan.</li>
+              <li>Jaga komunikasi dengan dokter untuk pemeriksaan lebih lanjut.</li>
+              <li>Hindari aktivitas berat sampai dipastikan.</li>
+            </ul>`,
+          green: `
+            <ul>
+              <li>Kehamilan berjalan normal. Pastikan untuk melakukan kontrol rutin.</li>
+              <li>Selalu lakukan pemeriksaan ultrasonografi secara berkala.</li>
+              <li>Pertahankan gaya hidup sehat selama kehamilan.</li>
+            </ul>`
         },
         "Preeklampsia": {
-          red: "Segera periksa tekanan darah & protein urin. Risiko preeklampsia tinggi.",
-          yellow: "Monitor tekanan darah dan gejala lainnya.",
-          green: "Tidak ada tanda preeklampsia saat ini."
+          red: `
+            <ul>
+              <li>Segera periksa tekanan darah & protein urin. Risiko preeklampsia tinggi.</li>
+              <li>Periksakan kondisi ini segera untuk menentukan langkah medis lebih lanjut.</li>
+              <li>Dokter mungkin akan merekomendasikan pengobatan atau bahkan rawat inap.</li>
+            </ul>`,
+          yellow: `
+            <ul>
+              <li>Monitor tekanan darah dan gejala lainnya secara teratur.</li>
+              <li>Perubahan gaya hidup dan diet sehat sangat membantu.</li>
+              <li>Lakukan pemeriksaan rutin untuk mendeteksi potensi masalah lebih awal.</li>
+            </ul>`,
+          green: `
+            <ul>
+              <li>Selalu menjaga gaya hidup sehat dengan pola makan seimbang.</li>
+              <li>Perbanyak aktivitas fisik ringan untuk mendukung kesehatan jantung.</li>
+              <li>Lakukan pemeriksaan kehamilan rutin untuk memastikan perkembangan normal.</li>
+            </ul>`
         },
         "Eklampsia / Preeklampsia Lanjut": {
-          red: "Segera ke fasilitas medis. Risiko eklampsia tinggi.",
-          yellow: "Waspadai gejala lanjut. Rutin kontrol.",
-          green: "Tidak ada tanda eklampsia saat ini."
+          red: `
+            <ul>
+              <li>Segera ke fasilitas medis. Risiko eklampsia tinggi.</li>
+              <li>Waspadai tanda-tanda komplikasi lebih lanjut seperti kejang.</li>
+              <li>Dokter akan segera mengambil langkah-langkah untuk menjaga keselamatan ibu dan janin.</li>
+            </ul>`,
+          yellow: `
+            <ul>
+              <li>Waspadai gejala lanjut, seperti sakit kepala berat dan pembengkakan.</li>
+              <li>Rutin kontrol tekanan darah dan kesehatan janin.</li>
+              <li>Konsultasikan dengan dokter mengenai perubahan gaya hidup untuk mencegah komplikasi.</li>
+            </ul>`,
+          green: `
+            <ul>
+              <li>Perbanyak pemeriksaan kesehatan untuk memantau perkembangan kehamilan.</li>
+              <li>Terus ikuti program kesehatan ibu hamil yang direkomendasikan.</li>
+              <li>Jaga pola makan dan tidur yang cukup selama kehamilan.</li>
+            </ul>`
         }
       };
       return notes[title] ? notes[title][riskLevel] : "Jaga kesehatan dan rutin periksa ke tenaga medis.";
-    }
-
-    function downloadPDF() {
+    }function downloadPDF() {
   const element = document.getElementById('step3');
 
   const opt = {
