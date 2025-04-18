@@ -127,39 +127,44 @@
   <audio id="typingSound" src="https://assets.mixkit.co/sfx/preview/mixkit-typewriter-soft-clicks-1126.mp3"></audio>
 
   <script>
-    const text = "Nira siap bantu! Mau skrining apa?";
-    const greetingElement = document.getElementById("greeting");
-    const typingSound = document.getElementById("typingSound");
-    const playButton = document.getElementById("playButton");
-    const video = document.getElementById("videoNira");
+    <script>
+  const text = "Nira siap bantu! Mau skrining apa?";
+  const greetingElement = document.getElementById("greeting");
+  const typingSound = document.getElementById("typingSound");
+  const playButton = document.getElementById("playButton");
+  const video = document.getElementById("videoNira");
 
-    let index = 0;
-    function typeText() {
-      if (index < text.length) {
-        greetingElement.innerHTML += text.charAt(index);
-        typingSound.currentTime = 0;
-        typingSound.play();
-        index++;
-        setTimeout(typeText, 90);
-      } else {
-        playButton.classList.remove("hidden");
-      }
+  let index = 0;
+  function typeText() {
+    if (index < text.length) {
+      greetingElement.innerHTML += text.charAt(index);
+      typingSound.currentTime = 0;
+      typingSound.play();
+      index++;
+      setTimeout(typeText, 90);
+    } else {
+      playButton.classList.remove("hidden");
     }
+  }
 
-    function navigateTo(page) {
-      window.open(page, "_blank");
-    }
+  // 🔧 Ubah fungsi ini
+  function navigateTo(page) {
+    // Navigasi di halaman yang sama (tanpa buka tab baru)
+    window.location.href = page;
+  }
 
-    function playVideo() {
-      video.muted = false; // aktifkan suara
-      video.currentTime = 0;
-      video.play();
-      playButton.classList.add("hidden");
-    }
+  function playVideo() {
+    video.muted = false; // aktifkan suara
+    video.currentTime = 0;
+    video.play();
+    playButton.classList.add("hidden");
+  }
 
-    window.onload = () => {
-      typeText();
-    };
+  window.onload = () => {
+    typeText();
+  };
+</script>
+
   </script>
 </body>
 
