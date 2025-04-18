@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prediksi Risiko PTM</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,8 +13,7 @@
       padding: 20px;
     }
 
-    h1,
-    h2 {
+    h1, h2 {
       color: #2c3e50;
     }
 
@@ -31,8 +30,7 @@
       font-weight: bold;
     }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
@@ -74,9 +72,27 @@
     canvas {
       margin-top: 20px;
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid #1abc9c;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #d1f2eb;
+    }
   </style>
 </head>
-
 <body>
   <h1>Prediksi Risiko Penyakit Tidak Menular (PTM)</h1>
   <form id="ptmForm">
@@ -105,40 +121,56 @@
 
     <p><em>Berapa Hari dalam Seminggu (7 hari terakhir) Anda melakukan hal-hal berikut ini?</em></p>
 
-    <label>Konsumsi Makanan Tinggi Gula (lebih dari 50 gram atau setara dengan 4 sendok makan per hari)</label>
+    <label>Konsumsi Makanan Tinggi Gula</label>
     <input type="range" name="gula" min="1" max="7" class="range-labeled" />
 
-    <label>Konsumsi Makanan Tinggi Garam (lebih dari 5 gram atau setara dengan 1 sendok teh per hari)</label>
+    <label>Konsumsi Makanan Tinggi Garam</label>
     <input type="range" name="garam" min="1" max="7" class="range-labeled" />
 
-    <label>Konsumsi Sayur & Buah (sekitar 400 gram buah dan sayur per orang per hari)</label>
+    <label>Konsumsi Sayur & Buah</label>
     <input type="range" name="sayur" min="1" max="7" class="range-labeled" />
 
-    <label>Aktivitas Fisik (sekitar 30-60 menit per hari)</label>
+    <label>Aktivitas Fisik</label>
     <input type="range" name="aktivitas" min="1" max="7" class="range-labeled" />
 
-    <label>Tidur Cukup (sekitar 7-8 jam per hari)</label>
+    <label>Tidur Cukup</label>
     <input type="range" name="tidur" min="1" max="7" class="range-labeled" />
 
     <h2>Rencana Perubahan Perilaku</h2>
-    <p><em>Untuk masa yang akan datang, berapa Hari dalam Seminggu (7 hari ke depan) Anda akan melakukan hal-hal berikut?</em></p>
-
-    <label>Komitmen Olahraga (minimal 30 menit per hari)</label>
+    <label>Komitmen Olahraga</label>
     <input type="range" name="olahraga" min="1" max="7" class="range-labeled" />
 
-    <label>Komitmen Makan Sehat (rendah Gula, Garam, Lemak)</label>
+    <label>Komitmen Makan Sehat</label>
     <input type="range" name="makan_sehat" min="1" max="7" class="range-labeled" />
 
     <label>Komitmen Hindari Merokok</label>
     <input type="range" name="hindari_rokok" min="1" max="7" class="range-labeled" />
 
-    <label>Komitmen Tidur Cukup dan Teratur (minimal 7-8 jam per hari)</label>
+    <label>Komitmen Tidur Teratur</label>
     <input type="range" name="tidur_teratur" min="1" max="7" class="range-labeled" />
 
     <button type="submit" class="button">Hitung Risiko</button>
   </form>
 
   <div id="output" class="result" style="display:none;"></div>
+  <div id="bmiInfo" class="result" style="display:none;">
+    <h4>Kategori BMI (Standar WHO)</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Kategori BMI</th>
+          <th>Rentang BMI (kg/m<sup>2</sup>)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Berat badan kurang</td><td>&lt; 18.5</td></tr>
+        <tr><td>Berat badan normal</td><td>18.5 - 24.9</td></tr>
+        <tr><td>Berat badan berlebih</td><td>25.0 - 29.9</td></tr>
+        <tr><td>Obesitas</td><td>&ge; 30.0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <canvas id="survivalChart" width="400" height="200" style="display:none;"></canvas>
 
   <script>
@@ -156,6 +188,14 @@
         input.insertAdjacentElement('afterend', labels);
       });
     }
+
+    function getBMICategory(bmi) {
+      if (bmi < 18.5) return "Berat badan kurang";
+      if (bmi < 25) return "Berat badan normal";
+      if (bmi < 30) return "Berat badan berlebih";
+      return "Obesitas";
+    }
+
     window.addEventListener('DOMContentLoaded', generateRangeLabels);
 
     document.getElementById("ptmForm").addEventListener("submit", function (e) {
@@ -164,13 +204,9 @@
       const usia = parseInt(form.usia.value);
       const bb = parseFloat(form.bb.value);
       const tb = parseFloat(form.tb.value) / 100;
-
-      if (tb <= 0) {
-        alert("Tinggi badan tidak valid.");
-        return;
-      }
-
+      if (tb <= 0) return alert("Tinggi badan tidak valid.");
       const bmi = bb / (tb * tb);
+      const bmiCategory = getBMICategory(bmi);
       const ropt = val => parseInt(form[val].value);
 
       let risiko = 0;
@@ -213,24 +249,23 @@
       ).join("");
 
       document.getElementById("output").style.display = "block";
+      document.getElementById("bmiInfo").style.display = "block";
+
       document.getElementById("output").innerHTML = `
         <h3>Hasil Prediksi Risiko PTM</h3>
-        <p><strong>BMI Anda:</strong> ${bmi.toFixed(2)}</p>
+        <p><strong>BMI Anda:</strong> ${bmi.toFixed(2)} (${bmiCategory})</p>
         <p><strong>Kategori Risiko:</strong> ${kategori}</p>
         <p><strong>Catatan:</strong> Risiko ini hanya prediksi berdasarkan data yang Anda masukkan.</p>
         <h4>Prediksi Penyakit Potensial:</h4>
         <ul>${prediksiText}</ul>
+        <p><strong>Penjelasan Grafik:</strong> Grafik menunjukkan probabilitas Anda terkena PTM di masa depan berdasarkan data yang Anda masukkan. Semakin tinggi risiko Anda, semakin tinggi kemungkinan Anda terkena penyakit di usia tertentu.</p>
       `;
 
-      if (window.survivalChartInstance) {
-        window.survivalChartInstance.destroy();
-      }
-
+      if (window.survivalChartInstance) window.survivalChartInstance.destroy();
       const maxAge = 100;
       const lifeExpectancy = 74;
       const endAge = Math.min(maxAge, usia + lifeExpectancy);
       const years = Array.from({ length: endAge - usia + 1 }, (_, i) => usia + i);
-
       const ptmProbabilityRate = years.map((_, i) => {
         let decay = risiko * 0.02;
         let survival = 100 * Math.exp(-decay * i);
@@ -240,9 +275,8 @@
       document.getElementById("survivalChart").style.display = "block";
       const ctx = document.getElementById("survivalChart").getContext("2d");
 
-      const symbols = ['circle', 'triangle', 'rect', 'rectRounded', 'rectRot', 'cross', 'star', 'line'];
-      const colorPalette = ['#e74c3c', '#3498db', '#f1c40f', '#9b59b6', '#1abc9c', '#e67e22', '#2ecc71'];
-
+      const symbols = ['circle', 'triangle', 'rect', 'cross'];
+      const colorPalette = ['#e74c3c', '#3498db', '#f1c40f', '#9b59b6'];
       const diseaseMarkers = prediksi.filter(p => p.tahun !== "-").map((p, idx) => {
         const tahunIndex = years.indexOf(p.tahun);
         return {
@@ -279,7 +313,7 @@
             legend: { position: 'top' },
             title: {
               display: true,
-              text: 'Grafik Probabilitas Terkena PTM di masa depan'
+              text: 'Grafik Probabilitas Terkena PTM di Masa Depan'
             },
             tooltip: {
               callbacks: {
@@ -298,8 +332,88 @@
           }
         }
       });
+
+      // Hapus tombol sebelumnya jika sudah ada
+const existingButton = document.getElementById('downloadPDF');
+if (existingButton) existingButton.remove();
+
+// Tambahkan Rekomendasi berdasarkan kategori risiko
+let rekomendasi = "";
+
+if (kategori === "Tinggi") {
+  rekomendasi = `
+    <p><strong>Rekomendasi Kesehatan:</strong></p>
+    <ul>
+      <li>Lakukan pemeriksaan kesehatan rutin (gula darah, tekanan darah, kolesterol).</li>
+      <li>Perbaiki pola makan: kurangi konsumsi makanan tinggi gula, garam, dan lemak.</li>
+      <li>Tingkatkan aktivitas fisik: minimal 30 menit sehari, 5 hari seminggu.</li>
+      <li>Hindari rokok dan paparan asap rokok.</li>
+      <li>Kelola stres dan pastikan tidur cukup (7–8 jam per hari).</li>
+      <li>Konsultasikan dengan tenaga kesehatan untuk rencana pencegahan lebih lanjut.</li>
+    </ul>
+  `;
+} else if (kategori === "Sedang") {
+  rekomendasi = `
+    <p><strong>Rekomendasi Kesehatan:</strong></p>
+    <ul>
+      <li>Mulai membiasakan pola makan sehat dan seimbang.</li>
+      <li>Lakukan aktivitas fisik secara teratur minimal 150 menit/minggu.</li>
+      <li>Hindari rokok dan mulai memperbaiki kualitas tidur.</li>
+      <li>Lakukan skrining kesehatan berkala untuk deteksi dini risiko PTM.</li>
+    </ul>
+  `;
+} else {
+  rekomendasi = `
+    <p><strong>Rekomendasi Kesehatan:</strong></p>
+    <ul>
+      <li>Teruskan gaya hidup sehat yang sudah dijalani.</li>
+      <li>Pertahankan pola makan bergizi dan seimbang.</li>
+      <li>Lanjutkan aktivitas fisik dan tidur cukup setiap hari.</li>
+      <li>Lakukan pemeriksaan kesehatan secara berkala sebagai langkah preventif.</li>
+    </ul>
+  `;
+}
+
+// Sisipkan rekomendasi ke dalam output
+document.getElementById("output").innerHTML += rekomendasi;
+
+
+// Tambahkan tombol baru
+const downloadPDFButton = document.createElement('button');
+downloadPDFButton.textContent = 'Unduh PDF';
+downloadPDFButton.classList.add('button');
+downloadPDFButton.id = 'downloadPDF';
+document.body.appendChild(downloadPDFButton);
+
+downloadPDFButton.addEventListener('click', function () {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Ambil tanggal dan jam sekarang
+  const now = new Date();
+  const tanggalCetak = now.toLocaleDateString('id-ID');
+  const jamCetak = now.toLocaleTimeString('id-ID');
+
+  // Tambahkan teks ke PDF
+  doc.text('Prediksi Risiko Penyakit Tidak Menular (PTM)', 20, 20);
+  doc.text(`Tanggal Cetak: ${tanggalCetak}`, 20, 30);
+  doc.text(`Jam Cetak: ${jamCetak}`, 20, 38);
+  doc.text(`BMI: ${bmi.toFixed(2)} (${bmiCategory})`, 20, 48);
+  doc.text(`Kategori Risiko: ${kategori}`, 20, 56);
+  doc.text('Prediksi Penyakit Potensial:', 20, 66);
+
+  prediksi.forEach((p, index) => {
+    doc.text(`${p.nama} - Usia: ${p.tahun !== "-" ? p.tahun : 'N/A'}`, 20, 76 + index * 10);
+  });
+
+  // Tambahkan grafik sebagai gambar
+  const chartCanvas = document.getElementById('survivalChart');
+  doc.addImage(chartCanvas, 'PNG', 20, 90 + prediksi.length * 10, 180, 100);
+
+  // Simpan PDF
+  doc.save('Prediksi_Risiko_PTM.pdf');
+});
     });
   </script>
 </body>
-
 </html>
