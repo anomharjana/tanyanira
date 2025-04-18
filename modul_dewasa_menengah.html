@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skrining Kesehatan Dewasa Menengah (36–49 tahun)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+    section {
+      margin: 20px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 8px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .result {
+      background-color: #e0ffe0;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    .alert {
+      color: red;
+      font-weight: bold;
+    }
+    .question-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Skrining Kesehatan Dewasa Menengah (36–49 tahun)</h1>
+  <p>Memantau kesehatan dewasa menengah berdasarkan parameter kesehatan umum</p>
+</header>
+
+<section id="input-section">
+  <h2>Input Data Skrining</h2>
+  <form id="screening-form">
+    
+    <!-- Skrining Penyakit Jantung & Stroke -->
+    <div class="question-group">
+      <h3>Penyakit Jantung & Stroke</h3>
+      <label for="high-blood-pressure-1">Apakah Anda memiliki riwayat tekanan darah tinggi?</label>
+      <select id="high-blood-pressure-1" name="high-blood-pressure-1" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="high-cholesterol">Apakah Anda memiliki kadar kolesterol tinggi?</label>
+      <select id="high-cholesterol" name="high-cholesterol" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="diabetes">Apakah Anda menderita diabetes atau pernah didiagnosa dengan kadar gula darah tinggi?</label>
+      <select id="diabetes" name="diabetes" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Kanker Payudara & Kanker Ovarium -->
+    <div class="question-group">
+      <h3>Kanker Payudara & Kanker Ovarium</h3>
+      <label for="family-history-breast-cancer">Apakah ada riwayat kanker payudara dalam keluarga Anda?</label>
+      <select id="family-history-breast-cancer" name="family-history-breast-cancer" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="family-history-ovarian-cancer">Apakah ada riwayat kanker ovarium dalam keluarga Anda?</label>
+      <select id="family-history-ovarian-cancer" name="family-history-ovarian-cancer" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="breast-lumps">Apakah Anda merasakan adanya benjolan di payudara atau perubahan bentuk pada payudara?</label>
+      <select id="breast-lumps" name="breast-lumps" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Diabetes & Hipertensi -->
+    <div class="question-group">
+      <h3>Diabetes & Hipertensi</h3>
+      <label for="high-blood-pressure-2">Apakah tekanan darah Anda lebih tinggi dari 140/90 mmHg?</label>
+      <select id="high-blood-pressure-2" name="high-blood-pressure-2" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="blood-sugar-level">Apakah kadar gula darah Anda lebih dari 100 mg/dL setelah berpuasa?</label>
+      <select id="blood-sugar-level" name="blood-sugar-level" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Osteoporosis -->
+    <div class="question-group">
+      <h3>Osteoporosis</h3>
+      <label for="family-history-osteoporosis">Apakah ada riwayat osteoporosis dalam keluarga Anda?</label>
+      <select id="family-history-osteoporosis" name="family-history-osteoporosis" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="calcium-intake">Apakah Anda cukup mengonsumsi makanan kaya kalsium setiap hari (misalnya, susu, yogurt, atau sayuran hijau)?</label>
+      <select id="calcium-intake" name="calcium-intake" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="physical-activity">Apakah Anda melakukan aktivitas fisik seperti berjalan atau olahraga secara teratur?</label>
+      <select id="physical-activity" name="physical-activity" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Kesehatan Mental -->
+    <div class="question-group">
+      <h3>Kesehatan Mental</h3>
+      <label for="depression">Apakah Anda merasa tertekan hampir setiap hari selama 2 minggu terakhir?</label>
+      <select id="depression" name="depression" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="anxiety">Apakah Anda merasa cemas atau khawatir berlebihan mengenai hal-hal kecil?</label>
+      <select id="anxiety" name="anxiety" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <button type="submit">Proses Skrining</button>
+  </form>
+</section>
+
+<section id="output-section">
+  <h2>Hasil Skrining</h2>
+  <div id="screening-result" class="result"></div>
+</section>
+
+<script>
+  document.getElementById('screening-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const highBloodPressure1 = document.getElementById('high-blood-pressure-1').value;
+    const highCholesterol = document.getElementById('high-cholesterol').value;
+    const diabetes = document.getElementById('diabetes').value;
+    const familyHistoryBreastCancer = document.getElementById('family-history-breast-cancer').value;
+    const familyHistoryOvarianCancer = document.getElementById('family-history-ovarian-cancer').value;
+    const breastLumps = document.getElementById('breast-lumps').value;
+    const highBloodPressure2 = document.getElementById('high-blood-pressure-2').value;
+    const bloodSugarLevel = document.getElementById('blood-sugar-level').value;
+    const familyHistoryOsteoporosis = document.getElementById('family-history-osteoporosis').value;
+    const calciumIntake = document.getElementById('calcium-intake').value;
+    const physicalActivity = document.getElementById('physical-activity').value;
+    const depression = document.getElementById('depression').value;
+    const anxiety = document.getElementById('anxiety').value;
+
+    let resultText = '';
+
+    // Skrining Penyakit Jantung & Stroke
+    if (highBloodPressure1 === 'yes' || highCholesterol === 'yes' || diabetes === 'yes') {
+      resultText += '<p class="alert">Risiko penyakit jantung atau stroke terdeteksi. Segera lakukan pemeriksaan lebih lanjut dan konsultasi dengan dokter.</p>';
+    } else {
+      resultText += '<p>Risiko penyakit jantung atau stroke rendah. Teruskan gaya hidup sehat dengan memonitor tekanan darah, kolesterol, dan gula darah Anda.</p>';
+    }
+
+    // Skrining Kanker Payudara & Kanker Ovarium
+    if (familyHistoryBreastCancer === 'yes' || familyHistoryOvarianCancer === 'yes' || breastLumps === 'yes') {
+      resultText += '<p class="alert">Risiko kanker payudara atau ovarium terdeteksi. Pertimbangkan untuk melakukan pemeriksaan lanjutan seperti mamografi atau USG ovarium.</p>';
+    } else {
+      resultText += '<p>Risiko kanker payudara atau ovarium rendah. Namun, lakukan pemeriksaan secara rutin.</p>';
+    }
+
+    // Skrining Diabetes & Hipertensi
+    if (highBloodPressure2 === 'yes' || bloodSugarLevel === 'yes') {
+      resultText += '<p class="alert">Risiko hipertensi atau diabetes terdeteksi. Lakukan pemeriksaan rutin dan kontrol gaya hidup Anda.</p>';
+    } else {
+      resultText += '<p>Tekanan darah dan kadar gula darah Anda dalam rentang normal. Pertahankan pola hidup sehat.</p>';
+    }
+
+    // Skrining Osteoporosis
+    if (familyHistoryOsteoporosis === 'yes' || calciumIntake === 'no' || physicalActivity === 'no') {
+      resultText += '<p class="alert">Risiko osteoporosis terdeteksi. Perhatikan asupan kalsium Anda dan lakukan aktivitas fisik untuk meningkatkan kepadatan tulang.</p>';
+    } else {
+      resultText += '<p>Risiko osteoporosis rendah. Pertahankan diet kaya kalsium dan olahraga teratur untuk menjaga kesehatan tulang.</p>';
+    }
+
+    // Skrining Kesehatan Mental
+    if (depression === 'yes' || anxiety === 'yes') {
+      resultText += '<p class="alert">Gejala depresi atau kecemasan terdeteksi. Pertimbangkan untuk berkonsultasi dengan psikolog atau dokter mental untuk evaluasi lebih lanjut.</p>';
+    } else {
+      resultText += '<p>Kesehatan mental Anda stabil. Namun, selalu perhatikan kesejahteraan emosional Anda.</p>';
+    }
+
+    document.getElementById('screening-result').innerHTML = resultText;
+  });
+</script>
+
+</body>
+</html>
+
