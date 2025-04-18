@@ -67,28 +67,28 @@
     }
 
     .cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0 10px;
-  max-width: 800px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 16px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
 
-.card {
-  background-color: #e0e0e0;
-  padding: 20px 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  max-width: 250px;
-  width: 100%;
-  box-sizing: border-box;
-}
+    .card {
+      background-color: #e0e0e0;
+      padding: 20px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      max-width: 250px;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
     .card:hover {
       background-color: #98fb98;
@@ -121,8 +121,7 @@
       <div class="card" onclick="navigateTo('modul_bumil.html')">
         Risiko Kehamilan
       </div>
-      <div class="card"
-        onclick="navigateTo('risiko_ptm.html')">
+      <div class="card" onclick="navigateTo('risiko_ptm.html')">
         Risiko Penyakit Tidak Menular (PTM)
       </div>
       <div class="card" onclick="navigateTo('filter_kelompok.html')">
@@ -158,7 +157,7 @@
     }
 
     function playVideo() {
-      video.muted = false; // aktifkan suara
+      video.muted = false;
       video.currentTime = 0;
       video.play();
       playButton.classList.add("hidden");
