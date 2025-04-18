@@ -7,7 +7,8 @@
   <title>Tanya Nira</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     html,
@@ -65,8 +66,8 @@
       font-size: 1.2rem;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
       margin-bottom: 30px;
+      opacity: 0;
     }
 
     .play-button:hover {
@@ -100,6 +101,12 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      opacity: 0;
+    }
+
+    .card i {
+      font-size: 1.2rem;
+      color: #2269a3;
     }
 
     .card:hover {
@@ -107,9 +114,26 @@
       transform: translateY(-5px);
     }
 
-    .card i {
-      font-size: 1.2rem;
-      color: #2269a3;
+    /* ✨ Efek Fade + Glow */
+    .fade-glow {
+      animation: fadeInGlow 1.2s ease-in-out forwards;
+    }
+
+    @keyframes fadeInGlow {
+      0% {
+        opacity: 0;
+        box-shadow: none;
+      }
+
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 0 rgba(76, 175, 80, 0.0);
+      }
+
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
+      }
     }
 
     @media (max-width: 600px) {
@@ -159,9 +183,11 @@
     const greetingElement = document.getElementById("greeting");
     const typingSound = document.getElementById("typingSound");
     const playButton = document.getElementById("playButton");
+    const cards = document.querySelectorAll(".card");
     const video = document.getElementById("videoNira");
 
     let index = 0;
+
     function typeText() {
       if (index < text.length) {
         greetingElement.textContent += text.charAt(index);
@@ -171,6 +197,14 @@
         setTimeout(typeText, 90);
       } else {
         playButton.classList.remove("hidden");
+        playButton.classList.add("fade-glow");
+
+        // Efek fade untuk tiap kartu
+        cards.forEach((card, i) => {
+          setTimeout(() => {
+            card.classList.add("fade-glow");
+          }, 300 * i);
+        });
       }
     }
 
