@@ -6,19 +6,22 @@
   <title>Tanya Nira</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   <style>
-   body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     .container {
       text-align: center;
+      padding: 20px;
+      max-width: 800px;
+      width: 100%;
     }
 
     .avatar video {
@@ -37,19 +40,23 @@
 
     .cards {
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 15px;
+      padding: 0 10px;
     }
 
     .card {
       background-color: #e0e0e0;
-      padding: 20px 30px;
+      padding: 15px 25px;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       transition: all 0.3s ease;
       font-size: 1rem;
+      max-width: 250px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .card:hover {
@@ -83,9 +90,8 @@
     }
 
     @media (max-width: 600px) {
-      .cards {
-        flex-direction: column;
-        gap: 15px;
+      .card {
+        font-size: 1rem;
       }
     }
   </style>
