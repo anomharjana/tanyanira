@@ -134,9 +134,12 @@
     const video = document.getElementById("videoNira");
 
     let index = 0;
+
     function typeText() {
+      if (index === 0) greetingElement.textContent = ""; // reset sebelum mulai
       if (index < text.length) {
-        greetingElement.innerHTML += text.charAt(index);
+        greetingElement.textContent += text.charAt(index);
+        if (!typingSound.paused) typingSound.pause();
         typingSound.currentTime = 0;
         typingSound.play();
         index++;
