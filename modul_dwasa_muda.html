@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skrining Kesehatan Dewasa Muda (20-35 tahun)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+    section {
+      margin: 20px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      padding: 8px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .result {
+      background-color: #e0ffe0;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    .alert {
+      color: red;
+      font-weight: bold;
+    }
+    .question-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Skrining Kesehatan Dewasa Muda (20-35 tahun)</h1>
+  <p>Memantau kesehatan dewasa muda berdasarkan parameter kesehatan umum dan risiko terkait</p>
+</header>
+
+<section id="input-section">
+  <h2>Input Data Skrining</h2>
+  <form id="screening-form">
+    
+    <!-- Skrining Kehamilan & Komplikasi Kehamilan -->
+    <div class="question-group">
+      <h3>Kehamilan & Komplikasi Kehamilan</h3>
+      <label for="pregnancy">Apakah Anda saat ini sedang hamil atau berencana hamil dalam waktu dekat?</label>
+      <select id="pregnancy" name="pregnancy" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="pregnancy-history">Apakah Anda memiliki riwayat komplikasi kehamilan seperti preeklamsia, gestasional diabetes, atau perdarahan?</label>
+      <select id="pregnancy-history" name="pregnancy-history" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="swelling">Apakah Anda mengalami pembengkakan pada tangan atau kaki yang tidak biasa?</label>
+      <select id="swelling" name="swelling" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="vision-changes">Apakah Anda mengalami gangguan penglihatan atau pandangan kabur?</label>
+      <select id="vision-changes" name="vision-changes" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Kanker Payudara dan Kanker Serviks -->
+    <div class="question-group">
+      <h3>Kanker Payudara dan Kanker Serviks</h3>
+      <label for="self-breast-exam">Apakah Anda rutin melakukan pemeriksaan payudara sendiri (SADARI)?</label>
+      <select id="self-breast-exam" name="self-breast-exam" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="breast-changes">Apakah Anda merasa ada perubahan pada payudara seperti benjolan, nyeri, atau perubahan bentuk?</label>
+      <select id="breast-changes" name="breast-changes" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="cervical-screening">Apakah Anda sudah melakukan pap smear atau tes serviks dalam 3 tahun terakhir?</label>
+      <select id="cervical-screening" name="cervical-screening" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Penyakit Menular Seksual -->
+    <div class="question-group">
+      <h3>Penyakit Menular Seksual (PMS)</h3>
+      <label for="pms-history">Apakah Anda pernah didiagnosis dengan penyakit menular seksual (PMS) seperti HIV, HPV, atau gonore?</label>
+      <select id="pms-history" name="pms-history" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="unprotected-sex">Apakah Anda pernah berhubungan seks tanpa menggunakan pengaman (kondom)?</label>
+      <select id="unprotected-sex" name="unprotected-sex" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="sexual-partner">Apakah Anda memiliki lebih dari satu pasangan seksual?</label>
+      <select id="sexual-partner" name="sexual-partner" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Anemia Kronis -->
+    <div class="question-group">
+      <h3>Anemia Kronis</h3>
+      <label for="chronic-fatigue">Apakah Anda merasa lelah terus-menerus meskipun sudah cukup tidur?</label>
+      <select id="chronic-fatigue" name="chronic-fatigue" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="pale-skin">Apakah kulit Anda terasa pucat atau memiliki warna yang lebih terang dari biasanya?</label>
+      <select id="pale-skin" name="pale-skin" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="shortness-breath">Apakah Anda sering merasa sesak napas setelah aktivitas ringan?</label>
+      <select id="shortness-breath" name="shortness-breath" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <!-- Skrining Kesehatan Mental -->
+    <div class="question-group">
+      <h3>Kesehatan Mental</h3>
+      <label for="feeling-low">Apakah Anda sering merasa sedih, putus asa, atau tidak bersemangat?</label>
+      <select id="feeling-low" name="feeling-low" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="anxiety">Apakah Anda sering merasa cemas, khawatir, atau takut yang berlebihan?</label>
+      <select id="anxiety" name="anxiety" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <label for="sleep-disturbance">Apakah Anda mengalami gangguan tidur, seperti kesulitan tidur atau tidur terlalu banyak?</label>
+      <select id="sleep-disturbance" name="sleep-disturbance" required>
+        <option value="">Pilih Ya/Tidak</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+    </div>
+
+    <button type="submit">Proses Skrining</button>
+  </form>
+</section>
+
+<section id="output-section">
+  <h2>Hasil Skrining</h2>
+  <div id="screening-result" class="result"></div>
+</section>
+
+<script>
+  document.getElementById('screening-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const pregnancy = document.getElementById('pregnancy').value;
+    const pregnancyHistory = document.getElementById('pregnancy-history').value;
+    const swelling = document.getElementById('swelling').value;
+    const visionChanges = document.getElementById('vision-changes').value;
+
+    const selfBreastExam = document.getElementById('self-breast-exam').value;
+    const breastChanges = document.getElementById('breast-changes').value;
+    const cervicalScreening = document.getElementById('cervical-screening').value;
+
+    const pmsHistory = document.getElementById('pms-history').value;
+    const unprotectedSex = document.getElementById('unprotected-sex').value;
+    const sexualPartner = document.getElementById('sexual-partner').value;
+
+    const chronicFatigue = document.getElementById('chronic-fatigue').value;
+    const paleSkin = document.getElementById('pale-skin').value;
+    const shortnessBreath = document.getElementById('shortness-breath').value;
+
+    const feelingLow = document.getElementById('feeling-low').value;
+    const anxiety = document.getElementById('anxiety').value;
+    const sleepDisturbance = document.getElementById('sleep-disturbance').value;
+
+    let resultText = '';
+
+    // Skrining Kehamilan & Komplikasi Kehamilan
+    if (pregnancy === 'yes') {
+      resultText += '<p class="alert">Pastikan untuk melakukan pemeriksaan kehamilan rutin dan memantau komplikasi seperti preeklamsia atau gestasional diabetes.</p>';
+    } else {
+      resultText += '<p>Kehamilan tidak terdeteksi.</p>';
+    }
+
+    if (pregnancyHistory === 'yes' || swelling === 'yes' || visionChanges === 'yes') {
+      resultText += '<p class="alert">Komplikasi kehamilan terdeteksi. Segera konsultasikan dengan dokter untuk pemeriksaan lebih lanjut.</p>';
+    } else {
+      resultText += '<p>Komplikasi kehamilan tidak terdeteksi.</p>';
+    }
+
+    // Skrining Kanker Payudara dan Serviks
+    if (selfBreastExam === 'no') {
+      resultText += '<p class="alert">Anda belum melakukan pemeriksaan payudara sendiri (SADARI). Disarankan untuk melakukannya secara rutin.</p>';
+    } else {
+      resultText += '<p>Anda rutin melakukan pemeriksaan payudara sendiri (SADARI). Teruskan kebiasaan ini.</p>';
+    }
+
+    if (breastChanges === 'yes') {
+      resultText += '<p class="alert">Perubahan pada payudara terdeteksi. Segera lakukan pemeriksaan lebih lanjut dengan tenaga medis.</p>';
+    } else {
+      resultText += '<p>Perubahan pada payudara tidak terdeteksi.</p>';
+    }
+
+    if (cervicalScreening === 'no') {
+      resultText += '<p class="alert">Pap smear atau tes serviks belum dilakukan dalam 3 tahun terakhir. Disarankan untuk segera melakukannya.</p>';
+    } else {
+      resultText += '<p>Anda telah melakukan tes serviks dalam 3 tahun terakhir. Teruskan pemeriksaan rutin.</p>';
+    }
+
+    // Skrining Penyakit Menular Seksual
+    if (pmsHistory === 'yes' || unprotectedSex === 'yes' || sexualPartner === 'yes') {
+      resultText += '<p class="alert">Ada risiko terkena penyakit menular seksual (PMS). Disarankan untuk melakukan pemeriksaan lebih lanjut.</p>';
+    } else {
+      resultText += '<p>Risiko PMS tidak terdeteksi.</p>';
+    }
+
+    // Skrining Anemia Kronis
+    if (chronicFatigue === 'yes' || paleSkin === 'yes' || shortnessBreath === 'yes') {
+      resultText += '<p class="alert">Gejala anemia terdeteksi. Disarankan untuk melakukan tes darah untuk memastikan.</p>';
+    } else {
+      resultText += '<p>Gejala anemia tidak terdeteksi.</p>';
+    }
+
+    // Skrining Kesehatan Mental
+    if (feelingLow === 'yes' || anxiety === 'yes' || sleepDisturbance === 'yes') {
+      resultText += '<p class="alert">Gejala masalah kesehatan mental terdeteksi. Segera konsultasikan dengan profesional kesehatan mental.</p>';
+    } else {
+      resultText += '<p>Masalah kesehatan mental tidak terdeteksi.</p>';
+    }
+
+    document.getElementById('screening-result').innerHTML = resultText;
+  });
+</script>
+
+</body>
+</html>
+
