@@ -1,275 +1,386 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skrining Kesehatan Menopause dan Lanjut Usia (50+ tahun)</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f7f7f7;
-    }
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 0;
-      text-align: center;
-    }
-    section {
-      margin: 20px;
-      padding: 20px;
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    h2 {
-      color: #333;
-    }
-    label {
-      font-weight: bold;
-    }
-    input, select {
-      padding: 8px;
-      margin: 10px 0;
-      width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    .result {
-      background-color: #e0ffe0;
-      padding: 10px;
-      border-radius: 4px;
-      margin-top: 20px;
-    }
-    .alert {
-      color: red;
-      font-weight: bold;
-    }
-    .question-group {
-      margin-bottom: 20px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skrining Kesehatan Wanita 50+</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<header>
-  <h1>Skrining Kesehatan Menopause dan Lanjut Usia (50+ tahun)</h1>
-  <p>Memantau kesehatan pada usia menopause dan lanjut usia dengan skrining untuk berbagai kondisi kesehatan utama.</p>
-</header>
+<body class="bg-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-teal-600 text-white py-6 text-center shadow">
+    <h1 class="text-2xl font-bold">Skrining Kesehatan Wanita Usia 50+</h1>
+    <p class="text-sm mt-1">Cek risiko kesehatan utama pada masa menopause dan lanjut usia</p>
+  </header>
 
-<section id="input-section">
-  <h2>Input Data Skrining</h2>
-  <form id="screening-form">
+  <main class="max-w-3xl mx-auto p-6">
+    <!-- Form Card -->
+    <section class="bg-white shadow rounded-2xl p-6 mb-6">
+      <form id="screening-form">
+        <!-- Osteoporosis -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-teal-700 mb-3">🦴 Osteoporosis</h2>
+          <div class="grid gap-4">
+            <div>
+              <label class="block mb-1 font-medium">Pernah mengalami patah tulang?</label>
+              <select id="fracture-risk" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Pemeriksaan DEXA dalam 2 tahun terakhir?</label>
+              <select id="bone-density" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Asupan kalsium cukup setiap hari?</label>
+              <select id="calcium" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Penyakit Jantung -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-red-600 mb-3">❤️ Penyakit Jantung</h2>
+          <div class="grid gap-4">
+            <div>
+              <label class="block mb-1 font-medium">Riwayat tekanan darah tinggi?</label>
+              <select id="high-blood-pressure" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Pemeriksaan kolesterol 12 bulan terakhir?</label>
+              <select id="cholesterol" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Riwayat merokok?</label>
+              <select id="smoking" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Riwayat keluarga dengan penyakit jantung?</label>
+              <select id="family-history" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kanker -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-pink-600 mb-3">🎗️ Kanker Wanita</h2>
+          <div class="grid gap-4">
+            <div>
+              <label class="block mb-1 font-medium">Riwayat keluarga dengan kanker payudara?</label>
+              <select id="breast-cancer" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Pemeriksaan kolorektal dalam 2 tahun?</label>
+              <select id="colorectal-cancer" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Perdarahan setelah menopause?</label>
+              <select id="endometrial-cancer" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kesehatan Mental -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-purple-700 mb-3">🧠 Kesehatan Mental</h2>
+          <div class="grid gap-4">
+            <div>
+              <label class="block mb-1 font-medium">Kesulitan mengingat hal-hal sederhana?</label>
+              <select id="memory" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Mood berubah-ubah atau merasa sangat sedih?</label>
+              <select id="mood-swings" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Merasa bingung atau disorientasi?</label>
+              <select id="confusion" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inkontinensia Urin -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-blue-700 mb-3">💧 Inkontinensia Urin</h2>
+          <div class="grid gap-4">
+            <div>
+              <label class="block mb-1 font-medium">Kebocoran urin saat batuk, tertawa, atau bersin?</label>
+              <select id="urine-leakage" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Sering buang air kecil, terutama malam hari?</label>
+              <select id="frequent-urination" class="w-full border rounded px-3 py-2" required>
+                  <option value="">Pilih Jawaban</option>
+                  <option value="yes">Ya</option>
+                  <option value="no">Tidak</option>
+                </select>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-xl transition">
+            Proses Skrining
+          </button>
+      </form>
+    </section>
+
+    <!-- Output -->
+    <section class="bg-white shadow rounded-2xl p-6">
+      <h2 class="text-xl font-semibold text-gray-700 mb-4">📝 Hasil Skrining</h2>
+      <div id="screening-result" class="space-y-3 text-sm leading-relaxed"></div>
+    </section>
+  </main>
+
+  <script>
+      document.getElementById('screening-form').addEventListener('submit', function (e) {
+        e.preventDefault();
     
-    <!-- Skrining Osteoporosis -->
-    <div class="question-group">
-      <h3>Osteoporosis</h3>
-      <label for="fracture-risk">Apakah Anda pernah mengalami patah tulang, terutama pada tulang belakang, pinggul, atau pergelangan tangan?</label>
-      <select id="fracture-risk" name="fracture-risk" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="bone-density">Apakah Anda sudah menjalani pemeriksaan kepadatan tulang (DEXA scan) dalam 2 tahun terakhir?</label>
-      <select id="bone-density" name="bone-density" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="calcium">Apakah Anda mengonsumsi cukup kalsium setiap hari (lebih dari 1000mg untuk usia 50-70, lebih dari 1200mg untuk usia 71+)?</label>
-      <select id="calcium" name="calcium" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
-
-    <!-- Skrining Penyakit Jantung -->
-    <div class="question-group">
-      <h3>Penyakit Jantung</h3>
-      <label for="high-blood-pressure">Apakah Anda memiliki riwayat tekanan darah tinggi atau hipertensi?</label>
-      <select id="high-blood-pressure" name="high-blood-pressure" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="cholesterol">Apakah Anda pernah memeriksa kadar kolesterol Anda dalam 12 bulan terakhir?</label>
-      <select id="cholesterol" name="cholesterol" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="smoking">Apakah Anda merokok atau memiliki riwayat merokok?</label>
-      <select id="smoking" name="smoking" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="family-history">Apakah Anda memiliki riwayat keluarga dengan penyakit jantung atau serangan jantung?</label>
-      <select id="family-history" name="family-history" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
-
-    <!-- Skrining Kanker -->
-    <div class="question-group">
-      <h3>Kanker (Payudara, Kolorektal, Endometrium)</h3>
-      <label for="breast-cancer">Apakah Anda memiliki riwayat keluarga dengan kanker payudara?</label>
-      <select id="breast-cancer" name="breast-cancer" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="colorectal-cancer">Apakah Anda telah menjalani pemeriksaan kolonoskopi atau tes darah tersembunyi dalam tinja dalam 2 tahun terakhir?</label>
-      <select id="colorectal-cancer" name="colorectal-cancer" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="endometrial-cancer">Apakah Anda pernah mengalami perdarahan setelah menopause?</label>
-      <select id="endometrial-cancer" name="endometrial-cancer" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
-
-    <!-- Skrining Kesehatan Mental (Depresi & Dementia) -->
-    <div class="question-group">
-      <h3>Kesehatan Mental (Depresi, Dementia)</h3>
-      <label for="memory">Apakah Anda mengalami kesulitan mengingat hal-hal yang biasa Anda ingat dengan mudah?</label>
-      <select id="memory" name="memory" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="mood-swings">Apakah Anda merasa suasana hati Anda berubah-ubah atau sangat sedih dalam beberapa minggu terakhir?</label>
-      <select id="mood-swings" name="mood-swings" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="confusion">Apakah Anda merasa bingung atau disorientasi dalam aktivitas sehari-hari?</label>
-      <select id="confusion" name="confusion" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
-
-    <!-- Skrining Inkontinensia Urin & Gangguan Prostat -->
-    <div class="question-group">
-      <h3>Inkontinensia Urin & Gangguan Prostat</h3>
-      <label for="urine-leakage">Apakah Anda mengalami kebocoran urin saat batuk, tertawa, atau bersin?</label>
-      <select id="urine-leakage" name="urine-leakage" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="frequent-urination">Apakah Anda sering merasa ingin buang air kecil, terutama pada malam hari?</label>
-      <select id="frequent-urination" name="frequent-urination" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="prostate">Apakah Anda merasa ada rasa tidak nyaman atau nyeri pada area panggul atau prostat?</label>
-      <select id="prostate" name="prostate" required>
-        <option value="">Pilih Ya/Tidak</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-    </div>
-
-    <button type="submit">Proses Skrining</button>
-  </form>
-</section>
-
-<section id="output-section">
-  <h2>Hasil Skrining</h2>
-  <div id="screening-result" class="result"></div>
-</section>
-
-<script>
-  document.getElementById('screening-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const fractureRisk = document.getElementById('fracture-risk').value;
-    const boneDensity = document.getElementById('bone-density').value;
-    const calcium = document.getElementById('calcium').value;
-
-    const highBloodPressure = document.getElementById('high-blood-pressure').value;
-    const cholesterol = document.getElementById('cholesterol').value;
-    const smoking = document.getElementById('smoking').value;
-    const familyHistory = document.getElementById('family-history').value;
-
-    const breastCancer = document.getElementById('breast-cancer').value;
-    const colorectalCancer = document.getElementById('colorectal-cancer').value;
-    const endometrialCancer = document.getElementById('endometrial-cancer').value;
-
-    const memory = document.getElementById('memory').value;
-    const moodSwings = document.getElementById('mood-swings').value;
-    const confusion = document.getElementById('confusion').value;
-
-    const urineLeakage = document.getElementById('urine-leakage').value;
-    const frequentUrination = document.getElementById('frequent-urination').value;
-    const prostate = document.getElementById('prostate').value;
-
-    let resultText = '';
-
-    // Skrining Osteoporosis
-    if (fractureRisk === 'yes' || boneDensity === 'no' || calcium === 'no') {
-      resultText += '<p class="alert">Tingkat risiko osteoporosis terdeteksi. Pertimbangkan untuk melakukan pemeriksaan densitometri tulang (DEXA) dan meningkatkan asupan kalsium.</p>';
-    } else {
-      resultText += '<p>Risiko osteoporosis rendah. Pastikan untuk menjaga pola makan dan aktivitas fisik yang mendukung kesehatan tulang.</p>';
-    }
-
-    // Skrining Penyakit Jantung
-    if (highBloodPressure === 'yes' || cholesterol === 'no' || smoking === 'yes' || familyHistory === 'yes') {
-      resultText += '<p class="alert">Tingkat risiko penyakit jantung terdeteksi. Pertimbangkan untuk melakukan pemeriksaan jantung lebih lanjut dan konsultasi dengan dokter.</p>';
-    } else {
-      resultText += '<p>Risiko penyakit jantung rendah. Lanjutkan gaya hidup sehat dengan olahraga teratur dan diet sehat.</p>';
-    }
-
-    // Skrining Kanker
-    if (breastCancer === 'yes' || colorectalCancer === 'no' || endometrialCancer === 'yes') {
-      resultText += '<p class="alert">Tingkat risiko kanker terdeteksi. Pastikan untuk mengikuti prosedur skrining kanker sesuai rekomendasi.</p>';
-    } else {
-      resultText += '<p>Risiko kanker rendah. Jangan lupa untuk menjalani pemeriksaan rutin sesuai usia dan faktor risiko.</p>';
-    }
-
-    // Skrining Kesehatan Mental
-    if (memory === 'yes' || moodSwings === 'yes' || confusion === 'yes') {
-      resultText += '<p class="alert">Risiko gangguan kognitif atau depresi terdeteksi. Segera konsultasikan dengan tenaga medis untuk evaluasi lebih lanjut.</p>';
-    } else {
-      resultText += '<p>Fungsi kognitif Anda dalam kondisi baik. Lanjutkan dengan aktivitas yang menstimulasi otak untuk menjaga kesehatan mental.</p>';
-    }
-
-    // Skrining Inkontinensia Urin & Gangguan Prostat
-    if (urineLeakage === 'yes' || frequentUrination === 'yes' || prostate === 'yes') {
-      resultText += '<p class="alert">Tingkat risiko inkontinensia urin atau masalah prostat terdeteksi. Segera lakukan pemeriksaan lebih lanjut ke spesialis urologi.</p>';
-    } else {
-      resultText += '<p>Kondisi kandung kemih dan prostat Anda dalam kondisi baik. Jaga pola makan dan hidrasi yang sehat.</p>';
-    }
-
-    // Menampilkan hasil
-    document.getElementById('screening-result').innerHTML = resultText;
-  });
-</script>
-
-</body>
-</html>
+        const getVal = id => document.getElementById(id).value;
+        const result = document.getElementById("screening-result");
+        result.innerHTML = "";
+    
+        const data = [];
+    
+        function getRiskLevel(score) {
+          if (score >= 3) return "Tinggi";
+          if (score === 2) return "Sedang";
+          return "Rendah";
+        }
+    
+        function getColor(level) {
+          return level === "Tinggi" ? "red" : level === "Sedang" ? "yellow" : "green";
+        }
+    
+        function makeCard(title, icon, level, message, recs) {
+          const color = getColor(level);
+          return `
+            <div class="bg-white border-l-4 border-${color}-600 shadow p-4 rounded-xl">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-${color}-600 text-xl">${icon}</span>
+                <h3 class="text-${color}-700 text-lg font-semibold">${title} – Risiko ${level}</h3>
+              </div>
+              <p class="mb-2 text-sm">${message}</p>
+              <div class="text-sm">
+                <p class="font-medium text-${color}-700 mb-1">Rekomendasi:</p>
+                <ul class="list-disc list-inside space-y-1 text-gray-700">
+                  ${recs.map(r => `<li>${r}</li>`).join("")}
+                </ul>
+              </div>
+            </div>
+          `;
+        }
+    
+        // === OSTEOPOROSIS ===
+        let osteoScore = 0;
+        if (getVal("fracture-risk") === "yes") osteoScore++;
+        if (getVal("bone-density") === "no") osteoScore++;
+        if (getVal("calcium") === "no") osteoScore++;
+    
+        const osteoLevel = getRiskLevel(osteoScore);
+        const osteoRec = {
+          "Rendah": [
+            "Pertahankan asupan kalsium & vitamin D.",
+            "Olahraga ringan teratur seperti jalan kaki.",
+            "Evaluasi tulang setiap 2 tahun."
+          ],
+          "Sedang": [
+            "Tambahkan suplemen kalsium jika diperlukan.",
+            "Konsultasi dengan dokter untuk tes DEXA.",
+            "Latihan kekuatan otot ringan untuk tulang."
+          ],
+          "Tinggi": [
+            "Lakukan skrining DEXA segera.",
+            "Hindari risiko jatuh di rumah (lantai licin).",
+            "Pertimbangkan terapi hormon sesuai arahan medis."
+          ]
+        };
+    
+        data.push(makeCard("Osteoporosis", "🦴", osteoLevel,
+          `Risiko osteoporosis dinilai sebagai ${osteoLevel.toLowerCase()}.`,
+          osteoRec[osteoLevel]
+        ));
+    
+        // === JANTUNG ===
+        let jantungScore = 0;
+        if (getVal("high-blood-pressure") === "yes") jantungScore++;
+        if (getVal("cholesterol") === "no") jantungScore++;
+        if (getVal("smoking") === "yes") jantungScore++;
+        if (getVal("family-history") === "yes") jantungScore++;
+    
+        const jantungLevel = getRiskLevel(jantungScore);
+        const jantungRec = {
+          "Rendah": [
+            "Terus jaga pola makan sehat.",
+            "Lakukan cek jantung rutin tiap tahun.",
+            "Aktif secara fisik minimal 150 menit/minggu."
+          ],
+          "Sedang": [
+            "Periksa tekanan darah & kolesterol lebih sering.",
+            "Kurangi asupan garam & lemak jenuh.",
+            "Mulai aktivitas aerobik ringan (bersepeda, renang)."
+          ],
+          "Tinggi": [
+            "Segera konsultasi ke dokter jantung.",
+            "Hentikan kebiasaan merokok dan alkohol.",
+            "Gunakan pengobatan bila diresepkan."
+          ]
+        };
+    
+        data.push(makeCard("Penyakit Jantung", "❤️", jantungLevel,
+          `Risiko jantung dinilai sebagai ${jantungLevel.toLowerCase()}.`,
+          jantungRec[jantungLevel]
+        ));
+    
+        // === KANKER ===
+        let kankerScore = 0;
+        if (getVal("breast-cancer") === "yes") kankerScore++;
+        if (getVal("colorectal-cancer") === "no") kankerScore++;
+        if (getVal("endometrial-cancer") === "yes") kankerScore++;
+    
+        const kankerLevel = getRiskLevel(kankerScore);
+        const kankerRec = {
+          "Rendah": [
+            "Lanjutkan skrining rutin sesuai usia.",
+            "Konsumsi sayur & buah tinggi serat.",
+            "Jaga berat badan ideal."
+          ],
+          "Sedang": [
+            "Lakukan Pap smear & mamografi berkala.",
+            "Konsultasi dokter bila ada gejala tidak biasa.",
+            "Kurangi daging olahan dan alkohol."
+          ],
+          "Tinggi": [
+            "Segera lakukan pemeriksaan menyeluruh.",
+            "Pertimbangkan pemeriksaan genetik jika ada riwayat.",
+            "Ikuti protokol skrining lebih ketat (MRI, biopsi jika perlu)."
+          ]
+        };
+    
+        data.push(makeCard("Kanker Wanita", "🎗️", kankerLevel,
+          `Risiko kanker wanita dinilai sebagai ${kankerLevel.toLowerCase()}.`,
+          kankerRec[kankerLevel]
+        ));
+    
+        // === KESEHATAN MENTAL ===
+        let mentalScore = 0;
+        if (getVal("memory") === "yes") mentalScore++;
+        if (getVal("mood-swings") === "yes") mentalScore++;
+        if (getVal("confusion") === "yes") mentalScore++;
+    
+        const mentalLevel = getRiskLevel(mentalScore);
+        const mentalRec = {
+          "Rendah": [
+            "Lanjutkan aktivitas otak seperti membaca & teka-teki.",
+            "Jaga tidur cukup dan berkualitas.",
+            "Aktif dalam komunitas atau kegiatan sosial."
+          ],
+          "Sedang": [
+            "Kelola stres dengan meditasi & relaksasi.",
+            "Bicarakan dengan keluarga atau konselor.",
+            "Cek hormon dan kesehatan umum (tiroid, gula darah)."
+          ],
+          "Tinggi": [
+            "Segera konsultasi ke psikolog atau psikiater.",
+            "Pertimbangkan terapi kognitif atau farmakologi.",
+            "Pantau gejala harian untuk deteksi perubahan signifikan."
+          ]
+        };
+    
+        data.push(makeCard("Kesehatan Mental", "🧠", mentalLevel,
+          `Risiko kesehatan mental dinilai sebagai ${mentalLevel.toLowerCase()}.`,
+          mentalRec[mentalLevel]
+        ));
+    
+        // === INKONTINENSIA URIN ===
+        let urinScore = 0;
+        if (getVal("urine-leakage") === "yes") urinScore++;
+        if (getVal("frequent-urination") === "yes") urinScore++;
+    
+        const urinLevel = getRiskLevel(urinScore);
+        const urinRec = {
+          "Rendah": [
+            "Terus latih otot panggul (Kegel).",
+            "Hindari duduk terlalu lama & tetap aktif.",
+            "Cegah infeksi saluran kemih dengan minum cukup air."
+          ],
+          "Sedang": [
+            "Pantau pola minum & buang air kecil.",
+            "Batasi kafein dan minuman bersoda.",
+            "Konsultasikan ke dokter untuk evaluasi lanjutan."
+          ],
+          "Tinggi": [
+            "Periksakan ke dokter spesialis urologi.",
+            "Pertimbangkan fisioterapi dasar panggul.",
+            "Gunakan perlindungan jika gejala berat."
+          ]
+        };
+    
+        data.push(makeCard("Inkontinensia Urin", "💧", urinLevel,
+          `Risiko inkontinensia dinilai sebagai ${urinLevel.toLowerCase()}.`,
+          urinRec[urinLevel]
+        ));
+    
+        result.innerHTML = data.join("");
+      });
+  </script>
+  <!-- Tombol Kembali ke Home -->
+  <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
+  </body>
+  
+  </html>
