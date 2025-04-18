@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skrining Kesehatan Dewasa Muda (20-35 tahun)</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -89,6 +93,27 @@
     ul {
       padding-left: 20px;
     }
+
+    ul li i {
+      margin-right: 8px;
+      color: #2269a3;
+    }
+
+    .home-button {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background-color: #888;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .home-button:hover {
+      background-color: #666;
+    }
   </style>
 </head>
 <body>
@@ -101,135 +126,135 @@
 <section id="input-section">
   <h2>Input Data Skrining</h2>
   <form id="screening-form">
-    <!-- Kehamilan & Komplikasi -->
-    <div class="question-group">
-      <h3>Kehamilan & Komplikasi</h3>
-      <label for="pregnancy">Saat ini hamil / merencanakan kehamilan?</label>
-      <select id="pregnancy" required>
+     <!-- Kehamilan & Komplikasi -->
+      <div class="question-group">
+        <h3><i class="fas fa-baby"></i>Kehamilan & Komplikasi</h3>
+        <label for="pregnancy">Saat ini hamil / merencanakan kehamilan?</label>
+        <select id="pregnancy" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="pregnancy-history">Riwayat komplikasi kehamilan?</label>
-      <select id="pregnancy-history" required>
+        <label for="pregnancy-history">Riwayat komplikasi kehamilan?</label>
+        <select id="pregnancy-history" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="swelling">Pembengkakan tangan/kaki?</label>
-      <select id="swelling" required>
+        <label for="swelling">Pembengkakan tangan/kaki?</label>
+        <select id="swelling" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="vision-changes">Gangguan penglihatan?</label>
-      <select id="vision-changes" required>
+        <label for="vision-changes">Gangguan penglihatan?</label>
+        <select id="vision-changes" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-    </div>
+      </div>
 
-    <!-- Diabetes & Kardiovaskular -->
-    <div class="question-group">
-      <h3>Diabetes & Kardiovaskular</h3>
-      <label for="family-diabetes">Riwayat keluarga dengan diabetes?</label>
-      <select id="family-diabetes" required>
+      <!-- Diabetes & Kardiovaskular -->
+      <div class="question-group">
+        <h3><i class="fas fa-heartbeat"></i>Diabetes & Kardiovaskular</h3>
+        <label for="family-diabetes">Riwayat keluarga dengan diabetes?</label>
+        <select id="family-diabetes" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="high-blood-pressure">Pernah didiagnosa hipertensi?</label>
-      <select id="high-blood-pressure" required>
+        <label for="high-blood-pressure">Pernah didiagnosa hipertensi?</label>
+        <select id="high-blood-pressure" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="high-cholesterol">Kadar kolesterol tinggi?</label>
-      <select id="high-cholesterol" required>
+        <label for="high-cholesterol">Kadar kolesterol tinggi?</label>
+        <select id="high-cholesterol" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-    </div>
+      </div>
 
-    <!-- Gangguan Mental -->
-    <div class="question-group">
-      <h3>Gangguan Mental</h3>
-      <label for="stress">Sering merasa stres atau cemas?</label>
-      <select id="stress" required>
+      <!-- Gangguan Mental -->
+      <div class="question-group">
+        <h3><i class="fas fa-brain"></i>Gangguan Mental</h3>
+        <label for="stress">Sering merasa stres atau cemas?</label>
+        <select id="stress" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="depression">Merasa depresi atau kehilangan minat dalam aktivitas?</label>
-      <select id="depression" required>
+        <label for="depression">Merasa depresi atau kehilangan minat dalam aktivitas?</label>
+        <select id="depression" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="sleep-problems">Kesulitan tidur atau insomnia?</label>
-      <select id="sleep-problems" required>
+        <label for="sleep-problems">Kesulitan tidur atau insomnia?</label>
+        <select id="sleep-problems" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-    </div>
+      </div>
 
-    <!-- Gaya Hidup -->
-    <div class="question-group">
-      <h3>Gaya Hidup</h3>
-      <label for="smoking">Merokok?</label>
-      <select id="smoking" required>
+      <!-- Gaya Hidup -->
+      <div class="question-group">
+        <h3><i class="fas fa-dumbbell"></i>Gaya Hidup</h3>
+        <label for="smoking">Merokok?</label>
+        <select id="smoking" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="alcohol">Konsumsi alkohol?</label>
-      <select id="alcohol" required>
+        <label for="alcohol">Konsumsi alkohol?</label>
+        <select id="alcohol" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label for="exercise">Apakah Anda berolahraga secara teratur?</label>
-      <select id="exercise" required>
+        <label for="exercise">Apakah Anda berolahraga secara teratur?</label>
+        <select id="exercise" required>
         <option value="">Pilih</option>
         <option value="no">Tidak</option>
         <option value="yes">Ya</option>
       </select>
-    </div>
+      </div>
 
-    <!-- Infeksi Menular Seksual -->
-    <div class="question-group">
-      <h3>Infeksi Menular Seksual (IMS)</h3>
-      <label for="multiple-partners">Pernah memiliki lebih dari satu pasangan seksual dalam 6 bulan terakhir?</label>
-      <select id="multiple-partners" required>
-        <option value="">Pilih</option>
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <label for="unprotected-sex">Pernah melakukan hubungan seksual tanpa kondom?</label>
-      <select id="unprotected-sex" required>
+      <!-- Infeksi Menular Seksual -->
+      <div class="question-group">
+        <h3><i class="fas fa-virus"></i>Infeksi Menular Seksual (IMS)</h3>
+        <label for="multiple-partners">Pernah memiliki lebih dari satu pasangan seksual dalam 6 bulan terakhir?</label>
+        <select id="multiple-partners" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="std-symptoms">Mengalami gejala seperti keputihan tidak normal, luka/ruam di area genital?</label>
-      <select id="std-symptoms" required>
+        <label for="unprotected-sex">Pernah melakukan hubungan seksual tanpa kondom?</label>
+        <select id="unprotected-sex" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
 
-      <label for="std-history">Riwayat pernah terdiagnosis IMS (seperti klamidia, gonore, dll)?</label>
-      <select id="std-history" required>
+        <label for="std-symptoms">Mengalami gejala seperti keputihan tidak normal, luka/ruam di area genital?</label>
+        <select id="std-symptoms" required>
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-    </div>
+
+        <label for="std-history">Riwayat pernah terdiagnosis IMS (seperti klamidia, gonore, dll)?</label>
+        <select id="std-history" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      </div>
 
     <button type="submit">Proses Skrining</button>
   </form>
@@ -252,6 +277,7 @@
     const screeningData = [
       {
         title: 'Kehamilan & Komplikasi',
+        icon: 'fa-baby',
         riskFactors: [
           getVal('pregnancy'),
           getVal('pregnancy-history'),
@@ -261,6 +287,7 @@
       },
       {
         title: 'Diabetes & Kardiovaskular',
+        icon: 'fa-heartbeat',
         riskFactors: [
           getVal('family-diabetes'),
           getVal('high-blood-pressure'),
@@ -269,6 +296,7 @@
       },
       {
         title: 'Gangguan Mental',
+        icon: 'fa-brain',
         riskFactors: [
           getVal('stress'),
           getVal('depression'),
@@ -277,14 +305,16 @@
       },
       {
         title: 'Gaya Hidup',
+        icon: 'fa-dumbbell',
         riskFactors: [
           getVal('smoking'),
           getVal('alcohol'),
-          getVal('exercise') === 1 ? 0 : 1 // jika tidak olahraga = 1
+          getVal('exercise') === 1 ? 0 : 1
         ]
       },
       {
         title: 'Infeksi Menular Seksual (IMS)',
+        icon: 'fa-virus',
         riskFactors: [
           getVal('multiple-partners'),
           getVal('unprotected-sex'),
@@ -304,16 +334,25 @@
 
       let recommendations = '';
       if (riskLevel === 'low') {
-        recommendations = '<ul><li>Pastikan menjaga gaya hidup sehat, makan makanan bergizi, dan berolahraga teratur.</li></ul>';
+        recommendations = '<ul><li><i class="fas fa-check-circle"></i> Pastikan menjaga gaya hidup sehat, makan makanan bergizi, dan berolahraga teratur.</li></ul>';
       } else if (riskLevel === 'medium') {
-        recommendations = '<ul><li>Lakukan pemeriksaan kesehatan secara rutin.</li><li>Perhatikan pola makan dan gaya hidup.</li></ul>';
+        recommendations = `
+          <ul>
+            <li><i class="fas fa-stethoscope"></i> Lakukan pemeriksaan kesehatan secara rutin.</li>
+            <li><i class="fas fa-apple-alt"></i> Perhatikan pola makan dan gaya hidup.</li>
+          </ul>`;
       } else {
-        recommendations = '<ul><li>Segera konsultasi dengan tenaga medis.</li><li>Periksa kondisi terkait secara rutin.</li><li>Ikuti panduan dokter untuk penanganan lanjutan.</li></ul>';
+        recommendations = `
+          <ul>
+            <li><i class="fas fa-user-md"></i> Segera konsultasi dengan tenaga medis.</li>
+            <li><i class="fas fa-notes-medical"></i> Periksa kondisi terkait secara rutin.</li>
+            <li><i class="fas fa-pills"></i> Ikuti panduan dokter untuk penanganan lanjutan.</li>
+          </ul>`;
       }
 
       card.className = `result-card ${riskLevel}`;
       card.innerHTML = `
-        <h3>${item.title}</h3>
+        <h3><i class="fas ${item.icon}"></i> ${item.title}</h3>
         <p><strong>Status Risiko:</strong> ${riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1)} Risiko</p>
         <p><strong>Rekomendasi:</strong></p>
         ${recommendations}
@@ -322,8 +361,9 @@
     });
   });
 </script>
-  
-  <!-- Tombol Kembali ke Home -->
+
+<!-- Tombol Kembali -->
 <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
+
 </body>
 </html>
