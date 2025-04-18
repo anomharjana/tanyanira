@@ -91,6 +91,35 @@
     th {
       background-color: #d1f2eb;
     }
+
+    /* Style untuk Tombol Kembali ke Home */
+.home-button {
+  background-color: #e0e0e0; /* Warna biru yang cerah */
+  color: black;              /* Teks putih */
+  padding: 12px 25px;        /* Padding kiri-kanan dan atas-bawah */
+  font-size: 16px;           /* Ukuran font */
+  border: none;              /* Menghilangkan border default */
+  border-radius: 50px;       /* Sudut tombol yang melengkung */
+  cursor: pointer;           /* Kursor berubah menjadi pointer */
+  transition: all 0.3s ease; /* Animasi transisi halus */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+  margin: 20px 0;            /* Margin di atas dan bawah tombol */
+  display: inline-block;     /* Menjaga tombol tetap dalam satu baris */
+}
+
+/* Efek Hover (ketika tombol disorot dengan kursor) */
+.home-button:hover {
+  background-color: #45a049; /* Warna biru gelap saat hover */
+  transform: translateY(-2px); /* Mengangkat tombol sedikit */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Bayangan lebih gelap saat hover */
+}
+
+/* Efek Fokus (ketika tombol mendapat fokus) */
+.home-button:focus {
+  outline: none; /* Menghapus outline default */
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5); /* Efek glow saat tombol mendapat fokus */
+}
+
   </style>
 </head>
 <body>
