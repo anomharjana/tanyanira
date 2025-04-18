@@ -137,7 +137,7 @@
   <section>
     <h2>Form Skrining</h2>
     <form id="screening-form">
-      <h3>Anemia</h3>
+      <h3><span class="icon">🩸</span>Anemia</h3>
       <label>Lelah tanpa sebab?</label>
       <select id="anemia1">
         <option value="">Pilih</option>
@@ -163,7 +163,7 @@
         <option value="no">Tidak</option>
       </select>
 
-      <h3>Gangguan Menstruasi</h3>
+      <h3><span class="icon">🌸</span>Gangguan Menstruasi</h3>
       <label>Siklus tidak teratur?</label>
       <select id="mens1">
         <option value="">Pilih</option>
@@ -183,7 +183,7 @@
         <option value="no">Tidak</option>
       </select>
 
-      <h3>Kehamilan Tidak Diinginkan</h3>
+      <h3><span class="icon">🤰</span>Kehamilan Tidak Diinginkan</h3>
       <label>Hamil di luar rencana?</label>
       <select id="preg1">
         <option value="">Pilih</option>
@@ -203,7 +203,7 @@
         <option value="no">Tidak</option>
       </select>
 
-      <h3>Kesehatan Mental</h3>
+      <h3><span class="icon">🧠</span>Kesehatan Mental</h3>
       <label>Sering cemas/tertekan?</label>
       <select id="mental1">
         <option value="">Pilih</option>
@@ -229,14 +229,14 @@
         <option value="no">Tidak</option>
       </select>
 
-      <h3>IMS</h3>
-      <label>Cairan abnormal?</label>
+      <h3><span class="icon">💉</span>Infeksi Menular Seksual (IMS)</h3>
+      <label>Keluar cairan abnormal dari alat kelamin?</label>
       <select id="ims1">
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label>Nyeri saat BAK?</label>
+      <label>Nyeri saat Buang Air Kecil (BAK)?</label>
       <select id="ims2">
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
@@ -248,7 +248,7 @@
         <option value="yes">Ya</option>
         <option value="no">Tidak</option>
       </select>
-      <label>Seks tanpa kondom?</label>
+      <label>Berhubungan Seks tanpa kondom?</label>
       <select id="ims4">
         <option value="">Pilih</option>
         <option value="yes">Ya</option>
@@ -301,39 +301,63 @@
       ims: "💉"
     };
 
-    document.getElementById('screening-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const result = document.getElementById("screening-result");
-      result.innerHTML = "";
-
-      const data = [
-        { key: "anemia", values: ["anemia1", "anemia2", "anemia3", "anemia4"] },
-        { key: "menstruasi", values: ["mens1", "mens2", "mens3"] },
-        { key: "kehamilan", values: ["preg1", "preg2", "preg3"] },
-        { key: "mental", values: ["mental1", "mental2", "mental3", "mental4"] },
-        { key: "ims", values: ["ims1", "ims2", "ims3", "ims4"] },
-      ];
-
-      data.forEach(item => {
-        const values = item.values.map(id => document.getElementById(id).value);
-        const resultRisiko = hitungRisiko(values);
-        const rekom = rekomendasi[item.key][resultRisiko.level];
-        result.innerHTML += `
-          <div class="result-card">
-            <div class="card-title">
-              <span class="icon">${iconMap[item.key]}</span>
-              <h3>${item.key.charAt(0).toUpperCase() + item.key.slice(1)} - Risiko ${resultRisiko.label}</h3>
-            </div>
-            <div class="risk ${resultRisiko.level}">${resultRisiko.label}</div>
-            <p><strong>Rekomendasi:</strong></p>
-            <ul>
-              ${rekom.map(rec => `<li>${rec}</li>`).join('')}
-            </ul>
-          </div>
-        `;
-      });
-    });
+  document.getElementById('screening-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  
+  const result = document.getElementById("screening-result");
+  result.innerHTML = "";
+  
+  const data = [
+  { key: "anemia", values: ["anemia1", "anemia2", "anemia3", "anemia4"] },
+  { key: "menstruasi", values: ["mens1", "mens2", "mens3"] },
+  { key: "kehamilan", values: ["preg1", "preg2", "preg3"] },
+  { key: "mental", values: ["mental1", "mental2", "mental3", "mental4"] },
+  { key: "ims", values: ["ims1", "ims2", "ims3", "ims4"] },
+  ];
+  
+  // Validasi input
+  let isValid = true;
+  let firstEmptyField = null;
+  
+  data.forEach(item => {
+  item.values.forEach(id => {
+  const field = document.getElementById(id);
+  if (!field.value) {
+  isValid = false;
+  if (!firstEmptyField) firstEmptyField = field;
+  field.style.borderColor = "red"; // Highlight merah jika kosong
+  } else {
+  field.style.borderColor = ""; // Reset warna border jika sudah diisi
+  }
+  });
+  });
+  
+  if (!isValid) {
+  alert("Harap isi semua pertanyaan sebelum melihat hasil skrining.");
+  firstEmptyField.focus();
+  return;
+  }
+  
+  // Lanjutkan jika semua input valid
+  data.forEach(item => {
+  const values = item.values.map(id => document.getElementById(id).value);
+  const resultRisiko = hitungRisiko(values);
+  const rekom = rekomendasi[item.key][resultRisiko.level];
+  result.innerHTML += `
+  <div class="result-card">
+    <div class="card-title">
+      <span class="icon">${iconMap[item.key]}</span>
+      <h3>${item.key.charAt(0).toUpperCase() + item.key.slice(1)} - Risiko ${resultRisiko.label}</h3>
+    </div>
+    <div class="risk ${resultRisiko.level}">${resultRisiko.label}</div>
+    <p><strong>Rekomendasi:</strong></p>
+    <ul>
+      ${rekom.map(rec => `<li>${rec}</li>`).join('')}
+    </ul>
+  </div>
+  `;
+  });
+  });
 
     function hitungRisiko(values) {
       const score = values.filter(v => v === "yes").length;
