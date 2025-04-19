@@ -247,6 +247,13 @@
 
   <button class="home-button" onclick="window.location.href='index.html'">Menu Utama</button>
 
+<!-- SCRIPT CHATBOT CHATLING -->
+<script>
+  window.chtlConfig = { chatbotId: "8275362696" };
+</script>
+<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript"
+  src="https://chatling.ai/js/embed.js"></script>
+
   <script>
     const referenceData = {
       male: {0:{median:49,sd:2.2},1:{median:75,sd:3.2},2:{median:85,sd:3.4},3:{median:95,sd:3.6},4:{median:103,sd:3.7},5:{median:110,sd:3.8},6:{median:116,sd:4},7:{median:122,sd:4.1},8:{median:127,sd:4.3},9:{median:132,sd:4.5}},
@@ -396,8 +403,7 @@
       const resultCards = analyzeForm(data);
       document.getElementById('result').innerHTML = resultCards.join('');
     });
-  <script> window.chtlConfig = { chatbotId: "8275362696" } </script>
-<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+  </script>
 </body>
 
 </html>
