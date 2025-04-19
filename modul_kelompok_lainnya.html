@@ -1,1 +1,232 @@
-*sedang dikembangkan*
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aplikasi Skrining Kesehatan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f4f4f4;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .question-group, .results {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin: 1rem 0;
+    }
+    .choices button {
+      margin-right: 1rem;
+    }
+    .hidden {
+      display: none;
+    }
+    .result-risk {
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+    .recommendations {
+      margin-left: 1rem;
+    }
+    button {
+      padding: 6px 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background: #3498db;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    label {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Aplikasi Skrining Mandiri Populasi Kunci & ODHA</h1>
+
+<div class="question-group" id="step1">
+  <h2>Langkah 1: Pilih Kelompok Risiko Anda</h2>
+  <label><input type="checkbox" value="lsl" /> Laki-laki seks dengan laki-laki (LSL)</label>
+  <label><input type="checkbox" value="penasun" /> Pengguna narkoba suntik (penasun)</label>
+  <label><input type="checkbox" value="pekerja_seks" /> Pekerja seks</label>
+  <label><input type="checkbox" value="waria" /> Waria</label>
+  <label><input type="checkbox" value="penjara" /> Orang di penjara</label>
+  <label><input type="checkbox" value="odha" /> Orang dengan HIV (ODHA)</label>
+  <br />
+  <button onclick="generateQuestions()">Lanjut</button>
+</div>
+
+<div class="question-group hidden" id="step2">
+  <h2>Langkah 2: Pertanyaan Skrining</h2>
+  <form id="screeningForm"></form>
+  <button onclick="calculateRisk()">Lihat Hasil</button>
+</div>
+
+<div class="results hidden" id="results">
+  <h2>Hasil Skrining</h2>
+  <div id="resultsContent"></div>
+</div>
+
+<script>
+const riskGroups = {
+  lsl: ["HIV", "IMS"],
+  penasun: ["HIV", "Hepatitis C", "TB", "IMS"],
+  pekerja_seks: ["HIV", "Hepatitis B", "Hepatitis C", "IMS"],
+  waria: ["HIV", "IMS"],
+  penjara: ["HIV", "TB", "Hepatitis B", "Hepatitis C"],
+  odha: ["CD4", "Viral Load", "TB", "Hepatitis B", "Hepatitis C", "Kanker", "Kardiovaskular", "Kesehatan Mental", "IMS"]
+};
+
+const screeningQuestions = {
+  HIV: [
+    "Apakah Anda sering berganti pasangan seksual?",
+    "Apakah Anda pernah berhubungan seksual tanpa kondom?"
+  ],
+  "Hepatitis B": [
+    "Apakah Anda pernah melakukan transfusi darah yang tidak aman?",
+    "Apakah Anda memiliki tato atau tindikan di tempat yang tidak steril?"
+  ],
+  "Hepatitis C": [
+    "Apakah Anda menggunakan jarum suntik secara bergantian?",
+    "Apakah Anda pernah menerima perawatan medis di tempat dengan sanitasi buruk?"
+  ],
+  IMS: [
+    "Apakah Anda mengalami gejala seperti keputihan, luka di area genital, atau nyeri saat buang air kecil?",
+    "Apakah Anda aktif secara seksual dengan lebih dari satu pasangan?"
+  ],
+  TB: [
+    "Apakah Anda mengalami batuk berkepanjangan (lebih dari 2 minggu)?",
+    "Apakah Anda mengalami penurunan berat badan yang tidak diketahui penyebabnya?"
+  ],
+  CD4: [
+    "Apakah Anda sering mengalami infeksi atau sariawan yang berulang?",
+    "Apakah Anda mudah lelah atau demam berkepanjangan?"
+  ],
+  "Viral Load": [
+    "Apakah Anda menjalani terapi ARV secara tidak teratur?",
+    "Apakah Anda memiliki keluhan seperti demam atau infeksi setelah menjalani pengobatan?"
+  ],
+  Kanker: [
+    "Apakah Anda memiliki riwayat keluarga dengan kanker tertentu?",
+    "Apakah Anda mengalami gejala tidak biasa seperti perdarahan abnormal atau benjolan?"
+  ],
+  Kardiovaskular: [
+    "Apakah Anda memiliki riwayat tekanan darah tinggi atau kolesterol tinggi?",
+    "Apakah Anda merokok atau jarang berolahraga?"
+  ],
+  "Kesehatan Mental": [
+    "Apakah Anda sering merasa cemas, sedih berlebihan, atau tidak bersemangat dalam beraktivitas?",
+    "Apakah Anda mengalami gangguan tidur atau kehilangan nafsu makan?"
+  ]
+};
+
+const recommendations = {
+  Rendah: [
+    "Lanjutkan perilaku sehat Anda.",
+    "Lakukan pemeriksaan berkala sesuai anjuran.",
+    "Pertahankan gaya hidup sehat dan hindari risiko tambahan."
+  ],
+  Sedang: [
+    "Segera konsultasikan ke layanan kesehatan untuk pemeriksaan lebih lanjut.",
+    "Kurangi faktor risiko yang ada.",
+    "Pertimbangkan vaksinasi atau pengobatan pencegahan bila tersedia."
+  ],
+  Tinggi: [
+    "Lakukan pemeriksaan segera ke fasilitas kesehatan.",
+    "Ikuti pengobatan sesuai anjuran profesional medis.",
+    "Hindari aktivitas berisiko tinggi sampai evaluasi selesai."
+  ]
+};
+
+function generateQuestions() {
+  const selected = Array.from(document.querySelectorAll('#step1 input:checked')).map(el => el.value);
+  if (selected.length === 0) return alert("Silakan pilih minimal satu kelompok risiko.");
+
+  // Ambil penyakit unik berdasarkan semua grup yang dipilih
+  const allDiseases = new Set();
+  selected.forEach(group => {
+    riskGroups[group].forEach(disease => allDiseases.add(disease));
+  });
+
+  const form = document.getElementById('screeningForm');
+  form.innerHTML = '';
+
+  [...allDiseases].forEach(disease => {
+    const container = document.createElement('div');
+    container.className = "question";
+    const title = document.createElement('h3');
+    title.textContent = `Skrining untuk ${disease}`;
+    container.appendChild(title);
+
+    screeningQuestions[disease].forEach((q, idx) => {
+      const qId = `${disease}_${idx}`;
+      const label = document.createElement('label');
+      label.innerHTML = `
+        ${q}<br />
+        <input type="radio" name="${qId}" value="1" required> Ya
+        <input type="radio" name="${qId}" value="0"> Tidak
+      `;
+      container.appendChild(label);
+    });
+
+    form.appendChild(container);
+  });
+
+  document.getElementById('step1').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
+}
+
+function calculateRisk() {
+  const diseases = {};
+  const allRadios = document.querySelectorAll('#screeningForm input[type=radio]:checked');
+
+  allRadios.forEach(radio => {
+    const [disease] = radio.name.split('_');
+    diseases[disease] = (diseases[disease] || 0) + parseInt(radio.value);
+  });
+
+  const resultsEl = document.getElementById('resultsContent');
+  resultsEl.innerHTML = '';
+
+  for (const disease in diseases) {
+    const score = diseases[disease];
+    const total = screeningQuestions[disease].length;
+    const percent = (score / total) * 100;
+
+    let level = "Rendah";
+    if (percent >= 67) level = "Tinggi";
+    else if (percent >= 34) level = "Sedang";
+
+    const section = document.createElement('div');
+    section.innerHTML = `
+      <h3>${disease}</h3>
+      <div class="result-risk">Tingkat Risiko: ${level}</div>
+      <div class="recommendations">
+        <ul>
+          ${recommendations[level].map(r => `<li>${r}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+    resultsEl.appendChild(section);
+  }
+
+  document.getElementById('step2').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
