@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Skrining Kehamilan</title>
   <style>
     /* === Global & Container === */
@@ -23,7 +24,8 @@
       box-shadow: 0 4px 16px rgba(0, 120, 220, 0.1);
     }
 
-    h1, h2 {
+    h1,
+    h2 {
       color: #2269a3;
       text-align: center;
     }
@@ -64,7 +66,8 @@
       font-weight: 500;
     }
 
-    input[type="number"], select {
+    input[type="number"],
+    select {
       width: 100%;
       padding: 0.5rem;
       border-radius: 10px;
@@ -74,7 +77,8 @@
       transition: border-color 0.2s;
     }
 
-    select:focus, input:focus {
+    select:focus,
+    input:focus {
       outline: none;
       border-color: #7cbdf0;
     }
@@ -132,7 +136,7 @@
       margin-bottom: 1.5rem;
       border-radius: 14px;
       padding: 1.2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .result-card.green {
@@ -172,42 +176,59 @@
       }
 
       .result-card {
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-      
-    /* Style untuk Tombol Kembali ke Home */
-.home-button {
-  background-color: #e0e0e0; /* Warna biru yang cerah */
-  color: black;              /* Teks putih */
-  padding: 12px 25px;        /* Padding kiri-kanan dan atas-bawah */
-  font-size: 16px;           /* Ukuran font */
-  border: none;              /* Menghilangkan border default */
-  border-radius: 50px;       /* Sudut tombol yang melengkung */
-  cursor: pointer;           /* Kursor berubah menjadi pointer */
-  transition: all 0.3s ease; /* Animasi transisi halus */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
-  margin: 20px 0;            /* Margin di atas dan bawah tombol */
-  display: inline-block;     /* Menjaga tombol tetap dalam satu baris */
-}
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
 
-/* Efek Hover (ketika tombol disorot dengan kursor) */
-.home-button:hover {
-  background-color: #45a049; /* Warna biru gelap saat hover */
-  transform: translateY(-2px); /* Mengangkat tombol sedikit */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Bayangan lebih gelap saat hover */
-}
+      /* Style untuk Tombol Kembali ke Home */
+      .home-button {
+        background-color: #e0e0e0;
+        /* Warna biru yang cerah */
+        color: black;
+        /* Teks putih */
+        padding: 12px 25px;
+        /* Padding kiri-kanan dan atas-bawah */
+        font-size: 16px;
+        /* Ukuran font */
+        border: none;
+        /* Menghilangkan border default */
+        border-radius: 50px;
+        /* Sudut tombol yang melengkung */
+        cursor: pointer;
+        /* Kursor berubah menjadi pointer */
+        transition: all 0.3s ease;
+        /* Animasi transisi halus */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Efek bayangan */
+        margin: 20px 0;
+        /* Margin di atas dan bawah tombol */
+        display: inline-block;
+        /* Menjaga tombol tetap dalam satu baris */
+      }
 
-/* Efek Fokus (ketika tombol mendapat fokus) */
-.home-button:focus {
-  outline: none; /* Menghapus outline default */
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5); /* Efek glow saat tombol mendapat fokus */
-}
+      /* Efek Hover (ketika tombol disorot dengan kursor) */
+      .home-button:hover {
+        background-color: #45a049;
+        /* Warna biru gelap saat hover */
+        transform: translateY(-2px);
+        /* Mengangkat tombol sedikit */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        /* Bayangan lebih gelap saat hover */
+      }
+
+      /* Efek Fokus (ketika tombol mendapat fokus) */
+      .home-button:focus {
+        outline: none;
+        /* Menghapus outline default */
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+        /* Efek glow saat tombol mendapat fokus */
+      }
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 </head>
+
 <body>
   <div class="container">
     <h1>🩺 Skrining Kehamilan</h1>
@@ -544,10 +565,17 @@
 
   html2pdf().set(opt).from(element).save();
 }
-  <script> window.chtlConfig = { chatbotId: "8275362696" } </script>
-<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
-  
+  </script>
+
   <!-- Tombol Kembali ke Home -->
-<button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
+  <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
+
+  <!-- Kode Chatbot -->
+  <script>
+    window.chtlConfig = { chatbotId: "8275362696" } 
+  </script>
+  <script async data-id="8275362696" id="chatling-embed-script" type="text/javascript"
+    src="https://chatling.ai/js/embed.js"></script>
 </body>
+
 </html>
