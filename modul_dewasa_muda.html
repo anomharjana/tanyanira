@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Skrining Kesehatan Dewasa Muda (20-35 tahun)</title>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     body {
@@ -32,7 +34,9 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       margin-bottom: 10px;
     }
 
@@ -68,7 +72,7 @@
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     .result-card h3 {
@@ -116,17 +120,18 @@
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <h1>Skrining Kesehatan Dewasa Muda (20-35 tahun)</h1>
-  <p>Deteksi dini risiko dan berikan perhatian pada kesehatan Anda</p>
-</header>
+  <header>
+    <h1>Skrining Kesehatan Dewasa Muda (20-35 tahun)</h1>
+    <p>Deteksi dini risiko dan berikan perhatian pada kesehatan Anda</p>
+  </header>
 
-<section id="input-section">
-  <h2>Input Data Skrining</h2>
-  <form id="screening-form">
-     <!-- Kehamilan & Komplikasi -->
+  <section id="input-section">
+    <h2>Input Data Skrining</h2>
+    <form id="screening-form">
+      <!-- Kehamilan & Komplikasi -->
       <div class="question-group">
         <h3><i class="fas fa-baby"></i>Kehamilan & Komplikasi</h3>
         <label for="pregnancy">Saat ini hamil / merencanakan kehamilan?</label>
@@ -256,17 +261,17 @@
       </select>
       </div>
 
-    <button type="submit">Proses Skrining</button>
-  </form>
-</section>
+      <button type="submit">Proses Skrining</button>
+    </form>
+  </section>
 
-<section id="output-section">
-  <h2>Hasil Skrining</h2>
-  <div id="screening-result"></div>
-</section>
+  <section id="output-section">
+    <h2>Hasil Skrining</h2>
+    <div id="screening-result"></div>
+  </section>
 
-<script>
-  document.getElementById('screening-form').addEventListener('submit', function(e) {
+  <script>
+    document.getElementById('screening-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const getVal = id => document.getElementById(id).value === 'yes' ? 1 : 0;
@@ -360,12 +365,17 @@
       result.appendChild(card);
     });
   });
+  </script>
 
-  <script> window.chtlConfig = { chatbotId: "8275362696" } </script>
-<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+  <!-- Tombol Kembali ke Home -->
+  <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
   
-<!-- Tombol Kembali -->
-<button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
-
-</body>
-</html>
+  <!-- Chatling Chatbot Embed -->
+  <script>
+    window.chtlConfig = { chatbotId: "8275362696" } 
+  </script>
+  <script async data-id="8275362696" id="chatling-embed-script" type="text/javascript"
+    src="https://chatling.ai/js/embed.js"></script>
+  </body>
+  
+  </html>
