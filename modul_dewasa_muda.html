@@ -3,264 +3,363 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aplikasi Skrining Kesehatan</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Skrining Kesehatan Dewasa Muda (20-35 tahun)</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
     }
-    h1, h2 {
-      color: #2c3e50;
-    }
-    .question-group, .results {
-      background-color: white;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .question {
-      margin: 1rem 0;
-    }
-    .choices button {
-      margin-right: 1rem;
-    }
-    .hidden {
-      display: none;
-    }
-    .result-risk {
-      margin-top: 0.5rem;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    .result-risk.rendah {
-      color: #27ae60; /* hijau */
-    }
-    .result-risk.sedang {
-      color: #f39c12; /* oranye */
-    }
-    .result-risk.tinggi {
-      color: #e74c3c; /* merah */
-    }
-    .recommendations {
-      margin-left: 1rem;
-    }
-    .result-card {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    button {
-      padding: 6px 12px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      background: #3498db;
+
+    header {
+      background-color: #2269a3;
       color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    section {
+      margin: 30px auto;
+      max-width: 900px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 10px;
+    }
+
+    form label {
+      font-weight: 500;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #2269a3;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
       cursor: pointer;
     }
-    button i {
-      margin-right: 6px;
-    }
+
     button:hover {
-      background: #2980b9;
+      background-color: #1d3557;
     }
-    label {
+
+    .result-card {
+      background-color: #fdfdfd;
+      border-left: 6px solid #2a9d8f;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .result-card h3 {
+      margin-top: 0;
+    }
+
+    .result-card.low {
+      border-left-color: #2a9d8f;
+      background-color: #f0fefc;
+    }
+
+    .result-card.medium {
+      border-left-color: #e9c46a;
+      background-color: #fff9e3;
+    }
+
+    .result-card.high {
+      border-left-color: #e76f51;
+      background-color: #fff5f0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    ul li i {
+      margin-right: 8px;
+      color: #2269a3;
+    }
+
+    .home-button {
       display: block;
-      margin: 0.5rem 0;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background-color: #888;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .home-button:hover {
+      background-color: #666;
     }
   </style>
 </head>
 <body>
 
-<h1><i class="fas fa-stethoscope"></i> Aplikasi Skrining Mandiri Populasi Kunci & ODHA</h1>
+<header>
+  <h1>Skrining Kesehatan Dewasa Muda (20-35 tahun)</h1>
+  <p>Deteksi dini risiko dan berikan perhatian pada kesehatan Anda</p>
+</header>
 
-<div class="question-group" id="step1">
-  <h2><i class="fas fa-user-check"></i> Langkah 1: Pilih Kelompok Risiko Anda</h2>
-  <label><input type="checkbox" value="lsl" /> Laki-laki seks dengan laki-laki (LSL)</label>
-  <label><input type="checkbox" value="penasun" /> Pengguna narkoba suntik (penasun)</label>
-  <label><input type="checkbox" value="pekerja_seks" /> Pekerja seks</label>
-  <label><input type="checkbox" value="waria" /> Waria</label>
-  <label><input type="checkbox" value="penjara" /> Orang di penjara</label>
-  <label><input type="checkbox" value="odha" /> Orang dengan HIV (ODHA)</label>
-  <br />
-  <button onclick="generateQuestions()"><i class="fas fa-arrow-right"></i> Lanjut</button>
-</div>
+<section id="input-section">
+  <h2>Input Data Skrining</h2>
+  <form id="screening-form">
+     <!-- Kehamilan & Komplikasi -->
+      <div class="question-group">
+        <h3><i class="fas fa-baby"></i>Kehamilan & Komplikasi</h3>
+        <label for="pregnancy">Saat ini hamil / merencanakan kehamilan?</label>
+        <select id="pregnancy" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="pregnancy-history">Riwayat komplikasi kehamilan?</label>
+        <select id="pregnancy-history" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="swelling">Pembengkakan tangan/kaki?</label>
+        <select id="swelling" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="vision-changes">Gangguan penglihatan?</label>
+        <select id="vision-changes" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      </div>
 
-<div class="question-group hidden" id="step2">
-  <h2><i class="fas fa-question-circle"></i> Langkah 2: Pertanyaan Skrining</h2>
-  <form id="screeningForm"></form>
-  <button onclick="calculateRisk()"><i class="fas fa-notes-medical"></i> Lihat Hasil</button>
-</div>
+      <!-- Diabetes & Kardiovaskular -->
+      <div class="question-group">
+        <h3><i class="fas fa-heartbeat"></i>Diabetes & Kardiovaskular</h3>
+        <label for="family-diabetes">Riwayat keluarga dengan diabetes?</label>
+        <select id="family-diabetes" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="high-blood-pressure">Pernah didiagnosa hipertensi?</label>
+        <select id="high-blood-pressure" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="high-cholesterol">Kadar kolesterol tinggi?</label>
+        <select id="high-cholesterol" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      </div>
 
-<div class="results hidden" id="results">
-  <h2><i class="fas fa-clipboard-check"></i> Hasil Skrining</h2>
-  <div id="resultsContent"></div>
-</div>
+      <!-- Gangguan Mental -->
+      <div class="question-group">
+        <h3><i class="fas fa-brain"></i>Gangguan Mental</h3>
+        <label for="stress">Sering merasa stres atau cemas?</label>
+        <select id="stress" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="depression">Merasa depresi atau kehilangan minat dalam aktivitas?</label>
+        <select id="depression" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="sleep-problems">Kesulitan tidur atau insomnia?</label>
+        <select id="sleep-problems" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      </div>
+
+      <!-- Gaya Hidup -->
+      <div class="question-group">
+        <h3><i class="fas fa-dumbbell"></i>Gaya Hidup</h3>
+        <label for="smoking">Merokok?</label>
+        <select id="smoking" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="alcohol">Konsumsi alkohol?</label>
+        <select id="alcohol" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+        <label for="exercise">Apakah Anda berolahraga secara teratur?</label>
+        <select id="exercise" required>
+        <option value="">Pilih</option>
+        <option value="no">Tidak</option>
+        <option value="yes">Ya</option>
+      </select>
+      </div>
+
+      <!-- Infeksi Menular Seksual -->
+      <div class="question-group">
+        <h3><i class="fas fa-virus"></i>Infeksi Menular Seksual (IMS)</h3>
+        <label for="multiple-partners">Pernah memiliki lebih dari satu pasangan seksual dalam 6 bulan terakhir?</label>
+        <select id="multiple-partners" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+        <label for="unprotected-sex">Pernah melakukan hubungan seksual tanpa kondom?</label>
+        <select id="unprotected-sex" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+        <label for="std-symptoms">Mengalami gejala seperti keputihan tidak normal, luka/ruam di area genital?</label>
+        <select id="std-symptoms" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+        <label for="std-history">Riwayat pernah terdiagnosis IMS (seperti klamidia, gonore, dll)?</label>
+        <select id="std-history" required>
+        <option value="">Pilih</option>
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+      </div>
+
+    <button type="submit">Proses Skrining</button>
+  </form>
+</section>
+
+<section id="output-section">
+  <h2>Hasil Skrining</h2>
+  <div id="screening-result"></div>
+</section>
 
 <script>
-const icons = {
-  "HIV": "fa-virus",
-  "Hepatitis B": "fa-liver",
-  "Hepatitis C": "fa-vial-virus",
-  "IMS": "fa-heartbeat",
-  "TB": "fa-lungs",
-  "CD4": "fa-shield-virus",
-  "Viral Load": "fa-dna",
-  "Kanker": "fa-ribbon",
-  "Kardiovaskular": "fa-heart",
-  "Kesehatan Mental": "fa-brain"
-};
+  document.getElementById('screening-form').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-const riskGroups = {
-  lsl: ["HIV", "IMS"],
-  penasun: ["HIV", "Hepatitis C", "TB", "IMS"],
-  pekerja_seks: ["HIV", "Hepatitis B", "Hepatitis C", "IMS"],
-  waria: ["HIV", "IMS"],
-  penjara: ["HIV", "TB", "Hepatitis B", "Hepatitis C"],
-  odha: ["CD4", "Viral Load", "TB", "Hepatitis B", "Hepatitis C", "Kanker", "Kardiovaskular", "Kesehatan Mental", "IMS"]
-};
+    const getVal = id => document.getElementById(id).value === 'yes' ? 1 : 0;
 
-const screeningQuestions = {
-  HIV: [
-    "Apakah Anda sering berganti pasangan seksual?",
-    "Apakah Anda pernah berhubungan seksual tanpa kondom?"
-  ],
-  "Hepatitis B": [
-    "Apakah Anda pernah melakukan transfusi darah yang tidak aman?",
-    "Apakah Anda memiliki tato atau tindikan di tempat yang tidak steril?"
-  ],
-  "Hepatitis C": [
-    "Apakah Anda menggunakan jarum suntik secara bergantian?",
-    "Apakah Anda pernah menerima perawatan medis di tempat dengan sanitasi buruk?"
-  ],
-  IMS: [
-    "Apakah Anda mengalami gejala seperti keputihan, luka di area genital, atau nyeri saat buang air kecil?",
-    "Apakah Anda aktif secara seksual dengan lebih dari satu pasangan?"
-  ],
-  TB: [
-    "Apakah Anda mengalami batuk berkepanjangan (lebih dari 2 minggu)?",
-    "Apakah Anda mengalami penurunan berat badan yang tidak diketahui penyebabnya?"
-  ],
-  CD4: [
-    "Apakah Anda sering mengalami infeksi atau sariawan yang berulang?",
-    "Apakah Anda mudah lelah atau demam berkepanjangan?"
-  ],
-  "Viral Load": [
-    "Apakah Anda menjalani terapi ARV secara tidak teratur?",
-    "Apakah Anda memiliki keluhan seperti demam atau infeksi setelah menjalani pengobatan?"
-  ],
-  Kanker: [
-    "Apakah Anda memiliki riwayat keluarga dengan kanker tertentu?",
-    "Apakah Anda mengalami gejala tidak biasa seperti perdarahan abnormal atau benjolan?"
-  ],
-  Kardiovaskular: [
-    "Apakah Anda memiliki riwayat tekanan darah tinggi atau kolesterol tinggi?",
-    "Apakah Anda merokok atau jarang berolahraga?"
-  ],
-  "Kesehatan Mental": [
-    "Apakah Anda sering merasa cemas, sedih berlebihan, atau tidak bersemangat dalam beraktivitas?",
-    "Apakah Anda mengalami gangguan tidur atau kehilangan nafsu makan?"
-  ]
-};
+    const result = document.getElementById('screening-result');
+    result.innerHTML = '';
 
-const recommendations = {
-  Rendah: [
-    "Lanjutkan perilaku sehat Anda.",
-    "Lakukan pemeriksaan berkala sesuai anjuran.",
-    "Pertahankan gaya hidup sehat dan hindari risiko tambahan."
-  ],
-  Sedang: [
-    "Segera konsultasikan ke layanan kesehatan untuk pemeriksaan lebih lanjut.",
-    "Kurangi faktor risiko yang ada.",
-    "Pertimbangkan vaksinasi atau pengobatan pencegahan bila tersedia."
-  ],
-  Tinggi: [
-    "Lakukan pemeriksaan segera ke fasilitas kesehatan.",
-    "Ikuti pengobatan sesuai anjuran profesional medis.",
-    "Hindari aktivitas berisiko tinggi sampai evaluasi selesai."
-  ]
-};
+    const screeningData = [
+      {
+        title: 'Kehamilan & Komplikasi',
+        icon: 'fa-baby',
+        riskFactors: [
+          getVal('pregnancy'),
+          getVal('pregnancy-history'),
+          getVal('swelling'),
+          getVal('vision-changes')
+        ]
+      },
+      {
+        title: 'Diabetes & Kardiovaskular',
+        icon: 'fa-heartbeat',
+        riskFactors: [
+          getVal('family-diabetes'),
+          getVal('high-blood-pressure'),
+          getVal('high-cholesterol')
+        ]
+      },
+      {
+        title: 'Gangguan Mental',
+        icon: 'fa-brain',
+        riskFactors: [
+          getVal('stress'),
+          getVal('depression'),
+          getVal('sleep-problems')
+        ]
+      },
+      {
+        title: 'Gaya Hidup',
+        icon: 'fa-dumbbell',
+        riskFactors: [
+          getVal('smoking'),
+          getVal('alcohol'),
+          getVal('exercise') === 1 ? 0 : 1
+        ]
+      },
+      {
+        title: 'Infeksi Menular Seksual (IMS)',
+        icon: 'fa-virus',
+        riskFactors: [
+          getVal('multiple-partners'),
+          getVal('unprotected-sex'),
+          getVal('std-symptoms'),
+          getVal('std-history')
+        ]
+      }
+    ];
 
-function generateQuestions() {
-  const selected = Array.from(document.querySelectorAll('#step1 input:checked')).map(el => el.value);
-  if (selected.length === 0) return alert("Silakan pilih minimal satu kelompok risiko.");
+    screeningData.forEach(item => {
+      const card = document.createElement('div');
+      const riskFactorCount = item.riskFactors.reduce((a, b) => a + b, 0);
 
-  const allDiseases = new Set();
-  selected.forEach(group => {
-    riskGroups[group].forEach(disease => allDiseases.add(disease));
-  });
+      let riskLevel = 'low';
+      if (riskFactorCount === 1) riskLevel = 'medium';
+      else if (riskFactorCount >= 2) riskLevel = 'high';
 
-  const form = document.getElementById('screeningForm');
-  form.innerHTML = '';
+      let recommendations = '';
+      if (riskLevel === 'low') {
+        recommendations = '<ul><li><i class="fas fa-check-circle"></i> Pastikan menjaga gaya hidup sehat, makan makanan bergizi, dan berolahraga teratur.</li></ul>';
+      } else if (riskLevel === 'medium') {
+        recommendations = `
+          <ul>
+            <li><i class="fas fa-stethoscope"></i> Lakukan pemeriksaan kesehatan secara rutin.</li>
+            <li><i class="fas fa-apple-alt"></i> Perhatikan pola makan dan gaya hidup.</li>
+          </ul>`;
+      } else {
+        recommendations = `
+          <ul>
+            <li><i class="fas fa-user-md"></i> Segera konsultasi dengan tenaga medis.</li>
+            <li><i class="fas fa-notes-medical"></i> Periksa kondisi terkait secara rutin.</li>
+            <li><i class="fas fa-pills"></i> Ikuti panduan dokter untuk penanganan lanjutan.</li>
+          </ul>`;
+      }
 
-  [...allDiseases].forEach(disease => {
-    const container = document.createElement('div');
-    container.className = "question";
-    const title = document.createElement('h3');
-    title.innerHTML = `<i class="fas ${icons[disease] || 'fa-notes-medical'}"></i> Skrining untuk ${disease}`;
-    container.appendChild(title);
-
-    screeningQuestions[disease].forEach((q, idx) => {
-      const qId = `${disease}_${idx}`;
-      const label = document.createElement('label');
-      label.innerHTML = `
-        ${q}<br />
-        <input type="radio" name="${qId}" value="1" required> Ya
-        <input type="radio" name="${qId}" value="0"> Tidak
+      card.className = `result-card ${riskLevel}`;
+      card.innerHTML = `
+        <h3><i class="fas ${item.icon}"></i> ${item.title}</h3>
+        <p><strong>Status Risiko:</strong> ${riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1)} Risiko</p>
+        <p><strong>Rekomendasi:</strong></p>
+        ${recommendations}
       `;
-      container.appendChild(label);
+      result.appendChild(card);
     });
-
-    form.appendChild(container);
   });
-
-  document.getElementById('step1').classList.add('hidden');
-  document.getElementById('step2').classList.remove('hidden');
-}
-
-function calculateRisk() {
-  const diseases = {};
-  const allRadios = document.querySelectorAll('#screeningForm input[type=radio]:checked');
-
-  allRadios.forEach(radio => {
-    const [disease] = radio.name.split('_');
-    diseases[disease] = (diseases[disease] || 0) + parseInt(radio.value);
-  });
-
-  const resultsEl = document.getElementById('resultsContent');
-  resultsEl.innerHTML = '';
-
-  for (const disease in diseases) {
-    const score = diseases[disease];
-    const total = screeningQuestions[disease].length;
-    const percent = (score / total) * 100;
-
-    let level = "Rendah";
-    if (percent >= 67) level = "Tinggi";
-    else if (percent >= 34) level = "Sedang";
-
-    const section = document.createElement('div');
-    section.className = 'result-card';
-    section.innerHTML = `
-      <h3><i class="fas ${icons[disease] || 'fa-notes-medical'}"></i> ${disease}</h3>
-      <div class="result-risk ${level.toLowerCase()}">Tingkat Risiko: ${level}</div>
-      <div class="recommendations">
-        <ul>
-          ${recommendations[level].map(r => `<li>${r}</li>`).join('')}
-        </ul>
-      </div>
-    `;
-    resultsEl.appendChild(section);
-  }
-
-  document.getElementById('step2').classList.add('hidden');
-  document.getElementById('results').classList.remove('hidden');
-}
 </script>
 
 <!-- Tombol Kembali -->
