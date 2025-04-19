@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +14,8 @@
       padding: 20px;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
       color: #2c3e50;
     }
 
@@ -30,7 +32,8 @@
       font-weight: bold;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
@@ -79,11 +82,14 @@
       margin-top: 10px;
     }
 
-    table, th, td {
+    table,
+    th,
+    td {
       border: 1px solid #1abc9c;
     }
 
-    th, td {
+    th,
+    td {
       padding: 8px;
       text-align: left;
     }
@@ -93,35 +99,51 @@
     }
 
     /* Style untuk Tombol Kembali ke Home */
-.home-button {
-  background-color: #e0e0e0; /* Warna biru yang cerah */
-  color: black;              /* Teks putih */
-  padding: 12px 25px;        /* Padding kiri-kanan dan atas-bawah */
-  font-size: 16px;           /* Ukuran font */
-  border: none;              /* Menghilangkan border default */
-  border-radius: 50px;       /* Sudut tombol yang melengkung */
-  cursor: pointer;           /* Kursor berubah menjadi pointer */
-  transition: all 0.3s ease; /* Animasi transisi halus */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
-  margin: 20px 0;            /* Margin di atas dan bawah tombol */
-  display: inline-block;     /* Menjaga tombol tetap dalam satu baris */
-}
+    .home-button {
+      background-color: #e0e0e0;
+      /* Warna biru yang cerah */
+      color: black;
+      /* Teks putih */
+      padding: 12px 25px;
+      /* Padding kiri-kanan dan atas-bawah */
+      font-size: 16px;
+      /* Ukuran font */
+      border: none;
+      /* Menghilangkan border default */
+      border-radius: 50px;
+      /* Sudut tombol yang melengkung */
+      cursor: pointer;
+      /* Kursor berubah menjadi pointer */
+      transition: all 0.3s ease;
+      /* Animasi transisi halus */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* Efek bayangan */
+      margin: 20px 0;
+      /* Margin di atas dan bawah tombol */
+      display: inline-block;
+      /* Menjaga tombol tetap dalam satu baris */
+    }
 
-/* Efek Hover (ketika tombol disorot dengan kursor) */
-.home-button:hover {
-  background-color: #45a049; /* Warna biru gelap saat hover */
-  transform: translateY(-2px); /* Mengangkat tombol sedikit */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Bayangan lebih gelap saat hover */
-}
+    /* Efek Hover (ketika tombol disorot dengan kursor) */
+    .home-button:hover {
+      background-color: #45a049;
+      /* Warna biru gelap saat hover */
+      transform: translateY(-2px);
+      /* Mengangkat tombol sedikit */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      /* Bayangan lebih gelap saat hover */
+    }
 
-/* Efek Fokus (ketika tombol mendapat fokus) */
-.home-button:focus {
-  outline: none; /* Menghapus outline default */
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5); /* Efek glow saat tombol mendapat fokus */
-}
-
+    /* Efek Fokus (ketika tombol mendapat fokus) */
+    .home-button:focus {
+      outline: none;
+      /* Menghapus outline default */
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+      /* Efek glow saat tombol mendapat fokus */
+    }
   </style>
 </head>
+
 <body>
   <h1>Prediksi Risiko Penyakit Tidak Menular (PTM)</h1>
   <form id="ptmForm">
@@ -166,7 +188,9 @@
     <input type="range" name="tidur" min="1" max="7" class="range-labeled" />
 
     <h2>Rencana Perubahan Perilaku</h2>
-      <p><em>Untuk masa yang akan datang, berapa Hari dalam Seminggu (7 hari ke depan) Anda akan melakukan hal-hal berikut?</em></p>
+    <p>
+      <em>Untuk masa yang akan datang, berapa Hari dalam Seminggu (7 hari ke depan) Anda akan melakukan hal-hal berikut?</em>
+    </p>
     <label>Komitmen Olahraga</label>
     <input type="range" name="olahraga" min="1" max="7" class="range-labeled" />
 
@@ -193,10 +217,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Berat badan kurang</td><td>&lt; 18.5</td></tr>
-        <tr><td>Berat badan normal</td><td>18.5 - 24.9</td></tr>
-        <tr><td>Berat badan berlebih</td><td>25.0 - 29.9</td></tr>
-        <tr><td>Obesitas</td><td>&ge; 30.0</td></tr>
+        <tr>
+          <td>Berat badan kurang</td>
+          <td>&lt; 18.5</td>
+        </tr>
+        <tr>
+          <td>Berat badan normal</td>
+          <td>18.5 - 24.9</td>
+        </tr>
+        <tr>
+          <td>Berat badan berlebih</td>
+          <td>25.0 - 29.9</td>
+        </tr>
+        <tr>
+          <td>Obesitas</td>
+          <td>&ge; 30.0</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -444,11 +480,17 @@ downloadPDFButton.addEventListener('click', function () {
   doc.save('Prediksi_Risiko_PTM.pdf');
 });
     });
-  <script> window.chtlConfig = { chatbotId: "8275362696" } </script>
-<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+  </script>
 
-  <!-- Tombol Kembali ke Home -->
+<!-- Tombol Kembali ke Home -->
 <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
 
+<!-- Chatling Chatbot Embed -->
+<script>
+  window.chtlConfig = { chatbotId: "8275362696" } 
+</script>
+<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript"
+  src="https://chatling.ai/js/embed.js"></script>
 </body>
+
 </html>
