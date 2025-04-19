@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aplikasi Skrining Kesehatan</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -11,50 +12,67 @@
       padding: 2rem;
       background-color: #f4f4f4;
     }
-    h1, h2 {
+
+    h1,
+    h2 {
       color: #2c3e50;
     }
-    .question-group, .results {
+
+    .question-group,
+    .results {
       background-color: white;
       padding: 1rem;
       border-radius: 8px;
       margin-top: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
+
     .question {
       margin: 1rem 0;
     }
+
     .choices button {
       margin-right: 1rem;
     }
+
     .hidden {
       display: none;
     }
+
     .result-risk {
       margin-top: 0.5rem;
       font-weight: bold;
       font-size: 1.1rem;
     }
+
     .result-risk.rendah {
-      color: #27ae60; /* hijau */
+      color: #27ae60;
+      /* hijau */
     }
+
     .result-risk.sedang {
-      color: #f39c12; /* oranye */
+      color: #f39c12;
+      /* oranye */
     }
+
     .result-risk.tinggi {
-      color: #e74c3c; /* merah */
+      color: #e74c3c;
+      /* merah */
     }
+
     .recommendations {
       margin-left: 1rem;
     }
+
     .result-card {
       border: 1px solid #ddd;
       border-radius: 10px;
       padding: 1rem;
       margin-bottom: 1rem;
       background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
+
     button {
       padding: 6px 12px;
       border-radius: 5px;
@@ -63,47 +81,51 @@
       color: white;
       cursor: pointer;
     }
+
     button i {
       margin-right: 6px;
     }
+
     button:hover {
       background: #2980b9;
     }
+
     label {
       display: block;
       margin: 0.5rem 0;
     }
   </style>
 </head>
+
 <body>
 
-<h1><i class="fas fa-stethoscope"></i> Aplikasi Skrining Mandiri Populasi Kunci & ODHIV</h1>
+  <h1><i class="fas fa-stethoscope"></i> Aplikasi Skrining Mandiri Populasi Kunci & ODHIV</h1>
 
-<div class="question-group" id="step1">
-  <h2><i class="fas fa-user-check"></i> Langkah 1: Pilih Kelompok Risiko Anda</h2>
-  <label><input type="checkbox" value="lsl" /> Laki-laki seks dengan laki-laki (LSL)</label>
-  <label><input type="checkbox" value="penasun" /> Pengguna narkoba suntik (penasun)</label>
-  <label><input type="checkbox" value="pekerja_seks" /> Pekerja seks</label>
-  <label><input type="checkbox" value="waria" /> Waria</label>
-  <label><input type="checkbox" value="penjara" /> Orang di penjara</label>
-  <label><input type="checkbox" value="odha" /> Orang dengan HIV (ODHIV)</label>
-  <br />
-  <button onclick="generateQuestions()"><i class="fas fa-arrow-right"></i> Lanjut</button>
-</div>
+  <div class="question-group" id="step1">
+    <h2><i class="fas fa-user-check"></i> Langkah 1: Pilih Kelompok Risiko Anda</h2>
+    <label><input type="checkbox" value="lsl" /> Laki-laki seks dengan laki-laki (LSL)</label>
+    <label><input type="checkbox" value="penasun" /> Pengguna narkoba suntik (penasun)</label>
+    <label><input type="checkbox" value="pekerja_seks" /> Pekerja seks</label>
+    <label><input type="checkbox" value="waria" /> Waria</label>
+    <label><input type="checkbox" value="penjara" /> Orang di penjara</label>
+    <label><input type="checkbox" value="odha" /> Orang dengan HIV (ODHIV)</label>
+    <br />
+    <button onclick="generateQuestions()"><i class="fas fa-arrow-right"></i> Lanjut</button>
+  </div>
 
-<div class="question-group hidden" id="step2">
-  <h2><i class="fas fa-question-circle"></i> Langkah 2: Pertanyaan Skrining</h2>
-  <form id="screeningForm"></form>
-  <button onclick="calculateRisk()"><i class="fas fa-notes-medical"></i> Lihat Hasil</button>
-</div>
+  <div class="question-group hidden" id="step2">
+    <h2><i class="fas fa-question-circle"></i> Langkah 2: Pertanyaan Skrining</h2>
+    <form id="screeningForm"></form>
+    <button onclick="calculateRisk()"><i class="fas fa-notes-medical"></i> Lihat Hasil</button>
+  </div>
 
-<div class="results hidden" id="results">
-  <h2><i class="fas fa-clipboard-check"></i> Hasil Skrining</h2>
-  <div id="resultsContent"></div>
-</div>
+  <div class="results hidden" id="results">
+    <h2><i class="fas fa-clipboard-check"></i> Hasil Skrining</h2>
+    <div id="resultsContent"></div>
+  </div>
 
-<script>
-const icons = {
+  <script>
+    const icons = {
   "HIV": "fa-virus",
   "Hepatitis B": "fa-liver",
   "Hepatitis C": "fa-vial-virus",
@@ -261,11 +283,17 @@ function calculateRisk() {
   document.getElementById('step2').classList.add('hidden');
   document.getElementById('results').classList.remove('hidden');
 }
-  <script> window.chtlConfig = { chatbotId: "8275362696" } </script>
-<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+  </script>
 
-<!-- Tombol Kembali -->
+<!-- Tombol Kembali ke Home -->
 <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
 
+<!-- Chatling Chatbot Embed -->
+<script>
+  window.chtlConfig = { chatbotId: "8275362696" } 
+</script>
+<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript"
+  src="https://chatling.ai/js/embed.js"></script>
 </body>
+
 </html>
