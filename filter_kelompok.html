@@ -136,6 +136,30 @@
         box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
       }
     }
+
+    .footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.info-icon {
+  font-size: 1.8rem;
+  color: #2269a3;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.info-icon:hover {
+  background-color: #98fb98;
+  transform: scale(1.1);
+}
+
   </style>
 </head>
 
@@ -214,6 +238,13 @@
       typeText();
     };
   </script>
+
+  <footer class="footer">
+  <a href="https://www.tanyanira.com/about.html" class="info-icon" title="Informasi Lebih Lanjut">
+    <i class="fas fa-info-circle"></i>
+  </a>
+</footer>
+
 </body>
 
 </html>
