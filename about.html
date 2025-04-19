@@ -48,8 +48,7 @@
       color: var(--main-color);
     }
 
-    .features,
-    .testimonials {
+    .features {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -58,8 +57,7 @@
       margin: 0 auto;
     }
 
-    .feature,
-    .testimonial {
+    .feature {
       background-color: var(--bg-light);
       padding: 20px;
       border-radius: 12px;
@@ -67,8 +65,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
-    .feature i,
-    .testimonial i {
+    .feature i {
       font-size: 2rem;
       color: var(--main-color);
       margin-bottom: 10px;
@@ -90,6 +87,46 @@
       background-color: #277e7a;
     }
 
+    .carousel-container {
+      overflow: hidden;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 30px;
+      animation: scrollCarousel 20s linear infinite;
+    }
+
+    @keyframes scrollCarousel {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .testimonial {
+      background-color: var(--bg-light);
+      padding: 20px;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      flex: 0 0 300px;
+      box-sizing: border-box;
+    }
+
+    .testimonial i {
+      font-size: 2rem;
+      color: var(--main-color);
+      margin-bottom: 10px;
+    }
+
     footer {
       background-color: var(--bg-light);
       padding: 20px;
@@ -104,7 +141,6 @@
     }
 
     @media (max-width: 600px) {
-
       .feature,
       .testimonial {
         width: 90%;
@@ -146,21 +182,23 @@
 
   <section class="section" style="background-color: var(--bg-light);">
     <h2>Apa Kata Mereka</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <i class="fas fa-quote-left"></i>
-        <p>Tanya Nira bantu saya mengenali risiko kehamilan sejak dini. Sangat membantu!</p>
-        <strong>- Rina, 29 tahun</strong>
-      </div>
-      <div class="testimonial">
-        <i class="fas fa-quote-left"></i>
-        <p>Aplikasi ini cocok untuk ibu dan remaja. Fiturnya lengkap dan mudah dipahami.</p>
-        <strong>- Dewi, 42 tahun</strong>
-      </div>
-      <div class="testimonial">
-        <i class="fas fa-quote-left"></i>
-        <p>Lebih baik pencegahan daripada pengobatan. Tanya Nira sangat edukatif!</p>
-        <strong>- Sarah, 19 tahun</strong>
+    <div class="carousel-container">
+      <div class="carousel-track" id="testimonialCarousel">
+        <div class="testimonial">
+          <i class="fas fa-quote-left"></i>
+          <p>Tanya Nira bantu saya mengenali risiko kehamilan sejak dini. Sangat membantu!</p>
+          <strong>- Rina, 29 tahun</strong>
+        </div>
+        <div class="testimonial">
+          <i class="fas fa-quote-left"></i>
+          <p>Aplikasi ini cocok untuk ibu dan remaja. Fiturnya lengkap dan mudah dipahami.</p>
+          <strong>- Dewi, 42 tahun</strong>
+        </div>
+        <div class="testimonial">
+          <i class="fas fa-quote-left"></i>
+          <p>Lebih baik pencegahan daripada pengobatan. Tanya Nira sangat edukatif!</p>
+          <strong>- Sarah, 19 tahun</strong>
+        </div>
       </div>
     </div>
   </section>
@@ -177,6 +215,18 @@
       <a href="https://www.youtube.com/@cphifkuniversitasudayana5501">YouTube</a>
     </p>
   </footer>
+
+  <script>
+    const carousel = document.getElementById('testimonialCarousel');
+
+    carousel.addEventListener('mouseenter', () => {
+      carousel.style.animationPlayState = 'paused';
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      carousel.style.animationPlayState = 'running';
+    });
+  </script>
 
 </body>
 
