@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Skrining Kesehatan Dewasa Menengah (36–49 tahun)</title>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     body {
@@ -32,12 +34,13 @@
     section {
       background: #fff;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       margin-bottom: 30px;
       padding: 20px;
     }
 
-    h2, h3 {
+    h2,
+    h3 {
       margin-top: 0;
       color: #333;
     }
@@ -85,7 +88,7 @@
       padding: 16px;
       margin-bottom: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .recommendation-card h3 {
@@ -107,132 +110,133 @@
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <h1>Skrining Kesehatan Dewasa Menengah (36–49 tahun)</h1>
-  <p>Evaluasi risiko kesehatan Anda secara mandiri</p>
-</header>
+  <header>
+    <h1>Skrining Kesehatan Dewasa Menengah (36–49 tahun)</h1>
+    <p>Evaluasi risiko kesehatan Anda secara mandiri</p>
+  </header>
 
-<main>
-  <section>
-    <h2>Formulir Skrining</h2>
-    <form id="screening-form">
-      <!-- Group 1 -->
-      <div class="form-group">
-        <h3><i class="fas fa-heartbeat"></i> Penyakit Jantung & Stroke</h3>
-        <label for="q1">Riwayat tekanan darah tinggi?</label>
-        <select id="q1" required>
+  <main>
+    <section>
+      <h2>Formulir Skrining</h2>
+      <form id="screening-form">
+        <!-- Group 1 -->
+        <div class="form-group">
+          <h3><i class="fas fa-heartbeat"></i> Penyakit Jantung & Stroke</h3>
+          <label for="q1">Riwayat tekanan darah tinggi?</label>
+          <select id="q1" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q2">Kolesterol tinggi?</label>
-        <select id="q2" required>
+          <label for="q2">Kolesterol tinggi?</label>
+          <select id="q2" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q3">Riwayat diabetes?</label>
-        <select id="q3" required>
+          <label for="q3">Riwayat diabetes?</label>
+          <select id="q3" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-      </div>
+        </div>
 
-      <!-- Group 2 -->
-      <div class="form-group">
-        <h3><i class="fas fa-ribbon"></i> Kanker Payudara & Ovarium</h3>
-        <label for="q4">Riwayat keluarga kanker payudara?</label>
-        <select id="q4" required>
+        <!-- Group 2 -->
+        <div class="form-group">
+          <h3><i class="fas fa-ribbon"></i> Kanker Payudara & Ovarium</h3>
+          <label for="q4">Riwayat keluarga kanker payudara?</label>
+          <select id="q4" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q5">Riwayat keluarga kanker ovarium?</label>
-        <select id="q5" required>
+          <label for="q5">Riwayat keluarga kanker ovarium?</label>
+          <select id="q5" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q6">Adanya benjolan/perubahan di payudara?</label>
-        <select id="q6" required>
+          <label for="q6">Adanya benjolan/perubahan di payudara?</label>
+          <select id="q6" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-      </div>
+        </div>
 
-      <!-- Group 3 -->
-      <div class="form-group">
-        <h3><i class="fas fa-heart"></i> Diabetes & Hipertensi</h3>
-        <label for="q7">Tekanan darah > 140/90 mmHg?</label>
-        <select id="q7" required>
+        <!-- Group 3 -->
+        <div class="form-group">
+          <h3><i class="fas fa-heart"></i> Diabetes & Hipertensi</h3>
+          <label for="q7">Tekanan darah > 140/90 mmHg?</label>
+          <select id="q7" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q8">Gula darah > 100 mg/dL (puasa)?</label>
-        <select id="q8" required>
+          <label for="q8">Gula darah > 100 mg/dL (puasa)?</label>
+          <select id="q8" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-      </div>
+        </div>
 
-      <!-- Group 4 -->
-      <div class="form-group">
-        <h3><i class="fas fa-bone"></i> Osteoporosis</h3>
-        <label for="q9">Riwayat keluarga osteoporosis?</label>
-        <select id="q9" required>
+        <!-- Group 4 -->
+        <div class="form-group">
+          <h3><i class="fas fa-bone"></i> Osteoporosis</h3>
+          <label for="q9">Riwayat keluarga osteoporosis?</label>
+          <select id="q9" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q10">Asupan kalsium cukup?</label>
-        <select id="q10" required>
+          <label for="q10">Asupan kalsium cukup?</label>
+          <select id="q10" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q11">Olahraga rutin?</label>
-        <select id="q11" required>
+          <label for="q11">Olahraga rutin?</label>
+          <select id="q11" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-      </div>
+        </div>
 
-      <!-- Group 5 -->
-      <div class="form-group">
-        <h3><i class="fas fa-brain"></i> Kesehatan Mental</h3>
-        <label for="q12">Perasaan tertekan > 2 minggu?</label>
-        <select id="q12" required>
+        <!-- Group 5 -->
+        <div class="form-group">
+          <h3><i class="fas fa-brain"></i> Kesehatan Mental</h3>
+          <label for="q12">Perasaan tertekan > 2 minggu?</label>
+          <select id="q12" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-        <label for="q13">Kecemasan berlebihan?</label>
-        <select id="q13" required>
+          <label for="q13">Kecemasan berlebihan?</label>
+          <select id="q13" required>
           <option value="">Pilih</option>
           <option value="yes">Ya</option>
           <option value="no">Tidak</option>
         </select>
-      </div>
+        </div>
 
-      <button type="submit">Proses Skrining</button>
-    </form>
-  </section>
+        <button type="submit">Proses Skrining</button>
+      </form>
+    </section>
 
-  <section>
-    <h2>Hasil Skrining</h2>
-    <div id="screening-result" class="result"></div>
-  </section>
-</main>
+    <section>
+      <h2>Hasil Skrining</h2>
+      <div id="screening-result" class="result"></div>
+    </section>
+  </main>
 
-<script>
-  const getValue = (id) => document.getElementById(id).value;
+  <script>
+    const getValue = (id) => document.getElementById(id).value;
 
   document.getElementById('screening-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -342,11 +346,17 @@
 
     document.getElementById('screening-result').innerHTML = resultText;
   });
+  </script>
 
-  <script> window.chtlConfig = { chatbotId: "8275362696" } </script>
-<script async data-id="8275362696" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+  <!-- Tombol Kembali ke Home -->
+  <button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
   
-<!-- Tombol Kembali ke Home -->
-<button class="home-button" onclick="window.location.href='index.html';">Menu Utama</button>
-</body>
-</html>
+  <!-- Chatling Chatbot Embed -->
+  <script>
+    window.chtlConfig = { chatbotId: "8275362696" } 
+  </script>
+  <script async data-id="8275362696" id="chatling-embed-script" type="text/javascript"
+    src="https://chatling.ai/js/embed.js"></script>
+  </body>
+  
+  </html>
