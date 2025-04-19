@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tanya Nira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-color: #319795;
+      --text-color: #333;
+      --bg-light: #f4f9f9;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: white;
+      color: var(--text-color);
+    }
+
+    header {
+      background-color: var(--main-color);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--main-color);
+    }
+
+    .features,
+    .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .feature,
+    .testimonial {
+      background-color: var(--bg-light);
+      padding: 20px;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature i,
+    .testimonial i {
+      font-size: 2rem;
+      color: var(--main-color);
+      margin-bottom: 10px;
+    }
+
+    .donate-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: var(--main-color);
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: background-color 0.3s ease;
+    }
+
+    .donate-button:hover {
+      background-color: #277e7a;
+    }
+
+    footer {
+      background-color: var(--bg-light);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--main-color);
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+
+      .feature,
+      .testimonial {
+        width: 90%;
+      }
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header>
+    <h1>Tanya Nira</h1>
+    <p>Konsultasi & Promosi Kesehatan untuk Semua Perempuan Indonesia</p>
+  </header>
+
+  <section class="section">
+    <h2>Kenapa Tanya Nira?</h2>
+    <div class="features">
+      <div class="feature">
+        <i class="fas fa-heartbeat"></i>
+        <h3>Skrining Kesehatan</h3>
+        <p>Kenali risiko penyakit secara mandiri dan mudah.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-user-nurse"></i>
+        <h3>Konsultasi Cerdas</h3>
+        <p>Dapatkan panduan yang tepat untuk perubahan gaya hidup sehat.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-female"></i>
+        <h3>Fokus pada Perempuan</h3>
+        <p>Dirancang khusus untuk mendukung kesehatan perempuan dari berbagai usia.</p>
+      </div>
+    </div>
+
+    <a href="https://example.com/donasi" class="donate-button">💖 Donasi Sekarang</a>
+  </section>
+
+  <section class="section" style="background-color: var(--bg-light);">
+    <h2>Apa Kata Mereka</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <p>Tanya Nira bantu saya mengenali risiko kehamilan sejak dini. Sangat membantu!</p>
+        <strong>- Rina, 29 tahun</strong>
+      </div>
+      <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <p>Aplikasi ini cocok untuk ibu dan remaja. Fiturnya lengkap dan mudah dipahami.</p>
+        <strong>- Dewi, 42 tahun</strong>
+      </div>
+      <div class="testimonial">
+        <i class="fas fa-quote-left"></i>
+        <p>Lebih baik pencegahan daripada pengobatan. Tanya Nira sangat edukatif!</p>
+        <strong>- Sarah, 19 tahun</strong>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Tanya Nira</p>
+    <p>
+      <a href="#">Facebook</a> |
+      <a href="#">Instagram</a> |
+      <a href="#">YouTube</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>
