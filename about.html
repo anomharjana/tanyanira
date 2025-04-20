@@ -11,6 +11,9 @@
       --main-color: #319795;
       --text-color: #333;
       --bg-light: #f4f9f9;
+      --button-donate-bg: #319795;
+      --button-feedback-bg: #fbbf24; /* Warna berbeda untuk tombol Berikan Masukan */
+      --button-text-color: white;
     }
 
     body {
@@ -71,20 +74,37 @@
       margin-bottom: 10px;
     }
 
-    .donate-button {
+    .donate-button, .rate-button {
       display: inline-block;
       margin-top: 30px;
       padding: 12px 30px;
-      background-color: var(--main-color);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
       border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
       transition: background-color 0.3s ease;
+    }
+
+    .donate-button {
+      background-color: var(--button-donate-bg);
+      color: var(--button-text-color);
     }
 
     .donate-button:hover {
       background-color: #277e7a;
+    }
+
+    .rate-button {
+      background-color: var(--button-feedback-bg);
+      color: var(--button-text-color);
+    }
+
+    .rate-button:hover {
+      background-color: #f59e0b;
+    }
+
+    .rate-button i {
+      margin-right: 8px;
+      font-size: 1.2rem; /* Sesuaikan ukuran ikon */
     }
 
     .carousel-container {
@@ -147,6 +167,7 @@
       }
     }
   </style>
+  <!-- Pastikan link ke Font Awesome benar -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
@@ -178,6 +199,9 @@
     </div>
 
     <a href="http://lynk.id/payme/anomharjana" class="donate-button">💖 Donasi Sekarang</a>
+    <a href="https://chatbot.page/s19kWD" class="rate-button" target="_blank">
+      <i class="fas fa-comment"></i> Berikan Masukan
+    </a>
   </section>
 
   <section class="section" style="background-color: var(--bg-light);">
@@ -210,10 +234,10 @@
     <p>Pusat Inovasi Kesehatan (PIKAT)</p>
     <p>PT. Panuduh Atma Waras</p>
     <p>
-    Tanya Nira sudah terdaftar <strong>Direktorat Jenderal Kekayaan Intelektual Nomor 000880371</strong> 
-    (<a href="https://hakcipta.dgip.go.id/legal/c/YTNiYTVmYTkxOTg0ZTg3ZDZkZTM4MTg5MTA0NjU4OWQ=" target="_blank">Lihat E-Hakcipta</a>)
-  </p>
-  <p>
+      Tanya Nira sudah terdaftar <strong>Direktorat Jenderal Kekayaan Intelektual Nomor 000880371</strong> 
+      (<a href="https://hakcipta.dgip.go.id/legal/c/YTNiYTVmYTkxOTg0ZTg3ZDZkZTM4MTg5MTA0NjU4OWQ=" target="_blank">Lihat E-Hakcipta</a>)
+    </p>
+    <p>
       <a href="https://www.linkedin.com/in/ngakan-putu-anom-harjana-63aa86163/">Linkedin</a> |
       <a href="https://www.instagram.com/yayasanpikat/">Instagram</a> |
       <a href="https://www.youtube.com/@cphifkuniversitasudayana5501">YouTube</a>
