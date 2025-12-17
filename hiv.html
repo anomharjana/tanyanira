@@ -11,9 +11,6 @@
         height: 100%;
         font-family: Arial, sans-serif;
         background-color: #f9f9f9;
-    }
-
-    body {
         display: flex;
         flex-direction: column;
     }
@@ -22,9 +19,8 @@
         padding: 10px;
         background-color: #fff;
         text-align: center;
-        z-index: 2;
-        position: relative;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 2;
     }
 
     h1 {
@@ -35,6 +31,7 @@
     .instructions {
         font-size: 14px;
         color: #555;
+        margin-bottom: 10px;
     }
 
     .legend {
@@ -42,7 +39,7 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 10px;
-        margin-top: 5px;
+        margin-bottom: 10px;
         font-size: 13px;
     }
 
@@ -61,19 +58,29 @@
     .hiv-positive { background-color: red; }
     .hiv-negative { background-color: green; }
 
-    .iframe-container {
+    .content {
         flex: 1;
-        width: 100%;
-        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    iframe {
-        width: 100%;
-        height: 100%;
+    .open-button {
+        padding: 15px 25px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
         border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        transition: background-color 0.3s;
     }
 
-    /* Responsive font size untuk mobile */
+    .open-button:hover {
+        background-color: #0056b3;
+    }
+
     @media (max-width: 600px) {
         h1 {
             font-size: 1.2rem;
@@ -88,6 +95,10 @@
             width: 12px;
             height: 12px;
         }
+        .open-button {
+            font-size: 16px;
+            padding: 12px 20px;
+        }
     }
 </style>
 </head>
@@ -95,7 +106,9 @@
 
 <div class="header">
     <h1>Pemodelan Risiko HIV</h1>
-    <div class="instructions">Klik titik atau garis pada jaringan untuk melihat profil risiko individu.</div>
+    <div class="instructions">
+        Klik tombol di bawah untuk membuka jaringan interaktif dan melihat profil risiko.
+    </div>
     <div class="legend">
         <div class="legend-item"><div class="color-box hiv-positive"></div>HIV+</div>
         <div class="legend-item"><div class="color-box hiv-negative"></div>HIV-</div>
@@ -103,8 +116,8 @@
     </div>
 </div>
 
-<div class="iframe-container">
-    <iframe src="https://www.tanyanira.com/gcn" title="Pemodelan Risiko HIV" allowfullscreen></iframe>
+<div class="content">
+    <a href="https://www.tanyanira.com/gcn" target="_blank" class="open-button">Buka Situs Interaktif</a>
 </div>
 
 </body>
